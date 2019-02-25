@@ -1,32 +1,25 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Film {
 
 
     private String title;
     private String description;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int runTimeMinutes;
     private int id;
 
-    public Film(String title, String description, Date startDate, Date endDate, int id) {
+    public Film(String title, String description, LocalDate startDate, LocalDate endDate, int runTimeMinutes, int id) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.runTimeMinutes = runTimeMinutes;
         this.id = id;
     }
-
-    public Film(String title, int id){
-        this.title = title;
-        this.description = "";
-        this.startDate = new Date(2001,01,01);
-        this.endDate = new Date(2001,01,01);
-        this.id = 1;
-    }
-
 
     @Override
     public String toString() {
@@ -35,6 +28,7 @@ public class Film {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", runTime=" + runTimeMinutes +
                 ", id=" + id +
                 '}';
     }

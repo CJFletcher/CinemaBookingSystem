@@ -1,7 +1,11 @@
 package controller;
 
 import model.Employee;
+import model.Film;
+
 import java.io.IOException;
+import java.time.LocalDate;
+
 import static controller.FilmController.downloadFilmInfo;
 import static controller.HelperClass.isEmailAddressValid;
 
@@ -17,6 +21,11 @@ public class Test {
             System.out.println(bob.getEmailAddress() + " is not a valid email address");
         }
 
+        System.out.println(downloadFilmInfo("Series of Unfortunate Events",2004));
         System.out.println(downloadFilmInfo("Star Wars",2015));
+        System.out.println(downloadFilmInfo("Star Wars",2017));
+
+        Film avatar = new Film("Avatar","Bop" ,LocalDate.of( 2019 , 1 , 1 ) ,LocalDate.of( 2019 , 1 , 31 ),16,1);
+        System.out.println(avatar);
     }
 }
