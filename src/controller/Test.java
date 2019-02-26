@@ -30,8 +30,5 @@ public class Test {
         System.out.println();
 
         films.filterFilmsByTitle("Despicable");
-
-
-
     }
 }
