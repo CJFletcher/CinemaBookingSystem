@@ -11,16 +11,14 @@ public class HelperClass {
         return validEmail;
     }
 
-    public static String replaceSpacesInString(String stringToFormat) {
-        String ret = (stringToFormat.replaceAll("\\s+","+"));
+    public static String replaceSpacesInString(String stringToFormat,String replacement) {
+        String ret = (stringToFormat.replaceAll("\\s+",replacement));
         return ret;
     }
 
-    public static String parseStringByChar(String stringToParse,String charsToParseBy){
-        String string = stringToParse;
-        String[] parts = string.split(charsToParseBy);
-        String part1 = parts[1];
-        String part2 = parts[1];
-        return part1;
+    public static String parseStringByChar(String str){
+        str = str.substring(str.indexOf("\"") + 1);
+        str = str.substring(0, str.indexOf("\""));
+        return str;
     }
 }

@@ -26,7 +26,7 @@ public class Test {
         }
 
         System.out.println(downloadFilmInfo("Star Wars",2015));
-        System.out.println((parseStringByChar(downloadFilmInfo("Star Wars",2017),":")));
+        System.out.println(parseStringByChar(downloadFilmInfo("Star Wars",2017)));
 
     }
 }

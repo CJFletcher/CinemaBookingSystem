@@ -9,7 +9,7 @@ public class FilmController {
 
     public static String downloadFilmInfo(String filmName, int filmYear) throws IOException {
         String apiKey = "3d4916dd";
-        String filmNameNoSpaces = replaceSpacesInString(filmName);
+        String filmNameNoSpaces = replaceSpacesInString(filmName,"+");
         URL url = new URL("http://www.omdbapi.com/?t="+filmNameNoSpaces+"&y="+filmYear+"&apikey="+apiKey);
         String ret = "";
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
