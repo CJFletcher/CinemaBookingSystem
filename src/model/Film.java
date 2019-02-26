@@ -28,7 +28,7 @@ public class Film {
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", runTime=" + runTimeMinutes +
+                ", runTimeMinutes=" + runTimeMinutes +
                 ", id=" + id +
                 '}';
     }
