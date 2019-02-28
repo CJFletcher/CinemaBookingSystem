@@ -1,5 +1,6 @@
 package model;
 
+<<<<<<< HEAD
 
 public class Seat {
     private Boolean isBooked;
@@ -31,4 +32,7 @@ public class Seat {
         return "Seat" + seatNumber +
                 ", isBooked=" + isBooked;
     }
+=======
+public class Seat {
+>>>>>>> GitHub/master
 }
