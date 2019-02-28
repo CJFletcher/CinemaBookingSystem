@@ -1,6 +1,7 @@
 package controller;
 
 import model.Employee;
+import model.Screen;
 
 import java.io.IOException;
 
@@ -20,17 +21,24 @@ public class Test {
         }
 
         FilmController films = new FilmController();
-        films.addFilm(newFilm("Star Wars",2015));
-        films.addFilm(newFilm("Star Wars",2017));
-        films.addFilm(newFilm("Despicable Me"));
+
+        films.addFilm(newFilm("Star Wars","2015"));
+        films.addFilm(newFilm("Star Wars","2017"));
+        films.addFilm(newFilm("Despicable Me",null));
         films.printFilms();
         System.out.println();
+
 
         films.filterFilmsByTitle("Star Wars");
         System.out.println();
 
         films.filterFilmsByTitle("Despicable");
 
+        films.filterFilmsByTitle("Not in titles");
+
+        Screen one = new Screen(1);
+        one.createRows(5,3);
+        System.out.println(one);
 
 
     }

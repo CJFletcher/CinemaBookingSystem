@@ -31,7 +31,6 @@ public class Film {
     private String BoxOffice;
     private String Production;
     private String Website;
-    private String Response;
 
 
     // Getter Methods
@@ -128,10 +127,6 @@ public class Film {
         return Website;
     }
 
-    public String getResponse() {
-        return Response;
-    }
-
     // Setter Methods
 
     public void setTitle(String Title) {
@@ -226,10 +221,6 @@ public class Film {
         this.Website = Website;
     }
 
-    public void setResponse(String Response) {
-        this.Response = Response;
-    }
-
     @Override
     public String toString() {
         return "Film{" +
@@ -257,7 +248,6 @@ public class Film {
                 ", BoxOffice='" + BoxOffice + '\'' +
                 ", Production='" + Production + '\'' +
                 ", Website='" + Website + '\'' +
-                ", Response='" + Response + '\'' +
                 '}';
     }
 }

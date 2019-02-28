@@ -37,25 +37,19 @@ public class FilmController {
         }
     }
 
-    public static String downloadFilmInfo(String filmName, int filmYear) throws IOException {
+    public static URL generateOmdbUrl(String filmName, String filmYear) throws IOException{
         String apiKey = "3d4916dd";
-        String filmNameNoSpaces = replaceSpacesInString(filmName,"+");
-        URL url = new URL("http://www.omdbapi.com/?t="+filmNameNoSpaces+"&y="+filmYear+"&apikey="+apiKey);
-        String ret = "";
-        BufferedInputStream bis = new BufferedInputStream(url.openStream());
-        byte[] buffer = new byte[1024];
-        int count = 0;
-        while ((count = bis.read(buffer, 0, 1024)) != -1) {
-            ret += new String(buffer, 0, count);
+        String filmNameNoSpaces = replaceSpacesInString(filmName, "+");
+        if (filmYear == null) {
+            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&apikey=" + apiKey);
+            return url;
+        } else {
+            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&y=" + filmYear + "&apikey=" + apiKey);
+            return url;
         }
-        bis.close();
-        return ret;
     }
 
-    public static String downloadFilmInfo(String filmName) throws IOException {
-        String apiKey = "3d4916dd";
-        String filmNameNoSpaces = replaceSpacesInString(filmName,"+");
-        URL url = new URL("http://www.omdbapi.com/?t="+filmNameNoSpaces+"&apikey="+apiKey);
+    public static String parseURL(URL url)throws IOException {
         String ret = "";
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
         byte[] buffer = new byte[1024];
@@ -72,12 +66,8 @@ public class FilmController {
         return(data);
     }
 
-    public static Film newFilm(String filmName, int filmYear) throws IOException{
-        return(jsonToObject(downloadFilmInfo(filmName,filmYear)));
-    }
-
-    public static Film newFilm(String filmName) throws IOException{
-        return(jsonToObject(downloadFilmInfo(filmName)));
+    public static Film newFilm(String filmName, String filmYear) throws IOException{
+        return(jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear))));
     }
 
     public void printFilms() {
