@@ -3,251 +3,241 @@ package model;
 import java.util.ArrayList;
 
 public class Film {
-    private String Title;
-    private String Year;
-    private String Rated;
-    private String Released;
-    private String Runtime;
-    private String Genre;
-    private String Director;
-    private String Writer;
-    private String Actors;
-    private String Plot;
-    private String Language;
-    private String Country;
-    private String Awards;
-    private String Poster;
-    ArrayList< Object > Ratings = new ArrayList < Object > ();
-    private String Metascore;
-    private String imdbRating;
-    private String imdbVotes;
-    private String imdbID;
+    private String title;
+    private String year;
+    private String rated;
+    private String runtime;
+    private String genre;
+    private String director;
+    private String writer;
+    private String actors;
+    private String plot;
+    private String language;
+    private String country;
+    private String awards;
+    private String poster;
+    ArrayList< Object > ratings = new ArrayList < Object > ();
+    private String metascore;
+    private String imdbrating;
+    private String imdbvotes;
+    private String imdbid;
 
     public Film() {
     }
 
-    private String Type;
-    private String DVD;
-    private String BoxOffice;
-    private String Production;
-    private String Website;
+    private String type;
+    private String dvd;
+    private String boxOffice;
+    private String production;
+    private String website;
 
 
     // Getter Methods
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public String getYear() {
-        return Year;
+        return year;
     }
 
     public String getRated() {
-        return Rated;
-    }
-
-    public String getReleased() {
-        return Released;
+        return rated;
     }
 
     public String getRuntime() {
-        return Runtime;
+        return runtime;
     }
 
     public String getGenre() {
-        return Genre;
+        return genre;
     }
 
     public String getDirector() {
-        return Director;
+        return director;
     }
 
     public String getWriter() {
-        return Writer;
+        return writer;
     }
 
     public String getActors() {
-        return Actors;
+        return actors;
     }
 
     public String getPlot() {
-        return Plot;
+        return plot;
     }
 
     public String getLanguage() {
-        return Language;
+        return language;
     }
 
     public String getCountry() {
-        return Country;
+        return country;
     }
 
     public String getAwards() {
-        return Awards;
+        return awards;
     }
 
     public String getPoster() {
-        return Poster;
+        return poster;
     }
 
     public String getMetascore() {
-        return Metascore;
+        return metascore;
     }
 
-    public String getImdbRating() {
-        return imdbRating;
+    public String getImdbrating() {
+        return imdbrating;
     }
 
-    public String getImdbVotes() {
-        return imdbVotes;
+    public String getImdbvotes() {
+        return imdbvotes;
     }
 
-    public String getImdbID() {
-        return imdbID;
+    public String getImdbid() {
+        return imdbid;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
-    public String getDVD() {
-        return DVD;
+    public String getDvd() {
+        return dvd;
     }
 
     public String getBoxOffice() {
-        return BoxOffice;
+        return boxOffice;
     }
 
     public String getProduction() {
-        return Production;
+        return production;
     }
 
     public String getWebsite() {
-        return Website;
+        return website;
     }
 
     // Setter Methods
 
     public void setTitle(String Title) {
-        this.Title = Title;
+        this.title = Title;
     }
 
     public void setYear(String Year) {
-        this.Year = Year;
+        this.year = Year;
     }
 
     public void setRated(String Rated) {
-        this.Rated = Rated;
-    }
-
-    public void setReleased(String Released) {
-        this.Released = Released;
+        this.rated = Rated;
     }
 
     public void setRuntime(String Runtime) {
-        this.Runtime = Runtime;
+        this.runtime = Runtime;
     }
 
     public void setGenre(String Genre) {
-        this.Genre = Genre;
+        this.genre = Genre;
     }
 
     public void setDirector(String Director) {
-        this.Director = Director;
+        this.director = Director;
     }
 
     public void setWriter(String Writer) {
-        this.Writer = Writer;
+        this.writer = Writer;
     }
 
     public void setActors(String Actors) {
-        this.Actors = Actors;
+        this.actors = Actors;
     }
 
     public void setPlot(String Plot) {
-        this.Plot = Plot;
+        this.plot = Plot;
     }
 
     public void setLanguage(String Language) {
-        this.Language = Language;
+        this.language = Language;
     }
 
     public void setCountry(String Country) {
-        this.Country = Country;
+        this.country = Country;
     }
 
     public void setAwards(String Awards) {
-        this.Awards = Awards;
+        this.awards = Awards;
     }
 
     public void setPoster(String Poster) {
-        this.Poster = Poster;
+        this.poster = Poster;
     }
 
     public void setMetascore(String Metascore) {
-        this.Metascore = Metascore;
+        this.metascore = Metascore;
     }
 
-    public void setImdbRating(String imdbRating) {
-        this.imdbRating = imdbRating;
+    public void setImdbrating(String imdbrating) {
+        this.imdbrating = imdbrating;
     }
 
-    public void setImdbVotes(String imdbVotes) {
-        this.imdbVotes = imdbVotes;
+    public void setImdbvotes(String imdbvotes) {
+        this.imdbvotes = imdbvotes;
     }
 
-    public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
+    public void setImdbid(String imdbid) {
+        this.imdbid = imdbid;
     }
 
     public void setType(String Type) {
-        this.Type = Type;
+        this.type = Type;
     }
 
-    public void setDVD(String DVD) {
-        this.DVD = DVD;
+    public void setDvd(String dvd) {
+        this.dvd = dvd;
     }
 
     public void setBoxOffice(String BoxOffice) {
-        this.BoxOffice = BoxOffice;
+        this.boxOffice = BoxOffice;
     }
 
     public void setProduction(String Production) {
-        this.Production = Production;
+        this.production = Production;
     }
 
     public void setWebsite(String Website) {
-        this.Website = Website;
+        this.website = Website;
     }
 
     @Override
     public String toString() {
         return "Film{" +
-                "Title='" + Title + '\'' +
-                ", Year='" + Year + '\'' +
-                ", Rated='" + Rated + '\'' +
-                ", Released='" + Released + '\'' +
-                ", Runtime='" + Runtime + '\'' +
-                ", Genre='" + Genre + '\'' +
-                ", Director='" + Director + '\'' +
-                ", Writer='" + Writer + '\'' +
-                ", Actors='" + Actors + '\'' +
-                ", Plot='" + Plot + '\'' +
-                ", Language='" + Language + '\'' +
-                ", Country='" + Country + '\'' +
-                ", Awards='" + Awards + '\'' +
-                ", Poster='" + Poster + '\'' +
-                ", Ratings=" + Ratings +
-                ", Metascore='" + Metascore + '\'' +
-                ", imdbRating='" + imdbRating + '\'' +
-                ", imdbVotes='" + imdbVotes + '\'' +
-                ", imdbID='" + imdbID + '\'' +
-                ", Type='" + Type + '\'' +
-                ", DVD='" + DVD + '\'' +
-                ", BoxOffice='" + BoxOffice + '\'' +
-                ", Production='" + Production + '\'' +
-                ", Website='" + Website + '\'' +
+                "title='" + title + '\'' +
+                ", year='" + year + '\'' +
+                ", rated='" + rated + '\'' +
+                ", runtime='" + runtime + '\'' +
+                ", genre='" + genre + '\'' +
+                ", director='" + director + '\'' +
+                ", writer='" + writer + '\'' +
+                ", actors='" + actors + '\'' +
+                ", plot='" + plot + '\'' +
+                ", language='" + language + '\'' +
+                ", country='" + country + '\'' +
+                ", awards='" + awards + '\'' +
+                ", poster='" + poster + '\'' +
+                ", ratings=" + ratings +
+                ", metascore='" + metascore + '\'' +
+                ", imdbrating='" + imdbrating + '\'' +
+                ", imdbvotes='" + imdbvotes + '\'' +
+                ", imdbid='" + imdbid + '\'' +
+                ", type='" + type + '\'' +
+                ", dvd='" + dvd + '\'' +
+                ", boxOffice='" + boxOffice + '\'' +
+                ", production='" + production + '\'' +
+                ", website='" + website + '\'' +
                 '}';
     }
 }

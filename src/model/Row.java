@@ -5,20 +5,20 @@ import java.util.ArrayList;
 public class Row {
 
     private ArrayList<Seat> seats;
-    private int rowNumber;
+    private char rowLetter;
     private int numberOfSeats;
 
-    public Row (int numberOfSeats, int rowNumber)
+    public Row (int numberOfSeats, char rowLetter)
     {
-        this.rowNumber = rowNumber;
+        this.rowLetter = rowLetter;
         this.numberOfSeats = numberOfSeats;
         seats = new ArrayList<Seat>();
         createSeats(this.numberOfSeats);
     }
 
-    public int getRowNumber()
+    public char getRowLetter()
     {
-        return rowNumber;
+        return rowLetter;
     }
 
     public void createSeats(int seatCount)
@@ -36,8 +36,7 @@ public class Row {
 
     @Override
     public String toString() {
-        return "Row"+rowNumber+
-                seats +
-                '}';
+        return "Row "+rowLetter+
+                seats;
     }
 }

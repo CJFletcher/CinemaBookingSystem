@@ -19,7 +19,8 @@ public class Screen {
     {
         for (int i = 1; i <= numberOfRows; i++)
         {
-            rows.add(new Row(numberOfSeats, i));
+            char x = (char)(i+64);
+            rows.add(new Row(numberOfSeats, x));
         }
         this.numberOfRows += numberOfRows;
     }
@@ -27,7 +28,7 @@ public class Screen {
     @Override
     public String toString() {
         return "Screen Number=" + screenNumber +
-                "{, rows=" + rows +
+                "{" + rows +
                 '}';
     }
 }

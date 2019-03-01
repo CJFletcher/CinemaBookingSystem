@@ -12,13 +12,13 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
 
-        Employee bob = new Employee("Bob","Dylan","bob@dylan.com");
+        //Employee bob = new Employee("Bob","Dylan","bob@dylan.com");
 
-        if (isEmailAddressValid(bob.getEmailAddress())) {
-            System.out.println(bob.getEmailAddress() + " is a valid email address");
-        } else {
-            System.out.println(bob.getEmailAddress() + " is not a valid email address");
-        }
+        //if (isEmailAddressValid(bob.getEmailAddress())) {
+        //    System.out.println(bob.getEmailAddress() + " is a valid email address");
+        //} else {
+        //    System.out.println(bob.getEmailAddress() + " is not a valid email address");
+        //}
 
         FilmController films = new FilmController();
 
@@ -37,7 +37,7 @@ public class Test {
         films.filterFilmsByTitle("Not in titles");
 
         Screen one = new Screen(1);
-        one.createRows(5,3);
+        one.createRows(10,5);
         System.out.println(one);
 
 

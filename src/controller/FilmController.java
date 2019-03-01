@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import model.Film;
 import java.io.BufferedInputStream;
@@ -58,7 +59,9 @@ public class FilmController {
             ret += new String(buffer, 0, count);
         }
         bis.close();
-        return ret;
+        String retLower = ret.toLowerCase();
+        System.out.println(ret);
+        return retLower;
     }
 
     public static Film jsonToObject(String json){
