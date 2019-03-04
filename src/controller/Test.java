@@ -46,13 +46,10 @@ public class Test {
         Screen two = new Screen(2);
         two.createRows(3,1,false);
         two.createRows(5,1,true);
+
         System.out.println(two);
 
         Showing x = new Showing(films.getFilmByName("Despicable Me"),"21/08/19",two);
-        System.out.println(x.getFilm());
-        System.out.println(x.getScreenNumber());
-        System.out.println(x.getShowDate());
-        System.out.println(x.getSeats());
         System.out.println(x.getAvailableSeats());
         System.out.println(x.getAvailableVipSeats());
     }

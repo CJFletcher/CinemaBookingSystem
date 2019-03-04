@@ -26,16 +26,14 @@ public class Film {
     private String imdbrating;
     private String imdbvotes;
     private String imdbid;
-
-    public Film() {
-    }
-
     private String type;
     private String dvd;
     private String boxOffice;
     private String production;
     private String website;
 
+    public Film() {
+    }
 
     // Getter Methods
 

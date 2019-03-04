@@ -1,14 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Showing {
 
     private Film film;
     private String showingDate;
     private Screen screen;
-    private int availableSeats;
-    private ArrayList<Seat> seats;
 
 
     public Showing(Film film, String showingDate, Screen screen)
@@ -16,26 +12,18 @@ public class Showing {
         this.film = film;
         this.showingDate = showingDate;
         this.screen = screen;
-        seats = new ArrayList<Seat>();
-        loadSeats();
-    }
-
-    public void loadSeats() {
-        for (Row rows : this.screen.getRows()) {
-            for (Seat seats: rows.getSeats()) {
-                this.seats.add(seats);
-            }
-        }
     }
 
     public int getAvailableSeats()
     {
-        availableSeats=0;
-        for (Seat seat : seats)
+        int availableSeats = 0;
+        for (Row row : this.screen.getRows())
         {
+            for (Seat seat : row.getSeats()){
             if (!seat.getBookingStatus())
-            {
+                {
                 availableSeats++;
+                }
             }
         }
         return availableSeats;
@@ -43,12 +31,12 @@ public class Showing {
 
     public int getAvailableVipSeats()
     {
-        availableSeats=0;
-        for (Seat seat : seats)
+        int availableSeats=0;
+        for (Row row : this.screen.getRows())
         {
-            if (!seat.getBookingStatus())
-            {
-                if(seat.getClass()==VipSeat.class) {
+            for (Seat seat : row.getSeats()){
+                if (!seat.getBookingStatus() && seat.getClass()==VipSeat.class)
+                {
                     availableSeats++;
                 }
             }
@@ -88,10 +76,5 @@ public class Showing {
 
     public Screen getScreen() {
         return screen;
-    }
-
-    public ArrayList<Seat> getSeats()
-    {
-        return seats;
     }
 }
