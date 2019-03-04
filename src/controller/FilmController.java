@@ -1,12 +1,12 @@
 package controller;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import model.Film;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import static controller.HelperClass.replaceSpacesInString;
 
@@ -24,6 +24,10 @@ public class FilmController {
 
     public void removeFilm(Film film) {
         this.films.remove(film);
+    }
+
+    public ArrayList<Film> getFilms() {
+        return films;
     }
 
     public void filterFilmsByTitle(String title) {
@@ -71,6 +75,16 @@ public class FilmController {
 
     public static Film newFilm(String filmName, String filmYear) throws IOException{
         return(jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear))));
+    }
+
+    public Film getFilmByName(String filmName){
+        for (Film film:this.films
+             ) {
+            if (film.getTitle().contains(filmName.toLowerCase())) {
+                return film;
+            }
+        }
+        throw new NoSuchElementException("Film not found");
     }
 
     public void printFilms() {

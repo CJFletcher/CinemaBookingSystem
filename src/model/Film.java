@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+//All attributes and attribute names in this class are all lowercase rather than lower camel case.
+//This is due to the GSON library I have used.
+//The JSON formatted String returned from OMDB returns the JSON keys capitalised, so I converted all these keys to
+//lowercase to avoid confusion.
+
 public class Film {
     private String title;
     private String year;

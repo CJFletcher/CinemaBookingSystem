@@ -1,7 +1,9 @@
 package controller;
 
 import model.Employee;
+import model.Film;
 import model.Screen;
+import model.Showing;
 
 import java.io.IOException;
 
@@ -22,8 +24,8 @@ public class Test {
 
         FilmController films = new FilmController();
 
-        films.addFilm(newFilm("Star Wars","2015"));
-        films.addFilm(newFilm("Star Wars","2017"));
+        //films.addFilm(newFilm("Star Wars","2015"));
+        //films.addFilm(newFilm("Star Wars","2017"));
         films.addFilm(newFilm("Despicable Me",null));
         films.printFilms();
         System.out.println();
@@ -37,9 +39,21 @@ public class Test {
         films.filterFilmsByTitle("Not in titles");
 
         Screen one = new Screen(1);
-        one.createRows(10,5);
+        one.createRows(8,5,false);
+        one.createRows(3,2,true);
         System.out.println(one);
 
+        Screen two = new Screen(2);
+        two.createRows(3,1,false);
+        two.createRows(5,1,true);
+        System.out.println(two);
 
+        Showing x = new Showing(films.getFilmByName("Despicable Me"),"21/08/19",two);
+        System.out.println(x.getFilm());
+        System.out.println(x.getScreenNumber());
+        System.out.println(x.getShowDate());
+        System.out.println(x.getSeats());
+        System.out.println(x.getAvailableSeats());
+        System.out.println(x.getAvailableVipSeats());
     }
 }

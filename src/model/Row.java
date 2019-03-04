@@ -8,12 +8,12 @@ public class Row {
     private char rowLetter;
     private int numberOfSeats;
 
-    public Row (int numberOfSeats, char rowLetter)
+    public Row (int numberOfSeats, char rowLetter, boolean isVip)
     {
         this.rowLetter = rowLetter;
         this.numberOfSeats = numberOfSeats;
         seats = new ArrayList<Seat>();
-        createSeats(this.numberOfSeats);
+        createSeats(this.numberOfSeats,isVip);
     }
 
     public char getRowLetter()
@@ -21,11 +21,13 @@ public class Row {
         return rowLetter;
     }
 
-    public void createSeats(int seatCount)
-    {
-        for (int i = 1; i <= seatCount; i++)
-        {
-            seats.add(new Seat(false, i));
+    public void createSeats(int numberOfSeats,boolean isVip) {
+        for (int i = 1; i <= numberOfSeats; i++) {
+            if (!isVip) {
+                seats.add(new Seat(false, i));
+            }
+            else {seats.add(new VipSeat(false,i));
+            }
         }
     }
 
