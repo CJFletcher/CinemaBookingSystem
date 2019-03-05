@@ -1,35 +1,58 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.LinkedTreeMap;
+
 import java.util.ArrayList;
 
-//All attributes and attribute names in this class are all lowercase rather than lower camel case.
-//This is due to the GSON library I have used.
-//The JSON formatted String returned from OMDB returns the JSON keys capitalised, so I converted all these keys to
-//lowercase to avoid confusion.
+//SerializedName matches the Value from the Json response to the relevant attribute.
+//This is necessary due to the Json response Values being stored
 
 public class Film {
+    @SerializedName(value = "Title", alternate = "title")
     private String title;
+    @SerializedName(value = "Year",alternate = "year")
     private String year;
+    @SerializedName(value = "Rated",alternate = "rated")
     private String rated;
+    @SerializedName(value = "Released",alternate = "released")
+    private String released;
+    @SerializedName(value = "Runtime",alternate = "runtime")
     private String runtime;
+    @SerializedName(value = "Genre",alternate = "genre")
     private String genre;
+    @SerializedName(value = "Director",alternate = "director")
     private String director;
+    @SerializedName(value = "Writer",alternate = "writer")
     private String writer;
+    @SerializedName(value = "Actors",alternate = "actors")
     private String actors;
-    private String plot;
+    @SerializedName(value = "Plot",alternate = "plotShort")
+    private String plotShort;
+    @SerializedName(value = "Language",alternate = "language")
     private String language;
+    @SerializedName(value = "Country",alternate = "country")
     private String country;
+    @SerializedName(value = "Awards",alternate = "awards")
     private String awards;
+    @SerializedName(value = "Poster",alternate = "poster")
     private String poster;
-    ArrayList< Object > ratings = new ArrayList < Object > ();
+    @SerializedName(value = "Ratings",alternate = "ratings")
+    ArrayList<LinkedTreeMap> ratings = new ArrayList<>();
     private String metascore;
-    private String imdbrating;
-    private String imdbvotes;
-    private String imdbid;
+    private String imdbRating;
+    private String imdbVotes;
+    @SerializedName(value = "imdbID",alternate = "imdbId")
+    private String imdbId;
+    @SerializedName(value = "Type",alternate = "type")
     private String type;
+    @SerializedName(value = "DVD",alternate = "dvd")
     private String dvd;
+    @SerializedName(value = "BoxOffice",alternate = "boxOffice")
     private String boxOffice;
+    @SerializedName(value = "Production",alternate = "production")
     private String production;
+    @SerializedName(value = "Website",alternate = "website")
     private String website;
 
     public Film() {
@@ -69,8 +92,8 @@ public class Film {
         return actors;
     }
 
-    public String getPlot() {
-        return plot;
+    public String getPlotShort() {
+        return plotShort;
     }
 
     public String getLanguage() {
@@ -89,20 +112,28 @@ public class Film {
         return poster;
     }
 
+    public String getRatings() {
+        String ret = "";
+        for (LinkedTreeMap rating : ratings) {
+            ret += rating.get("Source") + " " + rating.get("Value")+"\n";
+        }
+        return ret;
+    }
+
     public String getMetascore() {
         return metascore;
     }
 
-    public String getImdbrating() {
-        return imdbrating;
+    public String getImdbRating() {
+        return imdbRating;
     }
 
-    public String getImdbvotes() {
-        return imdbvotes;
+    public String getImdbVotes() {
+        return imdbVotes;
     }
 
-    public String getImdbid() {
-        return imdbid;
+    public String getImdbId() {
+        return imdbId;
     }
 
     public String getType() {
@@ -159,8 +190,8 @@ public class Film {
         this.actors = Actors;
     }
 
-    public void setPlot(String Plot) {
-        this.plot = Plot;
+    public void setPlotShort(String Plot) {
+        this.plotShort = Plot;
     }
 
     public void setLanguage(String Language) {
@@ -183,16 +214,20 @@ public class Film {
         this.metascore = Metascore;
     }
 
-    public void setImdbrating(String imdbrating) {
-        this.imdbrating = imdbrating;
+    public void setRatings(ArrayList<LinkedTreeMap> ratings) {
+        this.ratings = ratings;
     }
 
-    public void setImdbvotes(String imdbvotes) {
-        this.imdbvotes = imdbvotes;
+    public void setImdbRating(String imdbRating) {
+        this.imdbRating = imdbRating;
     }
 
-    public void setImdbid(String imdbid) {
-        this.imdbid = imdbid;
+    public void setImdbVotes(String imdbVotes) {
+        this.imdbVotes = imdbVotes;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 
     public void setType(String Type) {
@@ -226,16 +261,16 @@ public class Film {
                 ", director='" + director + '\'' +
                 ", writer='" + writer + '\'' +
                 ", actors='" + actors + '\'' +
-                ", plot='" + plot + '\'' +
+                ", plotShort='" + plotShort + '\'' +
                 ", language='" + language + '\'' +
                 ", country='" + country + '\'' +
                 ", awards='" + awards + '\'' +
                 ", poster='" + poster + '\'' +
                 ", ratings=" + ratings +
                 ", metascore='" + metascore + '\'' +
-                ", imdbrating='" + imdbrating + '\'' +
-                ", imdbvotes='" + imdbvotes + '\'' +
-                ", imdbid='" + imdbid + '\'' +
+                ", imdbRating='" + imdbRating + '\'' +
+                ", imdbVotes='" + imdbVotes + '\'' +
+                ", imdbId='" + imdbId + '\'' +
                 ", type='" + type + '\'' +
                 ", dvd='" + dvd + '\'' +
                 ", boxOffice='" + boxOffice + '\'' +

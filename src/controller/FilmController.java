@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import static controller.TextFileScanner.txtToArray;
 
 import static controller.HelperClass.replaceSpacesInString;
 
 public class FilmController {
+
+    private static String APIKEY = "3d4916dd";
 
     private ArrayList<Film> films;
 
@@ -42,14 +45,32 @@ public class FilmController {
         }
     }
 
+    public ArrayList<Film> getAllFilms() {
+        ArrayList<Film> ret = new ArrayList<Film>();
+        if (this.films.isEmpty()) {
+            System.out.println("No films in this collection.");
+        } else {
+            for (Film i : films)
+                ret.add(i);
+        }
+        return ret;
+    }
+
+
     public static URL generateOmdbUrl(String filmName, String filmYear) throws IOException{
-        String apiKey = "3d4916dd";
         String filmNameNoSpaces = replaceSpacesInString(filmName, "+");
         if (filmYear == null) {
-            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&apikey=" + apiKey);
+            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&apikey=" + APIKEY);
             return url;
         } else {
-            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&y=" + filmYear + "&apikey=" + apiKey);
+            URL url = new URL("http://www.omdbapi.com/?t=" + filmNameNoSpaces + "&y=" + filmYear + "&apikey=" + APIKEY);
+            return url;
+        }
+    }
+
+    public static URL generateOmdbUrl(String imdbID) throws IOException {
+        {
+            URL url = new URL("http://www.omdbapi.com/?i=" + imdbID + "&apikey=" + APIKEY);
             return url;
         }
     }
@@ -65,7 +86,7 @@ public class FilmController {
         bis.close();
         String retLower = ret.toLowerCase();
         System.out.println(ret);
-        return retLower;
+        return ret;
     }
 
     public static Film jsonToObject(String json){
@@ -77,10 +98,13 @@ public class FilmController {
         return(jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear))));
     }
 
+    public static Film newFilm(String imdbID) throws IOException{
+        return(jsonToObject(parseURL(generateOmdbUrl(imdbID))));
+    }
+
     public Film getFilmByName(String filmName){
-        for (Film film:this.films
-             ) {
-            if (film.getTitle().contains(filmName.toLowerCase())) {
+        for (Film film:this.films) {
+            if (film.getTitle().toLowerCase().contains(filmName.toLowerCase())) {
                 return film;
             }
         }
@@ -92,9 +116,17 @@ public class FilmController {
             System.out.println("No films in this collection.");
             System.out.println();
         } else {
+            System.out.println("Films:\n");
             for (Film i : films) {
                 System.out.println(i);
             }
         }
+    }
+
+    public void loadFilms() throws IOException {
+        ArrayList<String> filmIds =txtToArray("./src/txt/films.txt");
+        for (String filmid:filmIds) {
+            films.add(newFilm(filmid));
+            }
     }
 }

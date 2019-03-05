@@ -1,18 +1,16 @@
 package controller;
 
-import model.Employee;
-import model.Film;
 import model.Screen;
 import model.Showing;
 
-import java.io.IOException;
 
+import static controller.TextFileScanner.txtToArray;
 import static controller.FilmController.newFilm;
-import static controller.HelperClass.isEmailAddressValid;
+import static java.time.LocalDateTime.of;
 
 public class Test {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
         //Employee bob = new Employee("Bob","Dylan","bob@dylan.com");
 
@@ -24,9 +22,9 @@ public class Test {
 
         FilmController films = new FilmController();
 
-        //films.addFilm(newFilm("Star Wars","2015"));
-        //films.addFilm(newFilm("Star Wars","2017"));
-        films.addFilm(newFilm("Despicable Me",null));
+        films.addFilm(newFilm("Star Wars",null));
+        films.addFilm(newFilm("Star Wars","2017"));
+        films.addFilm(newFilm("tt1323594"));
         films.printFilms();
         System.out.println();
 
@@ -49,8 +47,25 @@ public class Test {
 
         System.out.println(two);
 
-        Showing x = new Showing(films.getFilmByName("Despicable Me"),"21/08/19",two);
-        System.out.println(x.getAvailableSeats());
-        System.out.println(x.getAvailableVipSeats());
+        Showing a = new Showing(films.getFilmByName("Despicable Me"),of(2019,3,5,13,00),one);
+        Showing b = new Showing(films.getFilmByName("Despicable Me"),of(2019,3,4,13,30),one);
+        Showing c = new Showing(films.getFilmByName("Despicable Me"),of(2019,3,4,13,00),two);
+
+        ShowingController showings = new ShowingController();
+        showings.addShowing(a);
+        showings.addShowing(b);
+        showings.addShowing(c);
+        showings.printShowings();
+        showings.sortShowings();
+
+        showings.printShowings();
+        showings.removeOldShowings();
+        showings.printShowings();
+
+        System.out.println(films.getFilmByName("Despicable Me").getRatings());
+        System.out.println(txtToArray("./src/txt/films.txt"));
+
+        films.loadFilms();
+        }
+
     }
-}
