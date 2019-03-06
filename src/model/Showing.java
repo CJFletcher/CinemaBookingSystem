@@ -7,19 +7,22 @@ public class Showing implements Comparable<Showing>{
 
     private Film film;
     private LocalDateTime showingTimeDate;
-    private Screen screen;
+    private Theater theater;
+    private int availableSeats;
 
 
-    public Showing(Film film, LocalDateTime showingTimeDate, Screen screen) {
+    public Showing(Film film, LocalDateTime showingTimeDate, Theater theater) {
         this.film = film;
         this.showingTimeDate = showingTimeDate;
-        this.screen = screen;
+        this.theater = theater;
+        this.availableSeats = getAvailableSeats();
     }
 
-    public Showing(LocalDateTime showingTimeDate, Screen screen) {
+    public Showing(LocalDateTime showingTimeDate, Theater theater) {
         this.film = null;
         this.showingTimeDate = showingTimeDate;
-        this.screen = screen;
+        this.theater = theater;
+        this.availableSeats = getAvailableSeats();
     }
 
     public LocalDateTime getShowingTimeDate() {
@@ -37,7 +40,7 @@ public class Showing implements Comparable<Showing>{
     public int getAvailableSeats()
     {
         int availableSeats = 0;
-        for (Row row : this.screen.getRows())
+        for (Row row : this.theater.getRows())
         {
             for (Seat seat : row.getSeats()){
             if (!seat.getBookingStatus())
@@ -52,7 +55,7 @@ public class Showing implements Comparable<Showing>{
     public int getAvailableVipSeats()
     {
         int availableSeats=0;
-        for (Row row : this.screen.getRows())
+        for (Row row : this.theater.getRows())
         {
             for (Seat seat : row.getSeats()){
                 if (!seat.getBookingStatus() && seat.getClass()==VipSeat.class)
@@ -70,9 +73,9 @@ public class Showing implements Comparable<Showing>{
         this.film = film;
     }
 
-    public void setScreen(Screen screen)
+    public void setTheater(Theater theater)
     {
-        this.screen = screen;
+        this.theater = theater;
     }
 
     public Film getFilm()
@@ -82,11 +85,11 @@ public class Showing implements Comparable<Showing>{
 
     public String getScreenNumber()
     {
-        return "Screen: " + screen.getScreenNumber();
+        return "Theater: " + theater.getTheaterNumber();
     }
 
-    public Screen getScreen() {
-        return screen;
+    public Theater getTheater() {
+        return theater;
     }
 
     public Boolean isOld(){
@@ -101,7 +104,7 @@ public class Showing implements Comparable<Showing>{
         return "Showing: " +
                 "film=" + film.getTitle() +
                 ", showing Time & Date=" + showingTimeDate +
-                ", screen=" + screen.getScreenNumber() +
+                ", theater=" + theater.getTheaterNumber() +
                 '}';
     }
 

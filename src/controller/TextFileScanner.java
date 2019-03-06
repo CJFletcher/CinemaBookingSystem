@@ -1,10 +1,14 @@
 package controller;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import model.Showing;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+
+import static org.apache.commons.io.FileUtils.readLines;
+import static org.apache.commons.io.FileUtils.writeLines;
 
 
 public class TextFileScanner {
@@ -20,5 +24,29 @@ public class TextFileScanner {
             list.add(str);
         }
         return list;
+    }
+
+    public static void arrayToTxt(ArrayList<String> arrayList, String fileName) throws IOException {
+        FileWriter writer = new FileWriter(fileName);
+        new File(fileName).createNewFile();
+        for (String str : arrayList) {
+            try{writer.write(str+"\n");}
+            catch (NullPointerException e){
+                System.out.println(e +" String in array returned Null value");
+            }
+        }
+        writer.flush();
+        writer.close();
+    }
+
+    public static void arrayToTxt2(ArrayList<model.Showing> arrayList, String fileName) throws IOException {
+        File f = new File(fileName);
+        f.createNewFile();
+        writeLines(f,arrayList);
+    }
+
+    public static List<String> txtToArray2(String fileName) throws IOException {
+        File f = new File(fileName);
+        return readLines(f,"UTF-8");
     }
 }

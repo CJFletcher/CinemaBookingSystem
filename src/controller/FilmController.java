@@ -6,15 +6,17 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
-import static controller.TextFileScanner.txtToArray;
 
+import static controller.TextFileScanner.arrayToTxt;
+import static controller.TextFileScanner.txtToArray;
 import static controller.HelperClass.replaceSpacesInString;
 
 public class FilmController {
 
     private static String APIKEY = "3d4916dd";
-
+    private static String TXTFILEPATH = "./src/txt/films.txt";
     private ArrayList<Film> films;
 
     public FilmController() {
@@ -33,29 +35,35 @@ public class FilmController {
         return films;
     }
 
-    public void filterFilmsByTitle(String title) {
-        if (this.films.isEmpty()) {
-            System.out.println("No films in this collection.");
-        } else {
-            for (Film i : films) {
-                if (i.getTitle().contains(title)) {
-                    System.out.println(i);
-                }
+    public void removeNullFilms() {
+        Iterator<Film> i = films.iterator();
+        while (i.hasNext()) {
+            Film f = i.next();
+            if (f.getTitle() == null) {
+                i.remove();
             }
         }
     }
 
-    public ArrayList<Film> getAllFilms() {
-        ArrayList<Film> ret = new ArrayList<Film>();
+    public ArrayList<Film> filterFilmsByTitle(String title) {
+        ArrayList<Film> ret = new ArrayList<>();
         if (this.films.isEmpty()) {
-            System.out.println("No films in this collection.");
+            System.out.println("There are no films in this list");
+            return null;
         } else {
-            for (Film i : films)
-                ret.add(i);
+                for (Film f : films) {
+                    try{
+                    if (f.getTitle().contains(title)) {
+                        ret.add(f);
+                    }
+                    }catch (NullPointerException e){
+                        System.out.println(e+" Film with no title found. Deleting...");
+                    }
+                }
+            removeNullFilms();
+            return ret;
         }
-        return ret;
     }
-
 
     public static URL generateOmdbUrl(String filmName, String filmYear) throws IOException{
         String filmNameNoSpaces = replaceSpacesInString(filmName, "+");
@@ -84,8 +92,6 @@ public class FilmController {
             ret += new String(buffer, 0, count);
         }
         bis.close();
-        String retLower = ret.toLowerCase();
-        System.out.println(ret);
         return ret;
     }
 
@@ -99,12 +105,16 @@ public class FilmController {
     }
 
     public static Film newFilm(String imdbID) throws IOException{
-        return(jsonToObject(parseURL(generateOmdbUrl(imdbID))));
+        if (imdbID!=null){
+            Film film = jsonToObject(parseURL(generateOmdbUrl(imdbID)));
+            return film;
+        }
+        return null;
     }
 
-    public Film getFilmByName(String filmName){
+    public Film getFilmByTitle(String filmTitle){
         for (Film film:this.films) {
-            if (film.getTitle().toLowerCase().contains(filmName.toLowerCase())) {
+            if (film.getTitle().toLowerCase().contains(filmTitle.toLowerCase())) {
                 return film;
             }
         }
@@ -123,10 +133,24 @@ public class FilmController {
         }
     }
 
+    public void saveFilmsToTxt() throws IOException {
+        ArrayList<String> save = new ArrayList<>();
+        if (this.films.isEmpty()) {
+            System.out.println("No films in this collection.");
+        } else {
+            for (Film i : films)
+                save.add(i.getImdbId());
+        }
+        arrayToTxt(save,TXTFILEPATH);
+    }
+
+
     public void loadFilms() throws IOException {
-        ArrayList<String> filmIds =txtToArray("./src/txt/films.txt");
+        ArrayList<String> filmIds=txtToArray(TXTFILEPATH);
         for (String filmid:filmIds) {
             films.add(newFilm(filmid));
             }
+
+
     }
 }

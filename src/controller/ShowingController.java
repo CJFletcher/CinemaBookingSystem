@@ -10,12 +10,9 @@ import java.util.Iterator;
 
 public class ShowingController {
 
-    private ArrayList<Showing> showings;
+    private ArrayList<Showing> showings = new ArrayList<>();
 
-    public ShowingController ()
-    {
-        showings = new ArrayList<Showing>();
-    }
+    public ShowingController (){}
 
     public void addShowing(Showing showing) {
         this.showings.add(showing);
@@ -38,7 +35,6 @@ public class ShowingController {
             for (Showing i : showings)
                 if (i.getShowingDate()==(LocalDate.now())) {
                     ret.add(i);
-                    System.out.println(i);
                 }
             }
         return ret;
@@ -69,6 +65,9 @@ public class ShowingController {
 
     public void sortShowings() {
         Collections.sort(this.showings);
+    }
+
+    public void loadShowings() {
     }
 
     @Override

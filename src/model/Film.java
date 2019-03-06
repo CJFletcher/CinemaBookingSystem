@@ -6,7 +6,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
 
 //SerializedName matches the Value from the Json response to the relevant attribute.
-//This is necessary due to the Json response Values being stored
+//This is necessary due to the Json response Values being stored capitalised.
 
 public class Film {
     @SerializedName(value = "Title", alternate = "title")

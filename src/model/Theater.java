@@ -3,16 +3,14 @@ package model;
 
 import java.util.ArrayList;
 
-public class Screen {
+public class Theater {
 
-    private int screenNumber;
+    private int theaterNumber;
     private int numberOfRows;
+    private ArrayList<Row> rows = new ArrayList<Row>();
 
-    private ArrayList<Row> rows;
-
-    public Screen(int theatreNumber) {
-        this.screenNumber = theatreNumber;
-        rows = new ArrayList<Row>();
+    public Theater(int theatreNumber) {
+        this.theaterNumber = theatreNumber;
     }
 
     public void createRows(int numberOfSeats, int numberOfRows, boolean isVip) {
@@ -32,20 +30,21 @@ public class Screen {
         return rows;
     }
 
-    public int getScreenNumber() {
-        return screenNumber;
+    public int getTheaterNumber() {
+        return theaterNumber;
     }
 
     public int getNumberOfRows() {
         return numberOfRows;
     }
 
-    @Override
+
+ @Override
     public String toString() {
         String ret = "";
         for (Row rows : this.rows) {
             ret += "\n" + rows;
         }
-        return "Screen Number: " + screenNumber + ret;
+        return "Theater Number: " + theaterNumber + ret + "\n";
     }
 }
