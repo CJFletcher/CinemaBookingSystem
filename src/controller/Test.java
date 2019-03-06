@@ -85,6 +85,8 @@ public class Test {
 
         arrayToTxt2(showings.getShowings(),"./src/txt/theaters.txt");
 
+        //films.saveFilmsToTxt();
+
         System.out.println(showings.getShowings());
         }
 
