@@ -100,15 +100,6 @@ public class Showing implements Comparable<Showing>{
     }
 
     @Override
-    public String toString() {
-        return "Showing: " +
-                "film=" + film.getTitle() +
-                ", showing Time & Date=" + showingTimeDate +
-                ", theater=" + theater.getTheaterNumber() +
-                '}';
-    }
-
-    @Override
     public int compareTo(Showing otherShowing) {
         LocalDateTime x = this.showingTimeDate;
         LocalDateTime y = otherShowing.showingTimeDate;
@@ -126,6 +117,16 @@ public class Showing implements Comparable<Showing>{
             }
         }
         return i;
+    }
+
+    @Override
+    public String toString() {
+        return "Showing{" +
+                "film=" + film.getTitle() +
+                ", showingTimeDate=" + showingTimeDate +
+                ", theater=" + theater.getTheaterNumber() +
+                ", availableSeats=" + availableSeats +
+                '}';
     }
 }
 

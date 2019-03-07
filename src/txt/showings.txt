@@ -1,0 +1,1 @@
+Showing{film=Despicable Me, showingTimeDate=2019-05-05T13:00, theater=1, availableSeats=46}

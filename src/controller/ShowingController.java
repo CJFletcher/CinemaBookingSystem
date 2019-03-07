@@ -3,14 +3,19 @@ package controller;
 import model.Showing;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import static org.apache.commons.io.FileUtils.writeLines;
+
 public class ShowingController {
 
     private ArrayList<Showing> showings = new ArrayList<>();
+    private static String TXTFILEPATH = "./src/txt/showings.txt";
 
     public ShowingController (){}
 
@@ -68,6 +73,13 @@ public class ShowingController {
     }
 
     public void loadShowings() {
+       // ArrayList<String> showingsToLoad = new List<String>;
+
+    }
+
+    public void saveToTxtFile() throws IOException {
+        File f = new File(TXTFILEPATH);
+        writeLines(f,showings);
     }
 
     @Override

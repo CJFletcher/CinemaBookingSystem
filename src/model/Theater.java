@@ -38,13 +38,20 @@ public class Theater {
         return numberOfRows;
     }
 
-
- @Override
-    public String toString() {
-        String ret = "";
+    public void printTheater() { String ret = "";
         for (Row rows : this.rows) {
             ret += "\n" + rows;
         }
-        return "Theater Number: " + theaterNumber + ret + "\n";
+        System.out.println("Theater Number: " + theaterNumber + ret + "\n");
+    }
+
+
+    @Override
+    public String toString() {
+        return "Theater{" +
+                "theaterNumber=" + theaterNumber +
+                ", numberOfRows=" + numberOfRows +
+                ", rows=" + rows +
+                '}';
     }
 }

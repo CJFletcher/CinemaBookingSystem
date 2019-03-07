@@ -3,15 +3,17 @@ package controller;
 import com.google.gson.Gson;
 import model.Film;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static controller.TextFileScanner.arrayToTxt;
+import static controller.TextFileScanner.arrayOfStringsToTxt;
 import static controller.TextFileScanner.txtToArray;
 import static controller.HelperClass.replaceSpacesInString;
+import static org.apache.commons.io.FileUtils.writeLines;
 
 public class FilmController {
 
@@ -134,14 +136,14 @@ public class FilmController {
     }
 
     public void saveFilmsToTxt() throws IOException {
-        ArrayList<String> save = new ArrayList<>();
+        ArrayList<String> strings = new ArrayList<>();
         if (this.films.isEmpty()) {
             System.out.println("No films in this collection.");
         } else {
             for (Film i : films)
-                save.add(i.getImdbId());
+                strings.add(i.getImdbId());
         }
-        arrayToTxt(save,TXTFILEPATH);
+        arrayOfStringsToTxt(strings,TXTFILEPATH);
     }
 
 

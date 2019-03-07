@@ -1,7 +1,9 @@
 package controller;
 
+import model.BuyableItem;
 import model.Theater;
 import model.Showing;
+import model.Ticket;
 
 
 import java.util.List;
@@ -62,7 +64,7 @@ public class Test {
 
         System.out.println(two);
 
-        Showing a = new Showing(films.getFilmByTitle("Despicable Me"),of(2019,3,5,13,00),one);
+        Showing a = new Showing(films.getFilmByTitle("Despicable Me"),of(2019,5,5,13,00),one);
         Showing b = new Showing(films.getFilmByTitle("Despicable Me"),of(2019,3,4,13,30),one);
         Showing c = new Showing(films.getFilmByTitle("Despicable Me"),of(2019,3,4,13,00),two);
 
@@ -74,7 +76,6 @@ public class Test {
         showings.sortShowings();
 
         showings.printShowings();
-        arrayToTxt2(showings.getShowings(),"./src/txt/theaters.txt");
         showings.removeOldShowings();
         showings.printShowings();
 
@@ -82,12 +83,17 @@ public class Test {
 
         TheaterController theaters = new TheaterController();
         System.out.println(theaters);
+        //showings.saveToTxtFile();
+        ShowingController showings1 = new ShowingController();
+        showings1.saveToTxtFile();
 
-        arrayToTxt2(showings.getShowings(),"./src/txt/theaters.txt");
-
-        //films.saveFilmsToTxt();
-
+        films.saveFilmsToTxt();
         System.out.println(showings.getShowings());
-        }
+        showings.saveToTxtFile();
 
+        Ticket oneT = new Ticket();
+        Ticket twoT = new Ticket();
+        System.out.println(oneT.getId());
+        System.out.println(twoT.getId());
+        }
     }

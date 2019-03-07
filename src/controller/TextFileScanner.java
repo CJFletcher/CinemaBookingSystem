@@ -1,8 +1,6 @@
 package controller;
 
 
-import model.Showing;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,7 @@ public class TextFileScanner {
         return list;
     }
 
-    public static void arrayToTxt(ArrayList<String> arrayList, String fileName) throws IOException {
+    public static void arrayOfStringsToTxt(ArrayList<String> arrayList, String fileName) throws IOException {
         FileWriter writer = new FileWriter(fileName);
         new File(fileName).createNewFile();
         for (String str : arrayList) {
@@ -39,14 +37,9 @@ public class TextFileScanner {
         writer.close();
     }
 
-    public static void arrayToTxt2(ArrayList<model.Showing> arrayList, String fileName) throws IOException {
-        File f = new File(fileName);
-        f.createNewFile();
-        writeLines(f,arrayList);
-    }
 
-    public static List<String> txtToArray2(String fileName) throws IOException {
-        File f = new File(fileName);
-        return readLines(f,"UTF-8");
-    }
+    //public static List<String> txtToArray2(String fileName) throws IOException {
+    //    File f = new File(fileName);
+    //    return readLines(f,"UTF-8");
+    //}
 }

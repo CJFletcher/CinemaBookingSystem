@@ -5,9 +5,6 @@ import model.Theater;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static controller.TextFileScanner.arrayToTxt;
-import static controller.TextFileScanner.txtToArray;
-
 public class TheaterController {
 
 
