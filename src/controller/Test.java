@@ -76,9 +76,10 @@ public class Test {
         showings.sortShowings();
 
         showings.printShowings();
-        showings.removeOldShowings();
+        System.out.println(showings.getShowingByNumber(1));
+        //showings.removeOldShowings();
         showings.printShowings();
-
+        System.out.println(a.getRows());
 
 
         TheaterController theaters = new TheaterController();
@@ -89,11 +90,12 @@ public class Test {
 
         films.saveFilmsToTxt();
         System.out.println(showings.getShowings());
-        showings.saveToTxtFile();
 
         Ticket oneT = new Ticket();
         Ticket twoT = new Ticket();
         System.out.println(oneT.getId());
         System.out.println(twoT.getId());
+
+
         }
     }

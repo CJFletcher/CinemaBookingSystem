@@ -2,26 +2,22 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Showing implements Comparable<Showing>{
 
     private Film film;
     private LocalDateTime showingTimeDate;
     private Theater theater;
+    private ArrayList<Row> rows;
     private int availableSeats;
 
 
-    public Showing(Film film, LocalDateTime showingTimeDate, Theater theater) {
+    public Showing(Film film, LocalDateTime showingTimeDate,Theater theater) {
         this.film = film;
         this.showingTimeDate = showingTimeDate;
         this.theater = theater;
-        this.availableSeats = getAvailableSeats();
-    }
-
-    public Showing(LocalDateTime showingTimeDate, Theater theater) {
-        this.film = null;
-        this.showingTimeDate = showingTimeDate;
-        this.theater = theater;
+        this.rows = loadRows();
         this.availableSeats = getAvailableSeats();
     }
 
@@ -40,7 +36,7 @@ public class Showing implements Comparable<Showing>{
     public int getAvailableSeats()
     {
         int availableSeats = 0;
-        for (Row row : this.theater.getRows())
+        for (Row row : rows)
         {
             for (Seat seat : row.getSeats()){
             if (!seat.getBookingStatus())
@@ -83,9 +79,9 @@ public class Showing implements Comparable<Showing>{
         return film;
     }
 
-    public String getScreenNumber()
+    public int getScreenNumber()
     {
-        return "Theater: " + theater.getTheaterNumber();
+        return theater.getTheaterNumber();
     }
 
     public Theater getTheater() {
@@ -97,6 +93,14 @@ public class Showing implements Comparable<Showing>{
             return true;
         }
         else return false;
+    }
+
+    public ArrayList<Row> loadRows() {
+        return theater.getRows();
+    }
+
+    public ArrayList<Row> getRows() {
+        return rows;
     }
 
     @Override

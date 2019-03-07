@@ -4,6 +4,7 @@ import model.Theater;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class TheaterController {
 
@@ -24,6 +25,14 @@ public class TheaterController {
 
     public void setTheaters(ArrayList<Theater> theaters) {
         this.theaters = theaters;
+    }
+
+    public Theater getTheaterByNumber(int theaterNumber){
+        for (Theater theater: theaters
+             ) {if(theater.getTheaterNumber()==theaterNumber){}
+            return theater;
+        }
+        throw new NoSuchElementException("Theater with that number does not exist in this array.");
     }
 
     public void loadTheaters() throws IOException {

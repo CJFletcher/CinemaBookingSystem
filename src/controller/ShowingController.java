@@ -1,6 +1,7 @@
 package controller;
 
 import model.Showing;
+import model.Theater;
 
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.apache.commons.io.FileUtils.writeLines;
 
@@ -17,7 +19,8 @@ public class ShowingController {
     private ArrayList<Showing> showings = new ArrayList<>();
     private static String TXTFILEPATH = "./src/txt/showings.txt";
 
-    public ShowingController (){}
+    public ShowingController (){
+    }
 
     public void addShowing(Showing showing) {
         this.showings.add(showing);
@@ -56,6 +59,15 @@ public class ShowingController {
             }
             System.out.println("\n");
         }
+    }
+
+    public Showing getShowingByNumber(int theaterNumber){
+        for (Showing showing: showings
+                ) {if(showing.getScreenNumber()==theaterNumber){
+                    return showing;
+        }
+        }
+        throw new NoSuchElementException("Theater with that number does not exist in this array.");
     }
 
     public void removeOldShowings() {

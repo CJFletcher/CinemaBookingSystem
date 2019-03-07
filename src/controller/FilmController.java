@@ -3,7 +3,6 @@ package controller;
 import com.google.gson.Gson;
 import model.Film;
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.NoSuchElementException;
 import static controller.TextFileScanner.arrayOfStringsToTxt;
 import static controller.TextFileScanner.txtToArray;
 import static controller.HelperClass.replaceSpacesInString;
-import static org.apache.commons.io.FileUtils.writeLines;
 
 public class FilmController {
 
@@ -108,8 +106,7 @@ public class FilmController {
 
     public static Film newFilm(String imdbID) throws IOException{
         if (imdbID!=null){
-            Film film = jsonToObject(parseURL(generateOmdbUrl(imdbID)));
-            return film;
+            return jsonToObject(parseURL(generateOmdbUrl(imdbID)));
         }
         return null;
     }
@@ -151,8 +148,6 @@ public class FilmController {
         ArrayList<String> filmIds=txtToArray(TXTFILEPATH);
         for (String filmid:filmIds) {
             films.add(newFilm(filmid));
-            }
-
-
+        }
     }
 }

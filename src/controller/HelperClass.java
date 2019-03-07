@@ -3,8 +3,6 @@ package controller;
 import org.apache.commons.validator.routines.EmailValidator;
 import java.lang.String;
 
-
-
 public class HelperClass {
 
     public static boolean isEmailAddressValid(String email) {
