@@ -17,7 +17,7 @@ import static org.apache.commons.io.FileUtils.writeLines;
 public class ShowingController {
 
     private ArrayList<Showing> showings = new ArrayList<>();
-    private static String TXTFILEPATH = "./src/txt/showings.txt";
+    private static String TXTFILEPATH = "./src/data/showings.txt";
 
     public ShowingController (){
     }

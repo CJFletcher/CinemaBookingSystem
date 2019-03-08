@@ -5,9 +5,7 @@ import model.Film;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static controller.TextFileScanner.arrayOfStringsToTxt;
 import static controller.TextFileScanner.txtToArray;
@@ -16,7 +14,7 @@ import static controller.HelperClass.replaceSpacesInString;
 public class FilmController {
 
     private static String APIKEY = "3d4916dd";
-    private static String TXTFILEPATH = "./src/txt/films.txt";
+    private static String TXTFILEPATH = "./src/data/films.txt";
     private ArrayList<Film> films;
 
     public FilmController() {

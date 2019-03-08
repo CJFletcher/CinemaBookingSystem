@@ -1,9 +1,6 @@
 package controller;
 
-import model.BuyableItem;
-import model.Theater;
-import model.Showing;
-import model.Ticket;
+import model.*;
 
 
 import java.util.List;
@@ -91,10 +88,11 @@ public class Test {
         films.saveFilmsToTxt();
         System.out.println(showings.getShowings());
 
-        Ticket oneT = new Ticket();
-        Ticket twoT = new Ticket();
-        System.out.println(oneT.getId());
-        System.out.println(twoT.getId());
+
+        Booking test = new Booking();
+        Booking test2 = new Booking();
+        System.out.println(test.getId());
+        System.out.println(test2.getId());
 
 
         }

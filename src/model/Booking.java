@@ -1,9 +1,14 @@
 package model;
 
-public class Booking extends ClassWithID{
+import java.util.concurrent.atomic.AtomicLong;
+
+public class Booking implements ClassWithID{
     private Showing showing;
     private Theater theater;
     private Seat seat;
+
+    static final AtomicLong NEXT_ID = new AtomicLong(5000);
+    final long id = NEXT_ID.getAndIncrement();
 
     public Booking() {
     }
@@ -43,5 +48,11 @@ public class Booking extends ClassWithID{
         Booking test2 = new Booking();
         System.out.println(test.getId());
         System.out.println(test2.getId());
+    }
+
+    @Override
+    public long getId() {
+        int ret = (int) id;
+        return ret;
     }
 }
