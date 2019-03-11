@@ -10,6 +10,7 @@ public class Row implements Serializable {
     private int numberOfSeats;
     private boolean isVip;
 
+
     public Row (int numberOfSeats, char rowLetter, boolean isVip)
     {
         this.rowLetter = rowLetter;

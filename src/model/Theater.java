@@ -18,7 +18,7 @@ public class Theater implements Serializable {
         for (int i = 1; i <= numberOfRows; i++) {
             char x = (char) (i + 64 + this.numberOfRows);
             if (!isVip) {
-                rows.add(new Row(numberOfSeats, x, isVip));
+                rows.add(new Row(numberOfSeats, x,isVip));
             }
             else {
                 rows.add(new Row(numberOfSeats,x,isVip));

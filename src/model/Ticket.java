@@ -14,8 +14,7 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
     public Ticket(Showing showing, Seat seat) {
         this.showing = showing;
         this.seat = seat;
-        double price = this.calculateTicketPrice();
-        super(price);
+        this.setPrice(calculateTicketPrice());
     }
 
     public double calculateTicketPrice(){
