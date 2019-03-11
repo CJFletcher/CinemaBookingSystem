@@ -13,16 +13,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.LoginController">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #003079;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.LoginController">
    <children>
       <HBox alignment="CENTER" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="530.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="520.0" style="-fx-background-color: #FFFFFF;">
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="540.0" style="-fx-background-color: #4059a9;">
                      <children>
-                        <Text fill="#4059a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema Booking System">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema Booking System" wrappingWidth="256.078125">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -44,13 +43,13 @@
             </VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="530.0" prefWidth="230.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane prefHeight="100.0" prefWidth="225.0" style="-fx-background-color: #4059a9;" />
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <JFXTextField fx:id="usernameBox" labelFloat="true" nodeOrientation="LEFT_TO_RIGHT" promptText="Username">
+                        <JFXTextField fx:id="usernameBox" labelFloat="true" nodeOrientation="LEFT_TO_RIGHT" onAction="#focusPasswordBox" promptText="Username">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -62,7 +61,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <JFXPasswordField fx:id="passwordBox" labelFloat="true" nodeOrientation="LEFT_TO_RIGHT" promptText="Password">
+                        <JFXPasswordField fx:id="passwordBox" labelFloat="true" nodeOrientation="LEFT_TO_RIGHT" onAction="#login" promptText="Password">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -81,7 +80,7 @@
                         </JFXButton>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" />
+                  <StackPane prefHeight="114.0" prefWidth="225.0" />
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -1,7 +1,9 @@
 package model;
 
 
-public class Seat {
+import java.io.Serializable;
+
+public class Seat implements Serializable {
     private Boolean isBooked;
     private int seatNumber;
 

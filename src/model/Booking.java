@@ -1,11 +1,14 @@
 package model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Booking implements ClassWithID{
+
+public class Booking implements ClassWithID, Serializable {
     private Showing showing;
     private Theater theater;
-    private Seat seat;
+    private ArrayList<Ticket> tickets;
 
     static final AtomicLong NEXT_ID = new AtomicLong(5000);
     final long id = NEXT_ID.getAndIncrement();
@@ -13,10 +16,10 @@ public class Booking implements ClassWithID{
     public Booking() {
     }
 
-    public Booking(Showing showing, Theater theater, Seat seat) {
+    public Booking(Showing showing, Theater theater, ArrayList<Ticket> tickets) {
         this.showing = showing;
         this.theater = theater;
-        this.seat = seat;
+        this.tickets = tickets;
     }
 
     public Showing getShowing() {
@@ -27,8 +30,8 @@ public class Booking implements ClassWithID{
         return theater;
     }
 
-    public Seat getSeat() {
-        return seat;
+    public ArrayList<Ticket> getTickets() {
+        return tickets;
     }
 
     public void setShowing(Showing showing) {
@@ -39,9 +42,10 @@ public class Booking implements ClassWithID{
         this.theater = theater;
     }
 
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public void setTickets(ArrayList<Ticket> tickets) {
+        this.tickets = tickets;
     }
+
 
     public static void main(String[] args) {
         Booking test = new Booking();

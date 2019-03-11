@@ -3,10 +3,11 @@ package controller;
 import model.Theater;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class TheaterController {
+public class TheaterController implements Serializable{
 
 
     private ArrayList<Theater> theaters = new ArrayList<>();

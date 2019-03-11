@@ -22,46 +22,33 @@ public class Main extends Application {
         return theaters;
     }
 
-    public static void setTheaters(TheaterController theaters) {
-        Main.theaters = theaters;
-    }
-
     public static FilmController getFilms() {
         return films;
-    }
-
-    public static void setFilms(FilmController films) {
-        Main.films = films;
     }
 
     public static ShowingController getShowings() {
         return showings;
     }
 
-    public static void setShowings(ShowingController showings) {
-        Main.showings = showings;
-    }
-
     public static BookingController getBookings() {
         return bookings;
-    }
-
-    public static void setBookings(BookingController bookings) {
-        Main.bookings = bookings;
     }
 
     public static void main(String[] args) throws IOException {
         TheaterController t = new TheaterController();
         FilmController f = new FilmController();
         ShowingController s = new ShowingController();
+        BookingController b = new BookingController();
 
         t.loadTheaters();
         f.loadFilms();
         s.loadShowings();
+        b.loadBookings();
 
         theaters = t;
         films = f;
         showings = s;
+        bookings = b;
 
         launch(args);
     }

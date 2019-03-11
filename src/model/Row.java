@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Row {
+public class Row implements Serializable {
 
     private ArrayList<Seat> seats;
     private char rowLetter;

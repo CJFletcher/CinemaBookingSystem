@@ -1,9 +1,11 @@
 package controller;
 
 import model.Booking;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BookingController {
+public class BookingController implements Serializable {
     private ArrayList<Booking> bookings = new ArrayList<>();
 
     public BookingController() {
@@ -19,5 +21,8 @@ public class BookingController {
 
     public void removeBooking(Booking booking) {
         this.bookings.remove(booking);
+    }
+
+    public void loadBookings() {
     }
 }

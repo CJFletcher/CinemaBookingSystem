@@ -6,6 +6,7 @@ import model.Theater;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +15,7 @@ import java.util.NoSuchElementException;
 
 import static org.apache.commons.io.FileUtils.writeLines;
 
-public class ShowingController {
+public class ShowingController implements Serializable {
 
     private ArrayList<Showing> showings = new ArrayList<>();
     private static String TXTFILEPATH = "./src/data/showings.txt";

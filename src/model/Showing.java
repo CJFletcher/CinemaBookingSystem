@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Showing implements Comparable<Showing>{
+public class Showing implements Comparable<Showing>, Serializable{
 
     private Film film;
     private LocalDateTime showingTimeDate;

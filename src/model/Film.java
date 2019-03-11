@@ -3,12 +3,13 @@ package model;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 //SerializedName matches the Value from the Json response to the relevant attribute.
 //This is necessary due to the Json response Values being stored capitalised.
 
-public class Film {
+public class Film implements Serializable {
     @SerializedName(value = "Title", alternate = "title")
     private String title;
     @SerializedName(value = "Year",alternate = "year")

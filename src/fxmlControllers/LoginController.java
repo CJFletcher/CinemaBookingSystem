@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -25,6 +24,9 @@ import static controller.HelperClass.centerImage;
 
 public class LoginController extends SceneCreator implements Initializable {
 
+    private int imageCount = 0;
+    private ArrayList<Image> imageList = new ArrayList<>();
+
     @FXML
     private JFXTextField usernameBox;
 
@@ -43,18 +45,20 @@ public class LoginController extends SceneCreator implements Initializable {
     @FXML
     private AnchorPane leftAP;
 
-    private int imageCount = 0;
-    private ArrayList<Image> imageList = new ArrayList<>();
+    @FXML
+    void focusPasswordBox(){
+        passwordBox.requestFocus();
+    }
 
 
     @FXML
-    void login(ActionEvent event) throws IOException {
+    void login() throws IOException {
         String username = usernameBox.getText();
         String password = passwordBox.getText();
 
         if (username.equals("Admin") && password.equals("Password")) {
             System.out.println("Login success");
-
+            launchSceneNewStage("./src/fxml/makeBooking.fxml");
         }
         if (username.equals("Admin")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,7 +68,7 @@ public class LoginController extends SceneCreator implements Initializable {
             alert.setContentText("Password is incorrect");
             alert.showAndWait();
         }
-        else{
+        if (!username.equals("Admin")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
 
             alert.setTitle("Login Error");
@@ -92,9 +96,6 @@ public class LoginController extends SceneCreator implements Initializable {
 
         for (Film film : films) {
             String posterUrl = film.getPoster();
-            /*Label label = new Label(posterUrl);
-            ImageView posterImage = new ImageView(posterUrl);
-            leftScrollPane.getChildren().add(posterImage);*/
             Image poster = new Image(posterUrl,5000,5000,true,false);
             imageList.add(poster);
             }

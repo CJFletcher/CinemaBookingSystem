@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="$CONTROLLER_NAME$">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="770.0" prefWidth="515.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <JFXComboBox fx:id="filmComboBox" layoutX="14.0" layoutY="57.0" onAction="#display" prefHeight="26.0" prefWidth="232.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="544.0" layoutY="15.0" prefHeight="561.0" prefWidth="722.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <StackPane fx:id="seatStackPane" layoutX="13.0" layoutY="11.0" prefHeight="540.0" prefWidth="697.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="544.0" layoutY="586.0" prefHeight="200.0" prefWidth="722.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
