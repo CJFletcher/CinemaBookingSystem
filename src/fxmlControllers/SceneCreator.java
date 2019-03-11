@@ -1,28 +1,29 @@
 package fxmlControllers;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SceneCreator extends Application{
 
-                @Override
-        public void start(Stage stage) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource(""));
+import java.io.IOException;
 
-            Scene scene = new Scene(root);
+public abstract class SceneCreator {
 
-            stage.setScene(scene);
-            stage.setTitle("Genuine Coder");
-            stage.show();
-        }
+    public void launchSceneNewStage(String sceneName) throws IOException {
 
-
-        public static void main(String[] args) {
-            launch(args);
-        }
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+
+    public void launchSceneInStage(Stage currentStage, String sceneName) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sceneName));
+        Parent root = fxmlLoader.load();
+        currentStage.setScene(new Scene(root));
+        currentStage.show();
+    }
+}
 
