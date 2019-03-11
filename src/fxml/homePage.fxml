@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="$CONTROLLER_NAME$">
@@ -13,15 +14,36 @@
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <JFXComboBox fx:id="filmComboBox" layoutX="14.0" layoutY="57.0" onAction="#display" prefHeight="26.0" prefWidth="232.0" />
+            <AnchorPane prefHeight="65.0" prefWidth="515.0" style="-fx-background-color: #003079;">
+               <children>
+                  <Text fill="WHITE" layoutX="11.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="492.13671875">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="544.0" layoutY="15.0" prefHeight="561.0" prefWidth="722.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="544.0" layoutY="16.0" prefHeight="561.0" prefWidth="722.0" style="-fx-background-color: #FFFFFF;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <StackPane fx:id="seatStackPane" layoutX="13.0" layoutY="11.0" prefHeight="540.0" prefWidth="697.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="10.0" />
+            <AnchorPane maxHeight="65.0" maxWidth="722.0" minHeight="65.0" minWidth="722.0" prefHeight="65.0" prefWidth="722.0" style="-fx-background-color: #003079;">
+               <children>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Showings" textAlignment="CENTER" wrappingWidth="701.9999885559082">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <ScrollPane layoutX="10.0" layoutY="79.0" prefHeight="468.0" prefWidth="702.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="544.0" layoutY="586.0" prefHeight="200.0" prefWidth="722.0" style="-fx-background-color: #FFFFFF;">
