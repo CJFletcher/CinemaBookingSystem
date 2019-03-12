@@ -1,12 +1,11 @@
 package controller;
 
+import model.Row;
 import model.Showing;
 import model.Theater;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +17,7 @@ import static org.apache.commons.io.FileUtils.writeLines;
 public class ShowingController implements Serializable {
 
     private ArrayList<Showing> showings = new ArrayList<>();
-    private static String TXTFILEPATH = "./src/data/showings.txt";
+    private final static String DATAFILEPATH = "./src/data/showings.dat";
 
     public ShowingController (){
     }
@@ -85,14 +84,21 @@ public class ShowingController implements Serializable {
         Collections.sort(this.showings);
     }
 
-    public void loadShowings() {
-       // ArrayList<String> showingsToLoad = new List<String>;
 
+    public void saveShowings() throws IOException, ClassNotFoundException {
+        FileOutputStream out = new FileOutputStream(DATAFILEPATH);
+        ObjectOutputStream objout = new ObjectOutputStream(out);
+        objout.writeObject(showings);
+        objout.flush();
+        objout.close();
     }
 
-    public void saveToTxtFile() throws IOException {
-        File f = new File(TXTFILEPATH);
-        writeLines(f,showings);
+    public void loadShowings() throws IOException, ClassNotFoundException {
+        FileInputStream in = new FileInputStream(DATAFILEPATH);
+        ObjectInputStream objin = new ObjectInputStream(in);
+        ArrayList<Showing> newObj = (ArrayList<Showing>) objin.readObject();
+        this.showings = newObj;
+        objin.close();
     }
 
 

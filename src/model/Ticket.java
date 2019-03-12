@@ -14,6 +14,7 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
     public Ticket(Showing showing, Seat seat) {
         this.showing = showing;
         this.seat = seat;
+        seat.setBookingStatus(true);
         this.setPrice(calculateTicketPrice());
     }
 
@@ -24,14 +25,14 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
         if (yearDiff < 0){
             return 0;
         }
-        if (yearDiff > 0 && yearDiff <= 3){
-            return 10.0;
-        }
-        if (yearDiff > 4 && yearDiff <= 6){
+        if (yearDiff >= 0 && yearDiff <= 3){
             return 8.0;
         }
+        if (yearDiff > 4 && yearDiff <= 6){
+            return 6.50;
+        }
         if (yearDiff > 7 && yearDiff <= 10){
-            return 6.0;
+            return 5.0;
         }
         else{
             return 4.0;
@@ -42,5 +43,14 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
     public long getId() {
         int ret = (int) id;
         return ret;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "showing=" + showing +
+                ", seat=" + seat +
+                ", id=" + id +
+                '}';
     }
 }

@@ -14,8 +14,8 @@ import static controller.HelperClass.replaceSpacesInString;
 
 public class FilmController implements Serializable {
 
-    private static String APIKEY = "3d4916dd";
-    private static String TXTFILEPATH = "./src/data/films.txt";
+    private final static String APIKEY = "3d4916dd";
+    private final static String TXTFILEPATH = "./src/data/films.txt";
     private ArrayList<Film> films;
 
     public FilmController() {
@@ -113,6 +113,15 @@ public class FilmController implements Serializable {
     public Film getFilmByTitle(String filmTitle){
         for (Film film:this.films) {
             if (film.getTitle().toLowerCase().contains(filmTitle.toLowerCase())) {
+                return film;
+            }
+        }
+        throw new NoSuchElementException("Film not found");
+    }
+
+    public Film getFilmById(String filmId){
+        for (Film film:this.films) {
+            if (film.getImdbId().toLowerCase().contains(filmId.toLowerCase())) {
                 return film;
             }
         }

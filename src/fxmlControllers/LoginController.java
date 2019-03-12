@@ -6,15 +6,21 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Film;
 import model.Main;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,10 +28,11 @@ import java.util.ResourceBundle;
 
 import static controller.HelperClass.centerImage;
 
-public class LoginController extends SceneCreator implements Initializable {
+public class LoginController implements Initializable {
 
     private int imageCount = 0;
     private ArrayList<Image> imageList = new ArrayList<>();
+    private HomePageController homePageController;
 
     @FXML
     private JFXTextField usernameBox;
@@ -34,7 +41,7 @@ public class LoginController extends SceneCreator implements Initializable {
     private JFXPasswordField passwordBox;
 
     @FXML
-    private JFXButton loginButton;
+    public JFXButton loginButton;
 
     @FXML
     private ImageView logo;
@@ -46,19 +53,17 @@ public class LoginController extends SceneCreator implements Initializable {
     private AnchorPane leftAP;
 
     @FXML
-    void focusPasswordBox(){
+    private void focusPasswordBox(){
         passwordBox.requestFocus();
     }
 
-
-    @FXML
-    void login() throws IOException {
+    private boolean validateUser(){
         String username = usernameBox.getText();
         String password = passwordBox.getText();
 
         if (username.equals("Admin") && password.equals("Password")) {
             System.out.println("Login success");
-            launchSceneNewStage("./src/fxml/makeBooking.fxml");
+            return true;
         }
         if (username.equals("Admin")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -76,6 +81,15 @@ public class LoginController extends SceneCreator implements Initializable {
             alert.setContentText("Username is incorrect");
             alert.showAndWait();
         }
+        return false;
+    }
+
+    @FXML
+    public void login() throws Exception {
+        if (validateUser()) {
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            homePageController.start(stage);
+        }
     }
 
     @FXML
@@ -91,10 +105,11 @@ public class LoginController extends SceneCreator implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        homePageController = new HomePageController();
         ArrayList<Film> films = Main.getFilms().getFilms();
         ObservableList<Film> filmsObservableList = FXCollections.observableArrayList(films);
 
-        for (Film film : films) {
+        for (Film film : films /*Main.getFilms().getFilms()*/) {
             String posterUrl = film.getPoster();
             Image poster = new Image(posterUrl,5000,5000,true,false);
             imageList.add(poster);
@@ -103,5 +118,5 @@ public class LoginController extends SceneCreator implements Initializable {
         posterImage.setImage(imageList.get(imageCount));
         centerImage(posterImage);
         }
-    }
+}
 

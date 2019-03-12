@@ -6,9 +6,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
 public class Booking implements ClassWithID, Serializable {
-    private Showing showing;
-    private Theater theater;
-    private ArrayList<Ticket> tickets;
+//    private Showing showing;
+//    private Theater theater;
+    private ArrayList<Ticket> tickets = new ArrayList<>();
 
     static final AtomicLong NEXT_ID = new AtomicLong(5000);
     final long id = NEXT_ID.getAndIncrement();
@@ -16,31 +16,35 @@ public class Booking implements ClassWithID, Serializable {
     public Booking() {
     }
 
-    public Booking(Showing showing, Theater theater, ArrayList<Ticket> tickets) {
-        this.showing = showing;
-        this.theater = theater;
+    public Booking(ArrayList<Ticket> tickets) {
+//        this.showing = showing;
+//        this.theater = theater;
         this.tickets = tickets;
     }
 
-    public Showing getShowing() {
-        return showing;
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
     }
 
-    public Theater getTheater() {
-        return theater;
-    }
+//    public Showing getShowing() {
+//        return showing;
+//    }
+//
+//    public Theater getTheater() {
+//        return theater;
+//    }
 
     public ArrayList<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setShowing(Showing showing) {
-        this.showing = showing;
-    }
-
-    public void setTheater(Theater theater) {
-        this.theater = theater;
-    }
+//    public void setShowing(Showing showing) {
+//        this.showing = showing;
+//    }
+//
+//    public void setTheater(Theater theater) {
+//        this.theater = theater;
+//    }
 
     public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
@@ -58,5 +62,13 @@ public class Booking implements ClassWithID, Serializable {
     public long getId() {
         int ret = (int) id;
         return ret;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "tickets=" + tickets +
+                ", id=" + id +
+                '}';
     }
 }

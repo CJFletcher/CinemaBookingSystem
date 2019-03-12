@@ -3,6 +3,8 @@ package controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.apache.commons.validator.routines.EmailValidator;
+
+import java.io.*;
 import java.lang.String;
 
 public class HelperClass {
@@ -34,7 +36,7 @@ public class HelperClass {
             double ratioY = imageView.getFitHeight() / img.getHeight();
 
             double reducCoeff = 0;
-            if(ratioX >= ratioY) {
+            if (ratioX >= ratioY) {
                 reducCoeff = ratioY;
             } else {
                 reducCoeff = ratioX;
@@ -49,6 +51,19 @@ public class HelperClass {
         }
     }
 }
+//    public static void readObjectsFromFile(String filePath,Class className) throws IOException {
+//        FileOutputStream out = new FileOutputStream(filePath);
+//        ObjectOutputStream objout = new ObjectOutputStream(out);
+//        objout.writeObject(className);
+//        objout.flush();
+//    }
+//
+//    public static void saveObjectsToFile(String filePath, Class className) throws IOException {
+//        FileInputStream in = new FileInputStream("myFile");
+//        ObjectInputStream objin = new ObjectInputStream(in);
+//        className new = (className) objin.readObject();
+//    }
+
 
     /*public static String[] stringToArray(String str){
         String[] ary = str.split("\",\"");

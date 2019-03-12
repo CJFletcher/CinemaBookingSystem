@@ -2,8 +2,7 @@ package controller;
 
 import model.Theater;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -11,6 +10,7 @@ public class TheaterController implements Serializable{
 
 
     private ArrayList<Theater> theaters = new ArrayList<>();
+    private final static String DATAFILEPATH = "./src/data/theatres.dat";
 
     public void addTheater(Theater theater) {
         this.theaters.add(theater);
@@ -36,13 +36,20 @@ public class TheaterController implements Serializable{
         throw new NoSuchElementException("Theater with that number does not exist in this array.");
     }
 
-    public void loadTheaters() throws IOException {
-        for (int i=1;i<=10;i++) {
-            Theater t = new Theater(i);
-            this.addTheater(t);
-            t.createRows(10,5,false);
-            t.createRows(5,2,true);
-        }
+    public void saveTheaters() throws IOException, ClassNotFoundException {
+        FileOutputStream out = new FileOutputStream(DATAFILEPATH);
+        ObjectOutputStream objout = new ObjectOutputStream(out);
+        objout.writeObject(theaters);
+        objout.flush();
+        objout.close();
+    }
+
+    public void loadTheaters() throws IOException, ClassNotFoundException {
+        FileInputStream in = new FileInputStream(DATAFILEPATH);
+        ObjectInputStream objin = new ObjectInputStream(in);
+        ArrayList<Theater> newObj = (ArrayList<Theater>) objin.readObject();
+        this.theaters = newObj;
+        objin.close();
     }
 
         @Override

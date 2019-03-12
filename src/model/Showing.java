@@ -104,6 +104,15 @@ public class Showing implements Comparable<Showing>, Serializable{
         return rows;
     }
 
+    public Row getRowByCharacter(String rowChar){
+        for (Row row: rows) {
+            if (row.getRowLetter().toLowerCase().equals(rowChar.toLowerCase())){
+                return row;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int compareTo(Showing otherShowing) {
         LocalDateTime x = this.showingTimeDate;

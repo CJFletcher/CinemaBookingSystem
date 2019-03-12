@@ -14,9 +14,10 @@ public class Theater implements Serializable {
         this.theaterNumber = theatreNumber;
     }
 
-    public void createRows(int numberOfSeats, int numberOfRows, boolean isVip) {
+    public ArrayList<Row> createRows(int numberOfSeats, int numberOfRows, boolean isVip) {
         for (int i = 1; i <= numberOfRows; i++) {
-            char x = (char) (i + 64 + this.numberOfRows);
+            char y = (char) (i + 64 + this.numberOfRows);
+            String x = Character.toString(y);
             if (!isVip) {
                 rows.add(new Row(numberOfSeats, x,isVip));
             }
@@ -25,6 +26,7 @@ public class Theater implements Serializable {
             }
         }
         this.numberOfRows += numberOfRows;
+        return rows;
     }
 
     public ArrayList<Row> getRows() {

@@ -29,7 +29,7 @@ public class MakeBooking implements Initializable {
                     HBox h = new HBox();
                     h.setPrefSize(20, 20);
                     Text l = new Text();
-                    String rowLetter = Character.toString(row.getRowLetter());
+                    String rowLetter = row.getRowLetter();
                     l.setText("Row "+rowLetter);
                     h.getChildren().add(l);
                     for (Seat seat : row.getSeats()) {

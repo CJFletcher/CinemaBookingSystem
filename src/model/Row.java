@@ -2,16 +2,17 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Row implements Serializable {
 
     private ArrayList<Seat> seats;
-    private char rowLetter;
+    private String rowLetter;
     private int numberOfSeats;
     private boolean isVip;
 
 
-    public Row (int numberOfSeats, char rowLetter, boolean isVip)
+    public Row (int numberOfSeats, String rowLetter, boolean isVip)
     {
         this.rowLetter = rowLetter;
         this.numberOfSeats = numberOfSeats;
@@ -20,7 +21,7 @@ public class Row implements Serializable {
         createSeats(this.numberOfSeats,isVip);
     }
 
-    public char getRowLetter()
+    public String getRowLetter()
     {
         return rowLetter;
     }
@@ -37,6 +38,15 @@ public class Row implements Serializable {
             else {seats.add(new VipSeat(false,i));
             }
         }
+    }
+
+    public Seat getSeatByNumber(int seatNumber) throws NoSuchElementException {
+        for (Seat seat:seats) {
+            if (seat.getSeatNumber()==seatNumber && seat.getBookingStatus().equals(false)){
+                return seat;
+            }
+        }
+        throw new NoSuchElementException("Seat is either booked or does not exist");
     }
 
     public ArrayList<Seat> getSeats()
