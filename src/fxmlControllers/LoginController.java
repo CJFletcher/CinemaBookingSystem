@@ -21,6 +21,7 @@ import model.Film;
 import model.Main;
 
 import java.awt.event.ActionEvent;
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -118,5 +119,7 @@ public class LoginController implements Initializable {
         posterImage.setImage(imageList.get(imageCount));
         centerImage(posterImage);
         }
+
+
 }
 

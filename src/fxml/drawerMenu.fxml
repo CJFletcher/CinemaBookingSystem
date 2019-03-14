@@ -9,7 +9,7 @@
     <children>
         <ImageView fitHeight="127.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../res/back.jpg" />
+                <Image url="@../res/back.jpg" />
             </image>
         </ImageView>
         <JFXButton fx:id="b1" buttonType="RAISED" prefHeight="100.0" prefWidth="500.0" ripplerFill="#3700b3" style="-fx-background-color: #f1f1f1;" text="Manage Bookings" textAlignment="CENTER" />

@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import model.BuyableItem;
 import java.util.ArrayList;
@@ -15,5 +15,13 @@ public class Basket {
 
     public void setItems(ArrayList<BuyableItem> items) {
         this.items = items;
+    }
+
+    public void addItem(BuyableItem item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(BuyableItem item) {
+        this.items.remove(item);
     }
 }

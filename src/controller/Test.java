@@ -145,6 +145,24 @@ public class Test {
         showings.addShowing(a);
         showings.addShowing(b);
         showings.addShowing(c);
+        showings.addShowing(d);
+        showings.addShowing(e);
+        showings.addShowing(f);
+        showings.addShowing(g);
+        showings.addShowing(h);
+        showings.addShowing(i);
+        showings.addShowing(j);
+        showings.addShowing(k);
+        showings.addShowing(l);
+        showings.addShowing(m);
+        showings.addShowing(n);
+        showings.addShowing(o);
+        showings.addShowing(p);
+        showings.addShowing(q);
+        showings.addShowing(r);
+        showings.addShowing(s);
+        showings.addShowing(t);
+
 
         showings.printShowings();
         showings.sortShowings();
@@ -170,6 +188,7 @@ public class Test {
         bookings.saveBookings();
         showings.saveShowings();
         theaters.saveTheaters();
+        showings.saveShowings();
 //        Booking b1 = new Booking();
 //        bookings.addBooking(b1);
 //        b1.addTicket(t1);

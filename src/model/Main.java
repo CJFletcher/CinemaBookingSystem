@@ -77,6 +77,8 @@ public class Main extends Application {
         showings = s;
         bookings = b;
 
+        System.out.println(s.getShowings());
+
         launch(args);
     }
 

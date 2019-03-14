@@ -30,6 +30,35 @@ public class Showing implements Comparable<Showing>, Serializable{
         return showingTimeDate.toLocalDate();
     }
 
+    public String getShowingDateFormatted(){
+        String day = showingTimeDate.getDayOfWeek().toString().toLowerCase();
+        String dayOfMonth = String.valueOf(showingTimeDate.getDayOfMonth());
+        String month = String.valueOf(showingTimeDate.getMonthValue());
+        String year = String.valueOf(showingTimeDate.getYear());
+
+        String capDay = day.substring(0, 1).toUpperCase() + day.substring(1);
+
+        if (dayOfMonth.length()==1){
+            dayOfMonth="0"+dayOfMonth;
+        }
+
+        if (month.length()==1){
+            month="0"+month;
+        }
+
+        return capDay + "\n" + dayOfMonth +"/" + month + "/" + year;
+    }
+
+    public String getShowingTimeFormatted(){
+        String hour = String.valueOf(showingTimeDate.getHour());
+        String minutes = String.valueOf(showingTimeDate.getMinute());
+        if (minutes.equals("0")){
+            minutes="00";
+        }
+
+        return hour + ":" + minutes;
+    }
+
     public void setShowingTimeDate(LocalDateTime showingTimeDate) {
         this.showingTimeDate = showingTimeDate;
     }
