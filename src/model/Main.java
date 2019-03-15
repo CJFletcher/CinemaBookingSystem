@@ -1,9 +1,6 @@
 package model;
 
-import controller.BookingController;
-import controller.FilmController;
-import controller.ShowingController;
-import controller.TheaterController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +14,13 @@ public class Main extends Application {
     private static FilmController films;
     private static ShowingController showings;
     private static BookingController bookings;
+    private static SnackController snacks;
     private static User currentUser;
     private static Showing currentShowing;
     private static Theater currentTheater;
+    private static Film currentFilm;
+    private static Basket basket;
+
 
     public static TheaterController getTheaters() {
         return theaters;
@@ -61,23 +62,52 @@ public class Main extends Application {
         Main.currentTheater = currentTheater;
     }
 
+    public static SnackController getSnacks() {
+        return snacks;
+    }
+
+    public static Film getCurrentFilm() {
+        return currentFilm;
+    }
+
+    public static void setCurrentFilm(Film currentFilm) {
+        Main.currentFilm = currentFilm;
+    }
+
+    public static Basket getBasket() {
+        return basket;
+    }
+
+    public static void setBasket(Basket basket) {
+        Main.basket = basket;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         TheaterController t = new TheaterController();
         FilmController f = new FilmController();
         ShowingController s = new ShowingController();
         BookingController b = new BookingController();
+        SnackController sn = new SnackController();
+        Basket bas = new Basket();
 
         t.loadTheaters();
         f.loadFilms();
         s.loadShowings();
         b.loadBookings();
+        sn.loadSnacks();
 
         theaters = t;
         films = f;
         showings = s;
         bookings = b;
+        snacks = sn;
+        basket = bas;
 
-        System.out.println(s.getShowings());
+
+        System.out.println(Main.getFilms().getFilmByTitle("Star"));
+        System.out.println(Main.getSnacks().getItemByName("Hot Dog"));
+        Main.getSnacks().getSnacks().get(5);
+        Main.getSnacks().getSnacks().get(6);
 
         launch(args);
     }

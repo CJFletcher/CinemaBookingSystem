@@ -24,4 +24,14 @@ public class Basket {
     public void removeItem(BuyableItem item) {
         this.items.remove(item);
     }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        for(BuyableItem item:items){
+            ret += item+"\n";
+        }
+
+        return "Items in Basket:\n"+ ret;
+    }
 }

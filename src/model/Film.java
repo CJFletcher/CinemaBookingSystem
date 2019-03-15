@@ -5,6 +5,7 @@ import com.google.gson.internal.LinkedTreeMap;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 //SerializedName matches the Value from the Json response to the relevant attribute.
 //This is necessary due to the Json response Values being stored capitalised.
@@ -39,7 +40,7 @@ public class Film implements Serializable {
     @SerializedName(value = "Poster",alternate = "poster")
     private String poster;
     @SerializedName(value = "Ratings",alternate = "ratings")
-    ArrayList<LinkedTreeMap> ratings = new ArrayList<>();
+    ArrayList<LinkedHashMap> ratings = new ArrayList<>();
     private String metascore;
     private String imdbRating;
     private String imdbVotes;
@@ -115,7 +116,7 @@ public class Film implements Serializable {
 
     public String getRatings() {
         String ret = "";
-        for (LinkedTreeMap rating : ratings) {
+        for (LinkedHashMap rating : ratings) {
             ret += rating.get("Source") + " " + rating.get("Value")+"\n";
         }
         return ret;
@@ -215,7 +216,7 @@ public class Film implements Serializable {
         this.metascore = Metascore;
     }
 
-    public void setRatings(ArrayList<LinkedTreeMap> ratings) {
+    public void setRatings(ArrayList<LinkedHashMap> ratings) {
         this.ratings = ratings;
     }
 

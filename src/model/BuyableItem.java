@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public abstract class BuyableItem implements Serializable{
     private double price;
@@ -20,4 +21,8 @@ public abstract class BuyableItem implements Serializable{
         this.price = price;
     }
 
+    public String getPriceFormatted() {
+        DecimalFormat df = new DecimalFormat("####0.00");
+        return "£" + df.format(getPrice());
+    }
 }

@@ -25,4 +25,9 @@ public class Snack extends BuyableItem{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return name + ": " + super.getPriceFormatted();
+    }
 }

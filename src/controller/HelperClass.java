@@ -1,11 +1,15 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Paint;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.*;
 import java.lang.String;
+
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 public class HelperClass {
 

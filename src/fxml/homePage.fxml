@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.HomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseMoved="#showBasketButton" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.HomePageController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="226.0" style="-fx-background-color: #7384da;">
          <effect>
@@ -96,7 +96,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <JFXListView fx:id="showingsListView" layoutY="65.0" prefHeight="496.0" prefWidth="1010.0" showTooltip="true" stylesheets="@../res/scrollStyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+            <JFXListView fx:id="showingsListView" layoutY="65.0" prefHeight="496.0" prefWidth="1010.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="256.0" layoutY="585.0" prefHeight="200.0" prefWidth="1010.0" style="-fx-background-color: #FFFFFF;">
@@ -117,8 +117,8 @@
                <children>
                   <Pane fx:id="snackBoxLeft" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
                   <Pane fx:id="snackBoxCenterLeft" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
-                  <Pane fx:id="SnackBoxCentreRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
-                  <Pane fx:id="SnackBoxRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
+                  <Pane fx:id="snackBoxCentreRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
+                  <Pane fx:id="snackBoxRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
                </children>
             </HBox>
          </children>
