@@ -52,7 +52,6 @@
 .scroll-bar:horizontal > .decrement-button > .decrement-arrow {
     -fx-shape: "M214 0l0 428l-214 -214l214 -214z";
 }
-
 /*******************************************************************************
  *                                                                             *
  * Scroll Pane			                                                       *
@@ -99,11 +98,15 @@
     -fx-text-fill: WHITE;
 }
 
+
+.list-cell:odd { -fx-background-color: white; }
+
+.list-cell:even { -fx-background-color: #8f8; }
+
 .list-view .list-cell {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: BLACK;
 }
-
 
 .jfx-rippler {
     -jfx-rippler-fill: #003079;

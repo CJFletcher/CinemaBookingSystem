@@ -3,6 +3,7 @@ package controller;
 import model.*;
 
 
+import java.awt.print.Book;
 import java.util.List;
 
 import static controller.FilmController.newFilm;
@@ -182,18 +183,22 @@ public class Test {
 
         Ticket t1 = new Ticket(a,a.getRowByCharacter("C").getSeatByNumber(1));
         Ticket t2 = new Ticket(a,a.getRowByCharacter("C").getSeatByNumber(2));
-
+        Ticket t3 = new Ticket(g,g.getRowByCharacter("F").getSeatByNumber(4));
 
         BookingController bookings = new BookingController();
+        Booking b1 = new Booking();
+        Booking b2 = new Booking();
+        bookings.addBooking(b1);
+
+        b1.addTicket(t1);
+        b1.addTicket(t2);
+
+        b2.addTicket(t3);
+        System.out.println(bookings);
         bookings.saveBookings();
         showings.saveShowings();
         theaters.saveTheaters();
         showings.saveShowings();
-//        Booking b1 = new Booking();
-//        bookings.addBooking(b1);
-//        b1.addTicket(t1);
-//        b1.addTicket(t2);
-//        System.out.println(bookings);
-//        bookings.saveObjectsToFile();
+
         }
     }

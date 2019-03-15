@@ -103,12 +103,6 @@ public class Main extends Application {
         snacks = sn;
         basket = bas;
 
-
-        System.out.println(Main.getFilms().getFilmByTitle("Star"));
-        System.out.println(Main.getSnacks().getItemByName("Hot Dog"));
-        Main.getSnacks().getSnacks().get(5);
-        Main.getSnacks().getSnacks().get(6);
-
         launch(args);
     }
 

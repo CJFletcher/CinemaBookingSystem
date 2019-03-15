@@ -25,6 +25,7 @@ import model.Main;
 import model.Showing;
 import model.Snack;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,16 +38,10 @@ public class HomePageController implements Initializable {
     private JFXButton manageBookingsButton;
 
     @FXML
-    private JFXButton manageFilmsButton;
+    private JFXButton adminPageButton;
 
     @FXML
     private JFXButton createNewBookingButton;
-
-    @FXML
-    private JFXButton manageShowingsButton;
-
-    @FXML
-    private JFXButton createNewBookingButton1;
 
     @FXML
     private JFXButton basketButton;
@@ -55,22 +50,15 @@ public class HomePageController implements Initializable {
     private JFXButton exitButton;
 
     @FXML
-    private Pane snackBoxLeft;
+    private GridPane snackGridPane;
 
     @FXML
-    private Pane snackBoxCenterLeft;
-
-    @FXML
-    private Pane snackBoxCentreRight;
-
-    @FXML
-    private Pane snackBoxRight;
+    private JFXButton viewAllSnacksButton;
 
     @FXML
     private JFXListView<BorderPane> showingsListView;
 
-    public HomePageController() {
-    }
+    private HomePageController() {}
 
     @FXML
     void createNewBooking(ActionEvent event) {
@@ -80,9 +68,9 @@ public class HomePageController implements Initializable {
     @FXML
     void exit(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
-        alert.setContentText("Are you ok with this?");
+        alert.setTitle("Log out confirmation");
+        alert.setHeaderText("");
+        alert.setContentText("Are you sure you want to log out?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -103,29 +91,40 @@ public class HomePageController implements Initializable {
 
     }
 
+    @FXML
+    void openAdminPage(){
+        Stage stage = (Stage) adminPageButton.getScene().getWindow();
+        adminPage.start(stage);
+    }
+
+    @FXML
+    void openSnacksPage(){
+        Stage stage = (Stage) viewAllSnacksButton.getScene().getWindow();
+        snacksPage.start(stage);
+    }
 
     @FXML
     void manageBookings(ActionEvent event) {
-//        Stage stage = (Stage) manageBookingsButton.getScene().getWindow();
-//        manageBookings.start(stage);
+        Stage stage = (Stage) manageBookingsButton.getScene().getWindow();
+        manageBookings.start(stage);
     }
 
     @FXML
     void manageFilms(ActionEvent event) {
-//        Stage stage = (Stage) manageFilmsButton.getScene().getWindow();
-//        manageFilms.start(stage);
+        Stage stage = (Stage) manageFilmsButton.getScene().getWindow();
+        manageFilms.start(stage);
     }
 
     @FXML
     void manageShowings(ActionEvent event) {
-//        Stage stage = (Stage) manageShowingsButton.getScene().getWindow();
-//        manageShowings.start(stage);
+        Stage stage = (Stage) manageShowingsButton.getScene().getWindow();
+        manageShowings.start(stage);
     }
 
     @FXML
     void openBasket(ActionEvent event) {
-//        Stage stage = (Stage) basketButton.getScene().getWindow();
-//        basketController.start(stage);
+        Stage stage = (Stage) basketButton.getScene().getWindow();
+        basketController.start(stage);
     }
 
     public void start(Stage window) throws Exception {
@@ -135,7 +134,7 @@ public class HomePageController implements Initializable {
         window.show();
     }
 
-    private void populateSnackDetails(Pane pane,Snack snack) {
+    private void populateSnackDetails(GridPane pane,Snack snack,int x,int y) {
         Label label = new Label(snack.getName() + "\n" + snack.getDescription() + "\n" + snack.getPriceFormatted());
         label.setFont(Font.font("Arial", 12));
         label.setWrapText(true);
@@ -143,7 +142,7 @@ public class HomePageController implements Initializable {
         label.setMinWidth(247);
         label.setPrefWidth(247);
 
-        pane.getChildren().add(label);
+        pane.add(label,y,x);
 
         JFXButton addTobasketButton = new JFXButton("Add to Basket");
         pane.getStylesheets().add(getClass().getResource("../res/styleSheet.css").toExternalForm());
@@ -158,10 +157,10 @@ public class HomePageController implements Initializable {
                             alert.setHeaderText(snack.getName() + " successfully added to basket");
                             alert.setContentText(Main.getBasket().toString());
                             alert.showAndWait();
+                            showBasketButton();
                         }
                     });
-                    addTobasketButton.setAlignment(Pos.BOTTOM_CENTER);
-                    pane.getChildren().add(addTobasketButton);
+                    pane.add(addTobasketButton,y,x+1);
                 }
 
     @FXML
@@ -189,7 +188,7 @@ public class HomePageController implements Initializable {
 
 
                 String posterUrl = showing.getFilm().getPoster();
-                Image poster = new Image(posterUrl, 200, 200, true, false);
+                Image poster = new Image(posterUrl, 140, 190, true, false);
                 ImageView posterView = new ImageView();
                 posterView.setImage(poster);
                 bp.setLeft(posterView);
@@ -198,7 +197,7 @@ public class HomePageController implements Initializable {
                 String showingTime = showing.getShowingTimeFormatted();
 
                 Label titleAndTime = new Label(title + "\n\n" + showing.getShowingDateFormatted()+"\n"+showingTime+
-                        "\n\n\n Theater Number: " + showing.getTheater().getTheaterNumber());
+                        "\n\n\nTheater Number: " + showing.getTheater().getTheaterNumber());
                 titleAndTime.setFont(Font.font("Arial",18));
                 titleAndTime.setWrapText(false);
                 titleAndTime.setMinWidth(300);
@@ -247,10 +246,10 @@ public class HomePageController implements Initializable {
         Snack hotDog = Main.getSnacks().getItemByName("Hot dog");
         Snack nachos = Main.getSnacks().getItemByName("Nachos");
 
-        populateSnackDetails(snackBoxLeft,popcorn);
-        populateSnackDetails(snackBoxCenterLeft,softDrink);
-        populateSnackDetails(snackBoxCentreRight,hotDog);
-        populateSnackDetails(snackBoxRight,nachos);
+        populateSnackDetails(snackGridPane,popcorn,0,0);
+        populateSnackDetails(snackGridPane,softDrink,0,1);
+        populateSnackDetails(snackGridPane,hotDog,0,2);
+        populateSnackDetails(snackGridPane,nachos,0, 3);
 
         if (Main.getBasket().getItems().isEmpty()){
             basketButton.setDisable(true);
