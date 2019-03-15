@@ -33,9 +33,9 @@ public class Row implements Serializable {
     public void createSeats(int numberOfSeats,boolean isVip) {
         for (int i = 1; i <= numberOfSeats; i++) {
             if (!isVip) {
-                seats.add(new Seat(false, i));
+                seats.add(new Seat(false, i,rowLetter));
             }
-            else {seats.add(new VipSeat(false,i));
+            else {seats.add(new VipSeat(false,i,rowLetter));
             }
         }
     }

@@ -192,8 +192,9 @@ public class Test {
 
         b1.addTicket(t1);
         b1.addTicket(t2);
-
         b2.addTicket(t3);
+
+
         System.out.println(bookings);
         bookings.saveBookings();
         showings.saveShowings();

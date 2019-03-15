@@ -2,6 +2,7 @@ package model;
 
 import controller.*;
 import javafx.application.Application;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +11,9 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private static Parent root;
+    private static Stage primaryStage;
+    
     private static TheaterController theaters;
     private static FilmController films;
     private static ShowingController showings;
@@ -21,6 +25,21 @@ public class Main extends Application {
     private static Film currentFilm;
     private static Basket basket;
 
+    public static Stage getStage() {
+        return primaryStage;
+    }
+
+    public static void setStage(Stage primaryStage) {
+        Main.primaryStage = primaryStage;
+    }
+
+    public static void setRoot(Parent root) {
+        Main.root = root;
+    }
+
+    public static Parent getRoot() {
+        return root;
+    }
 
     public static TheaterController getTheaters() {
         return theaters;
@@ -109,6 +128,7 @@ public class Main extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
+        Main.primaryStage = primaryStage;
         primaryStage.setTitle("Cinema Booking System");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

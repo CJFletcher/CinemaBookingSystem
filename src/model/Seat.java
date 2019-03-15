@@ -6,10 +6,12 @@ import java.io.Serializable;
 public class Seat implements Serializable {
     private Boolean isBooked;
     private int seatNumber;
+    private String rowLetter;
 
-    public Seat(Boolean isBooked, int seatNumber) {
+    public Seat(Boolean isBooked, int seatNumber, String rowLetter) {
         this.isBooked = isBooked;
         this.seatNumber = seatNumber;
+        this.rowLetter = rowLetter;
     }
 
     public Boolean getBookingStatus() {
@@ -30,7 +32,7 @@ public class Seat implements Serializable {
 
     @Override
     public String toString() {
-        return "Seat " + seatNumber +
-                ", isBooked=" + isBooked;
+        return "Row: " + rowLetter +
+                " Seat:" + seatNumber;
     }
 }

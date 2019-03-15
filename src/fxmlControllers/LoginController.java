@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,8 +21,6 @@ import javafx.stage.Stage;
 import model.Film;
 import model.Main;
 
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,13 +44,7 @@ public class LoginController implements Initializable {
     public JFXButton loginButton;
 
     @FXML
-    private ImageView logo;
-
-    @FXML
     private ImageView posterImage;
-
-    @FXML
-    private AnchorPane leftAP;
 
     @FXML
     private void focusPasswordBox(){
@@ -86,10 +79,9 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void login() throws Exception {
+    public void login(ActionEvent event) throws Exception {
         if (validateUser()) {
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            homePageController.start(stage);
+            SceneCreator.launchScene("../fxml/homePage.fxml");
         }
     }
 
@@ -102,7 +94,6 @@ public class LoginController implements Initializable {
         posterImage.setImage(imageList.get(imageCount));
         centerImage(posterImage);
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -118,8 +109,6 @@ public class LoginController implements Initializable {
 
         posterImage.setImage(imageList.get(imageCount));
         centerImage(posterImage);
-        }
-
-
+    }
 }
 

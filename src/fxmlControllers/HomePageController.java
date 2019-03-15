@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -25,12 +24,13 @@ import model.Main;
 import model.Showing;
 import model.Snack;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static fxmlControllers.SceneCreator.launchScene;
 
 public class HomePageController implements Initializable {
 
@@ -58,15 +58,16 @@ public class HomePageController implements Initializable {
     @FXML
     private JFXListView<BorderPane> showingsListView;
 
-    private HomePageController() {}
+    public HomePageController() {}
 
     @FXML
-    void createNewBooking(ActionEvent event) {
+    void openMakeBookingPage() throws IOException {
+        launchScene("../fxml/makeBookings.fxml");
 
     }
 
     @FXML
-    void exit(ActionEvent event) throws IOException {
+    void exit() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Log out confirmation");
         alert.setHeaderText("");
@@ -92,39 +93,28 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    void openAdminPage(){
-        Stage stage = (Stage) adminPageButton.getScene().getWindow();
-        adminPage.start(stage);
+    void openAdminPage(ActionEvent event) throws IOException {
+        launchScene("../fxml/adminPage.fxml");
     }
 
     @FXML
-    void openSnacksPage(){
-        Stage stage = (Stage) viewAllSnacksButton.getScene().getWindow();
-        snacksPage.start(stage);
+    void createNewBooking(ActionEvent event) throws IOException{
+        launchScene("../fxml/makeBooking.fxml");
     }
 
     @FXML
-    void manageBookings(ActionEvent event) {
-        Stage stage = (Stage) manageBookingsButton.getScene().getWindow();
-        manageBookings.start(stage);
+    void openSnacksPage(ActionEvent event) throws IOException {
+        launchScene("../fxml/snacksPage");
     }
 
     @FXML
-    void manageFilms(ActionEvent event) {
-        Stage stage = (Stage) manageFilmsButton.getScene().getWindow();
-        manageFilms.start(stage);
+    void manageBookings(ActionEvent event) throws IOException {
+        launchScene("../fxml/manageBookings.fxml");
     }
 
     @FXML
-    void manageShowings(ActionEvent event) {
-        Stage stage = (Stage) manageShowingsButton.getScene().getWindow();
-        manageShowings.start(stage);
-    }
-
-    @FXML
-    void openBasket(ActionEvent event) {
-        Stage stage = (Stage) basketButton.getScene().getWindow();
-        basketController.start(stage);
+    void openBasket(ActionEvent event) throws IOException {
+        launchScene("../fxml/basketPage.fxml");
     }
 
     public void start(Stage window) throws Exception {
@@ -169,8 +159,7 @@ public class HomePageController implements Initializable {
         basketButton.setDisable(false);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    private void populateShowingListView(){
         Main.getShowings().sortShowings();
         ShowingPageController showingPageController = new ShowingPageController();
         ArrayList<Showing> showings = Main.getShowings().getShowings();
@@ -223,14 +212,16 @@ public class HomePageController implements Initializable {
                 JFXButton showingButton = new JFXButton("Make Booking");
                 bp.setMargin(showingButton,new Insets(90,10,10,10));
 
-                showingButton.setOnAction((ActionEvent event) -> {
-                    Main.setCurrentShowing(showing);
-                    Stage stage = (Stage) showingsListView.getScene().getWindow();
-
-                    try {
-                        showingPageController.start(stage);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                showingButton.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        Main.setCurrentShowing(showing);
+                        Stage stage = (Stage) showingsListView.getScene().getWindow();
+                        try {
+                            launchScene("../fxml/makeBooking.fxml");;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
                 showingButton.setAlignment(Pos.BOTTOM_CENTER);
@@ -240,6 +231,11 @@ public class HomePageController implements Initializable {
                 i++;
             }
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        populateShowingListView();
 
         Snack popcorn = Main.getSnacks().getItemByName("Popcorn");
         Snack softDrink = Main.getSnacks().getItemByName("Soft Drink");

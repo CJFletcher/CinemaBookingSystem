@@ -4,8 +4,8 @@ public class VipSeat extends Seat{
 
     final double priceModifier = 25.0;
 
-    public VipSeat(Boolean isBooked, int seatNumber) {
-        super(isBooked, seatNumber);
+    public VipSeat(Boolean isBooked, int seatNumber, String rowLetter) {
+        super(isBooked, seatNumber, rowLetter);
     }
 
     public double getPriceModifier() {
