@@ -40,7 +40,7 @@ public class Seat implements Serializable {
 
     @Override
     public String toString() {
-        return "Row: " + rowLetter +
+        return "STD - Row: " + rowLetter +
                 " Seat: " + seatNumber;
     }
 }

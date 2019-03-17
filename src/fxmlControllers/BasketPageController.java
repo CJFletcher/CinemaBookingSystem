@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.text.Text;
 import model.Basket;
 import model.BuyableItem;
 import model.Main;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static controller.HelperClass.formatDoubleToGBPString;
 import static fxmlControllers.SceneCreator.launchScene;
 
 public class BasketPageController implements Initializable {
@@ -31,6 +33,9 @@ public class BasketPageController implements Initializable {
 
     @FXML
     private JFXButton removeSelectedItemButton;
+
+    @FXML
+    private JFXButton removeSameItemsButton;
 
     @FXML
     private JFXButton clearBasketButton;
@@ -64,6 +69,9 @@ public class BasketPageController implements Initializable {
 
     @FXML
     private JFXTextArea receiptTextArea;
+
+    @FXML
+    private Text totalText;
 
     @FXML
     void clearBasket(ActionEvent event) {
@@ -106,15 +114,31 @@ public class BasketPageController implements Initializable {
         BuyableItem selectedItem = basketListView.getSelectionModel().getSelectedItem();
         if(selectedItem!=null) {
             basket.removeItem(selectedItem);
-            populateBasketListView();
+            updateListAndTotal();
         }
         else{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");
-            alert.setHeaderText("Can not remove item from basket");
-            alert.setContentText("Please select an item to remove");
-            alert.showAndWait();
+            noSelectionAlert();
         }
+    }
+
+    @FXML
+    void removeSameItemFromBasket(ActionEvent event) {
+        BuyableItem selectedItem = basketListView.getSelectionModel().getSelectedItem();
+        if(selectedItem!=null) {
+            basket.removeAllIdenticalItems(selectedItem);
+            updateListAndTotal();
+        }
+        else{
+            noSelectionAlert();
+        }
+    }
+
+    private void noSelectionAlert(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No selection made");
+        alert.setHeaderText("Can not remove item from basket");
+        alert.setContentText("Please select an item to remove");
+        alert.showAndWait();
     }
 
     void populateBasketListView(){
@@ -124,15 +148,26 @@ public class BasketPageController implements Initializable {
             for (BuyableItem item : basket.getItems()) {
                 basketListView.getItems().add(item);
             }
-        }else{
+        } else{
             basketListView.getItems().add(new Snack(0.00,"NO ITEMS IN BASKET",""));
+            setTotalText();
             basketListView.setDisable(true);
-            }
         }
+    }
 
+    void setTotalText(){
+        totalText.setText(formatDoubleToGBPString(basket.calculateTotalPrice()));
+    }
+
+    void updateListAndTotal(){
+        populateBasketListView();
+        setTotalText();
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populateBasketListView();
+        setTotalText();
     }
+
 }
 

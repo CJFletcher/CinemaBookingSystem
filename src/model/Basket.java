@@ -23,7 +23,27 @@ public class Basket {
     }
 
     public void removeItem(BuyableItem item) {
+        Iterator<BuyableItem> i = items.iterator();
+        while (i.hasNext()) {
+            BuyableItem s = i.next();
+            if (s==item) {
+                i.remove();
+                break;
+            }
+        }
+    }
+
+    public void removeAllIdenticalItems(BuyableItem item){
         items.removeIf(s -> s == item);
+    }
+
+
+    public double calculateTotalPrice(){
+        double d = 0;
+        for (BuyableItem item: items) {
+            d+=item.getPrice();
+        }
+        return d;
     }
 
     @Override

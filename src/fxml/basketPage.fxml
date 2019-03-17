@@ -71,17 +71,32 @@
                   </Text>
                </children>
             </AnchorPane>
-            <JFXListView fx:id="basketListView" layoutX="5.0" layoutY="73.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="485.0" prefWidth="520.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0" />
-            <JFXButton fx:id="removeSelectedItemButton" buttonType="RAISED" layoutX="75.0" layoutY="564.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#removeSelectedItemFromBasket" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Remove selected item" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0">
+            <JFXListView fx:id="basketListView" layoutX="5.0" layoutY="73.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="442.0" prefWidth="520.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0" />
+            <JFXButton fx:id="removeSelectedItemButton" buttonType="RAISED" layoutX="15.0" layoutY="523.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#removeSelectedItemFromBasket" prefHeight="37.0" prefWidth="240.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Remove selected item" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="clearBasketButton" buttonType="RAISED" layoutX="299.0" layoutY="564.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#clearBasket" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Clear basket" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="70.0">
+            <JFXButton fx:id="clearBasketButton" buttonType="RAISED" layoutX="347.0" layoutY="568.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#clearBasket" prefHeight="37.0" prefWidth="240.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Clear basket" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
+            <JFXButton fx:id="removeSameItemsButton" buttonType="RAISED" layoutX="14.0" layoutY="568.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#removeSameItemFromBasket" prefHeight="37.0" prefWidth="240.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Remove items of same type" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <Text layoutX="285.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Cost:" wrappingWidth="107.0000007301569">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="totalText" layoutX="417.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="£0.00" textAlignment="RIGHT" wrappingWidth="107.0000007301569" AnchorPane.rightAnchor="15.0">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="256.0" layoutY="644.0" prefHeight="141.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;">
