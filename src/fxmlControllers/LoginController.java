@@ -3,25 +3,16 @@ package fxmlControllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.Film;
 import model.Main;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,7 +23,6 @@ public class LoginController implements Initializable {
 
     private int imageCount = 0;
     private ArrayList<Image> imageList = new ArrayList<>();
-    private HomePageController homePageController;
 
     @FXML
     private JFXTextField usernameBox;
@@ -97,13 +87,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        homePageController = new HomePageController();
         ArrayList<Film> films = Main.getFilms().getFilms();
-        ObservableList<Film> filmsObservableList = FXCollections.observableArrayList(films);
 
-        for (Film film : films /*Main.getFilms().getFilms()*/) {
+        for (Film film : films) {
             String posterUrl = film.getPoster();
-            Image poster = new Image(posterUrl,5000,5000,true,false);
+            Image poster = new Image(posterUrl,5000,5000,true,true);
             imageList.add(poster);
             }
 

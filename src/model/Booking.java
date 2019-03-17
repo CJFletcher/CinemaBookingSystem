@@ -58,10 +58,15 @@ public class Booking implements ClassWithID, Serializable {
         System.out.println(test2.getId());
     }
 
+    public void setSeatsAsBooked() {
+        for (Ticket ticket : tickets) {
+            ticket.getSeat().setBookingStatus(true);
+        }
+    }
+
     @Override
     public long getId() {
-        int ret = (int) id;
-        return ret;
+       return (int) id;
     }
 
     @Override
