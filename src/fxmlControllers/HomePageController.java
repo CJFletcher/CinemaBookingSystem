@@ -58,8 +58,6 @@ public class HomePageController implements Initializable {
     @FXML
     private JFXListView<BorderPane> showingsListView;
 
-    public HomePageController() {}
-
     @FXML
     void openMakeBookingPage() throws IOException {
         launchScene("../fxml/makeBookings.fxml");
@@ -131,13 +129,14 @@ public class HomePageController implements Initializable {
         label.setMaxWidth(247);
         label.setMinWidth(247);
         label.setPrefWidth(247);
+        label.setAlignment(Pos.TOP_LEFT);
 
         pane.add(label,y,x);
 
-        JFXButton addTobasketButton = new JFXButton("Add to Basket");
+        JFXButton addToBasketButton = new JFXButton("Add to Basket");
         pane.getStylesheets().add(getClass().getResource("../res/styleSheet.css").toExternalForm());
 
-        addTobasketButton.setOnAction(new EventHandler<ActionEvent>() {
+        addToBasketButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                             Main.getBasket().addItem(snack);
@@ -150,13 +149,17 @@ public class HomePageController implements Initializable {
                             showBasketButton();
                         }
                     });
-                    pane.add(addTobasketButton,y,x+1);
+                    pane.add(addToBasketButton,y,x+1);
                 }
 
     @FXML
     private void showBasketButton(){
-        if (!Main.getBasket().getItems().isEmpty())
-        basketButton.setDisable(false);
+        if (!Main.getBasket().getItems().isEmpty()){
+            basketButton.setDisable(false);
+        }
+        else {
+            basketButton.setDisable(true);
+        }
     }
 
     private void populateShowingListView(){
@@ -167,9 +170,9 @@ public class HomePageController implements Initializable {
         for (Showing showing:showings) {
             if (i<=9) {
                 BorderPane bp = new BorderPane();
-                HBox hb = new HBox();
-                hb.setPadding(new Insets (10,10,0,10));
-                bp.setCenter(hb);
+                GridPane gp = new GridPane();
+                gp.setPadding(new Insets (10,10,0,10));
+                bp.setCenter(gp);
 
                 bp.setMaxSize(950, 200);
                 bp.setPrefSize(950, 200);
@@ -179,20 +182,27 @@ public class HomePageController implements Initializable {
                 String posterUrl = showing.getFilm().getPoster();
                 Image poster = new Image(posterUrl, 140, 190, true, false);
                 ImageView posterView = new ImageView();
+                posterView.minWidth(140);
+                posterView.prefWidth(140);
+                posterView.maxWidth(140);
                 posterView.setImage(poster);
                 bp.setLeft(posterView);
 
                 String title = showing.getFilm().getTitle();
                 String showingTime = showing.getShowingTimeFormatted();
 
-                Label titleAndTime = new Label(title + "\n\n" + showing.getShowingDateFormatted()+"\n"+showingTime+
+                Label titleAndTime = new Label(title + "\n\n" + showing.getShowingDateFormatted(true)+"\n"+showingTime+
                         "\n\n\nTheater Number: " + showing.getTheater().getTheaterNumber());
                 titleAndTime.setFont(Font.font("Arial",18));
                 titleAndTime.setWrapText(false);
                 titleAndTime.setMinWidth(300);
                 titleAndTime.setPrefWidth(300);
                 titleAndTime.setMaxWidth(300);
-                hb.getChildren().add(titleAndTime);
+                gp.addColumn(0,titleAndTime);
+                gp.getChildren().get(0).prefWidth(300);
+                gp.getChildren().get(0).minWidth(300);
+                gp.getChildren().get(0).maxWidth(300);
+                gp.setAlignment(Pos.CENTER_LEFT);
 
                 String filmPlot = showing.getFilm().getPlotShort();
                 Label filmPlotLabel = new Label(filmPlot+"\n\nRatings:\n"+showing.getFilm().getRatings());
@@ -201,16 +211,16 @@ public class HomePageController implements Initializable {
                 filmPlotLabel.setMinHeight(170);
                 filmPlotLabel.setPrefHeight(170);
                 filmPlotLabel.setMaxHeight(170);
-                hb.getChildren().add(filmPlotLabel);
+                gp.addColumn(1,filmPlotLabel);
 
                 Label seatsAvailable = new Label("Seats available: " + (showing.getAvailableSeats()));
                 seatsAvailable.setFont(Font.font("Arial",14));
                 bp.setBottom(seatsAvailable);
-                bp.setAlignment(seatsAvailable, Pos.CENTER_RIGHT);
+                BorderPane.setAlignment(seatsAvailable, Pos.CENTER_RIGHT);
 
 
                 JFXButton showingButton = new JFXButton("Make Booking");
-                bp.setMargin(showingButton,new Insets(90,10,10,10));
+                BorderPane.setMargin(showingButton,new Insets(90,10,10,10));
 
                 showingButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
@@ -218,7 +228,7 @@ public class HomePageController implements Initializable {
                         Main.setCurrentShowing(showing);
                         Stage stage = (Stage) showingsListView.getScene().getWindow();
                         try {
-                            launchScene("../fxml/makeBooking.fxml");;
+                            launchScene("../fxml/makeBooking.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -236,6 +246,7 @@ public class HomePageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populateShowingListView();
+        showBasketButton();
 
         Snack popcorn = Main.getSnacks().getItemByName("Popcorn");
         Snack softDrink = Main.getSnacks().getItemByName("Soft Drink");
@@ -246,10 +257,6 @@ public class HomePageController implements Initializable {
         populateSnackDetails(snackGridPane,softDrink,0,1);
         populateSnackDetails(snackGridPane,hotDog,0,2);
         populateSnackDetails(snackGridPane,nachos,0, 3);
-
-        if (Main.getBasket().getItems().isEmpty()){
-            basketButton.setDisable(true);
-        }
 
     }
 }

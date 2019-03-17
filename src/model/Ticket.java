@@ -14,8 +14,22 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
     public Ticket(Showing showing, Seat seat) {
         this.showing = showing;
         this.seat = seat;
-        seat.setBookingStatus(true);
-        this.setPrice(calculateTicketPrice());
+        this.setPrice(applyVipModifier(calculateTicketPrice()));
+    }
+
+    public double applyVipModifier(double price){
+        if (seat.getClass().equals(VipSeat.class)){
+            return VipSeat.priceModifier * price;
+        }
+        return price;
+    }
+
+    public Showing getShowing() {
+        return showing;
+    }
+
+    public Seat getSeat() {
+        return seat;
     }
 
     public double calculateTicketPrice(){
@@ -25,17 +39,17 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
         if (yearDiff < 0){
             return 0;
         }
-        if (yearDiff >= 0 && yearDiff <= 3){
-            return 8.0;
+        if (0 <= yearDiff && yearDiff <= 3){
+            return 6;
         }
-        if (yearDiff > 4 && yearDiff <= 6){
-            return 6.50;
+        if (4 <= yearDiff && yearDiff <= 7){
+            return 4.5;
         }
-        if (yearDiff > 7 && yearDiff <= 10){
-            return 5.0;
+        if (8 <= yearDiff && yearDiff <= 12){
+            return 3;
         }
         else{
-            return 4.0;
+            return 2;
         }
     }
 
@@ -47,10 +61,7 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "showing=" + showing +
-                ", seat=" + seat +
-                ", id=" + id +
-                '}';
+        return showing.getFilm().getTitle() +": "+showing.getShowingDateFormatted(false) +" " +
+                showing.getShowingTimeFormatted()+ " - " + seat + " - " + getPriceFormatted();
     }
 }

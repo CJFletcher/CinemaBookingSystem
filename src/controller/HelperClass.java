@@ -8,6 +8,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.*;
 import java.lang.String;
+import java.text.DecimalFormat;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
@@ -15,8 +16,7 @@ public class HelperClass {
 
     public static boolean isEmailAddressValid(String email) {
         EmailValidator validator = EmailValidator.getInstance();
-        boolean validEmail = validator.isValid(email);
-        return validEmail;
+        return validator.isValid(email);
     }
 
     public static String replaceSpacesInString(String stringToFormat, String replacement) {
@@ -54,7 +54,12 @@ public class HelperClass {
 
         }
     }
-}
+    public static String formatDoubleToGBPString(double number) {
+        DecimalFormat df = new DecimalFormat("####0.00");
+        return "£" + df.format(number);
+        }
+    }
+
 //    public static void readObjectsFromFile(String filePath,Class className) throws IOException {
 //        FileOutputStream out = new FileOutputStream(filePath);
 //        ObjectOutputStream objout = new ObjectOutputStream(out);

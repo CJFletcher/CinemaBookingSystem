@@ -2,7 +2,11 @@ package model;
 
 public class VipSeat extends Seat{
 
-    final double priceModifier = 25.0;
+
+    public static final double priceModifier = 1.25;
+
+    public VipSeat() {
+    }
 
     public VipSeat(Boolean isBooked, int seatNumber, String rowLetter) {
         super(isBooked, seatNumber, rowLetter);
@@ -14,6 +18,6 @@ public class VipSeat extends Seat{
 
     @Override
     public String toString() {
-        return "VipSeat" + getSeatNumber() +", isBooked="+ getBookingStatus();
+        return "VIP - Row: " + getRowLetter() + " Seat: " + getSeatNumber();
     }
 }

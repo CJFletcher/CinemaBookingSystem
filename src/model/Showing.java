@@ -30,7 +30,7 @@ public class Showing implements Comparable<Showing>, Serializable{
         return showingTimeDate.toLocalDate();
     }
 
-    public String getShowingDateFormatted(){
+    public String getShowingDateFormatted(Boolean showDay){
         String day = showingTimeDate.getDayOfWeek().toString().toLowerCase();
         String dayOfMonth = String.valueOf(showingTimeDate.getDayOfMonth());
         String month = String.valueOf(showingTimeDate.getMonthValue());
@@ -45,8 +45,12 @@ public class Showing implements Comparable<Showing>, Serializable{
         if (month.length()==1){
             month="0"+month;
         }
-
-        return capDay + "\n" + dayOfMonth +"/" + month + "/" + year;
+        if (showDay) {
+            return capDay + "\n" + dayOfMonth + "/" + month + "/" + year;
+        }
+        else {
+            return dayOfMonth + "/" + month + "/" + year;
+        }
     }
 
     public String getShowingTimeFormatted(){
@@ -119,13 +123,10 @@ public class Showing implements Comparable<Showing>, Serializable{
     }
 
     public Boolean isOld(){
-        if (this.getShowingDate().isBefore(LocalDate.now())){
-            return true;
-        }
-        else return false;
+        return this.getShowingDate().isBefore(LocalDate.now());
     }
 
-    public ArrayList<Row> loadRows() {
+    private ArrayList<Row> loadRows() {
         return theater.getRows();
     }
 

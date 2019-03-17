@@ -4,6 +4,7 @@ import model.*;
 
 
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 import static controller.FilmController.newFilm;
@@ -165,11 +166,11 @@ public class Test {
         showings.addShowing(t);
 
 
-        showings.printShowings();
-        showings.sortShowings();
-
-        showings.printShowings();
-        System.out.println(showings.getShowingByNumber(1));
+//      showings.printShowings();
+//      showings.sortShowings();
+//
+//      showings.printShowings();
+//      System.out.println(showings.getShowingByNumber(1));
 //      showings.removeOldShowings();
 //      showings.printShowings();
 //      System.out.println(a.getRows());
@@ -194,12 +195,36 @@ public class Test {
         b1.addTicket(t2);
         b2.addTicket(t3);
 
+        SnackController snacks = new SnackController();
 
-        System.out.println(bookings);
+        String popcornText = "Our popcorn is freshly popped, always carefully selected and you can choose from a range of sweet, salted or mixed.";
+        String softDrinkText = "We are excited to offer a refreshing range of drinks including Pepsi MAX, Pepsi MAX Cherry, Pepsi, Diet Pepsi, 7up Free, Tango.";
+        Snack sa = new Snack(5.20,"Popcorn - Large",popcornText);
+        Snack sb = new Snack(4.50,"Popcorn - Medium",popcornText);
+        Snack sc = new Snack(3.50,"Popcorn - Small",popcornText);
+        Snack sd = new Snack(3.20,"Soft Drink - Large",softDrinkText);
+        Snack se = new Snack(2.80,"Soft Drink - Medium", softDrinkText);
+        Snack sf = new Snack(2.00,"Soft Drink - Large",softDrinkText);
+        Snack sg = new Snack(1.50,"Bottled Water","Cool, refreshing water.");
+        Snack sh = new Snack(2.00,"Hot Dog","Delicious sizzling hot dog, topped with ketchup & mustard.\n");
+        Snack si = new Snack(2.40,"Nachos","Nachos served with fiery jalapenos and your choice of dip: try them with salsa, warm cheese or sour cream.");
+
+        snacks.addSnack(sa);
+        snacks.addSnack(sb);
+        snacks.addSnack(sc);
+        snacks.addSnack(sd);
+        snacks.addSnack(se);
+        snacks.addSnack(sf);
+        snacks.addSnack(sg);
+        snacks.addSnack(sh);
+        snacks.addSnack(si);
+
+
+//        System.out.println(bookings);
         bookings.saveBookings();
         showings.saveShowings();
         theaters.saveTheaters();
         showings.saveShowings();
-
+        snacks.saveSnacks();
         }
     }
