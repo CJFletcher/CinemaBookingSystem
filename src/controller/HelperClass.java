@@ -1,14 +1,24 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.print.PageLayout;
+import javafx.print.PrinterJob;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import model.BuyableItem;
+import model.Main;
+import model.Snack;
+import model.Ticket;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.*;
 import java.lang.String;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
@@ -54,11 +64,56 @@ public class HelperClass {
 
         }
     }
+
     public static String formatDoubleToGBPString(double number) {
         DecimalFormat df = new DecimalFormat("####0.00");
         return "£" + df.format(number);
+    }
+
+    public static ArrayList<Ticket> getAllTicketsInBasket() {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass() == Ticket.class) {
+                Ticket ticketInBasket = (Ticket) item;
+                tickets.add(ticketInBasket);
+            }
+        }
+        return tickets;
+    }
+
+    public static ArrayList<Snack> getAllSnacksInBasket() {
+        ArrayList<Snack> snacks = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass() == Snack.class) {
+                Snack snackInBasket = (Snack) item;
+                snacks.add(snackInBasket);
+            }
+        }
+        return snacks;
+    }
+
+
+    //https://stackoverflow.com/questions/36555291/how-do-i-print-only-text
+    public static void print(TextArea textArea) {
+        TextFlow printArea = new TextFlow(new Text(textArea.getText()));
+
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+
+        if (printerJob != null && printerJob.showPrintDialog(textArea.getScene().getWindow())) {
+            PageLayout pageLayout = printerJob.getJobSettings().getPageLayout();
+            printArea.setMaxWidth(pageLayout.getPrintableWidth());
+
+            if (printerJob.printPage(printArea)) {
+                printerJob.endJob();
+                // done printing
+            } else {
+                System.out.println("Failed to print");
+            }
+        } else {
+            System.out.println("Print cancelled");
         }
     }
+}
 
 //    public static void readObjectsFromFile(String filePath,Class className) throws IOException {
 //        FileOutputStream out = new FileOutputStream(filePath);

@@ -111,3 +111,7 @@
 .jfx-rippler {
     -jfx-rippler-fill: #14c8ff;
 }
+
+.text-area *.text {
+    -fx-text-alignment: right;
+}

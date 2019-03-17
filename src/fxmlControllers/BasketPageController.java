@@ -1,26 +1,34 @@
 package fxmlControllers;
 
 import com.jfoenix.controls.*;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import model.Basket;
-import model.BuyableItem;
-import model.Main;
-import model.Snack;
+import model.*;
+import org.apache.commons.validator.routines.CreditCardValidator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
-import static controller.HelperClass.formatDoubleToGBPString;
+import static controller.HelperClass.*;
 import static fxmlControllers.SceneCreator.launchScene;
 
 public class BasketPageController implements Initializable {
 
     private Basket basket = Main.getBasket();
+    private ArrayList<JFXTextField> cardTextFields = new ArrayList<>();
 
     @FXML
     private JFXButton viewAllSnacksButton;
@@ -74,14 +82,19 @@ public class BasketPageController implements Initializable {
     private Text totalText;
 
     @FXML
-    void clearBasket(ActionEvent event) {
+    private JFXTextField cardName;
+
+    @FXML
+    void clearBasket() {
         Main.getBasket().getItems().clear();
         populateBasketListView();
     }
 
     @FXML
     void confirmCardDetails(ActionEvent event) {
-
+        for (TextField tf:cardTextFields) {
+            
+        }
     }
 
     @FXML
@@ -96,17 +109,37 @@ public class BasketPageController implements Initializable {
 
     @FXML
     void payWithCard(ActionEvent event) {
-
+        for (TextField tf:cardTextFields) {
+            tf.setDisable(false);
+        }
+        confirmCardDetailsButton.setDisable(false);
+        cardNumber.requestFocus();
     }
 
     @FXML
     void payWithCash(ActionEvent event) {
-
+        Booking booking = createBooking();
+        ArrayList <Ticket> tickets = booking.getTickets();
+        ArrayList<Snack> snacks = getAllSnacksInBasket();
+        if (!tickets.isEmpty()){
+            receiptTextArea.appendText("Booking ID:" +booking.getId()+"\n");
+            for (Ticket ticket:tickets) {
+                receiptTextArea.appendText(ticket.toString() + "\n");
+            }
+        }
+        if (!snacks.isEmpty()) {
+            receiptTextArea.appendText("\nSnacks:\n");
+            for (Snack snack : snacks) {
+                receiptTextArea.appendText(snack.toString() + "\n");
+            }
+        }
+        clearBasket();
+        printReceiptButton.setDisable(false);
     }
 
     @FXML
     void printReceipt(ActionEvent event) {
-
+        print(receiptTextArea);
     }
 
     @FXML
@@ -141,7 +174,7 @@ public class BasketPageController implements Initializable {
         alert.showAndWait();
     }
 
-    void populateBasketListView(){
+    private void populateBasketListView(){
         basketListView.getItems().clear();
         basketListView.setDisable(false);
         if (!basket.getItems().isEmpty()) {
@@ -152,22 +185,166 @@ public class BasketPageController implements Initializable {
             basketListView.getItems().add(new Snack(0.00,"NO ITEMS IN BASKET",""));
             setTotalText();
             basketListView.setDisable(true);
+            disableCardPaymentDetails();
+            disablePaymentButtons();
+            confirmCardDetailsButton.setDisable(true);
         }
     }
 
-    void setTotalText(){
+    private void setTotalText(){
         totalText.setText(formatDoubleToGBPString(basket.calculateTotalPrice()));
     }
 
-    void updateListAndTotal(){
-        populateBasketListView();
-        setTotalText();
-    }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    private void updateListAndTotal(){
         populateBasketListView();
         setTotalText();
     }
 
-}
+    private void validateBlank(JFXTextField textField){
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        textField.getValidators().add(validator);
+        validator.setMessage("Field required");
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(!newValue)
+                {
+                    textField.validate();
+                }
+            }
+        });
+    }
+
+    private void validateNumbersOnly(JFXTextField textField){
+        NumberValidator numberValidator = new NumberValidator();
+        textField.getValidators().add(numberValidator);
+        numberValidator.setMessage("Numbers only");
+        textField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(!newValue)
+                {
+                    textField.validate();
+                }
+            }
+        });
+    }
+
+    private boolean validateCreditCard(String string){
+        CreditCardValidator validator = new CreditCardValidator(CreditCardValidator.AMEX + CreditCardValidator.VISA + CreditCardValidator.MASTERCARD);
+        return validator.isValid(string);
+    }
+
+    private boolean isValidMonth(String string) {
+        if(string.length()==2) {
+            try {
+                return 0 < Integer.parseInt(string) && Integer.parseInt(string) <= 12;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private boolean isValidCVC(String cvc){
+        return Pattern.matches("^[0-9]{3,4}$", cvc);
+    }
+
+    boolean isValidYear(String string) {
+        if(string.length()==2) {
+            try {
+                int year = Year.now().getValue();
+                String yearString = String.valueOf(year);
+                String yearFormat = yearString.substring(2);
+                int yy =  Integer.parseInt(yearFormat);
+                int yyPlus20 = yy+20;
+                if (yyPlus20 >100) return  yy <= Integer.parseInt(string) && Integer.parseInt(string)+100 <= yyPlus20;
+                else return  yy <= Integer.parseInt(string) && Integer.parseInt(string) <= yyPlus20;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+    private void addCardTextFieldsToArray(){
+        cardTextFields.add(cardNumber);
+        cardTextFields.add(cardMonth);
+        cardTextFields.add(cardYear);
+        cardTextFields.add(cvc);
+        cardTextFields.add(cardName);
+    }
+
+    private void addValidatorsToCardTextFields(){
+        for (JFXTextField tf:cardTextFields) {
+            if(tf != cardName) {
+                validateBlank(tf);
+                validateNumbersOnly(tf);
+            }
+        }
+        validateBlank(cardName);
+    }
+
+    private void disablePaymentButtons(){
+        if (basket.getItems().isEmpty()){
+            payWithCardButton.setDisable(true);
+            payWithCash.setDisable(true);
+        }
+    }
+
+    private void enablePaymentButtons(){
+        if (!basket.getItems().isEmpty()){
+            payWithCardButton.setDisable(false);
+            payWithCash.setDisable(false);
+        }
+    }
+
+    private void disableCardPaymentDetails() {
+        for (TextField tf : cardTextFields) {
+            tf.setDisable(true);
+        }
+    }
+
+    private Booking createBooking(){
+        Booking booking = new Booking();
+        ArrayList<Ticket> tickets = getAllTicketsInBasket();
+        for (Ticket ticket:tickets) {
+            booking.addTicket(ticket);
+        }
+        booking.setSeatsAsBooked();
+        Main.getBookings().addBooking(booking);
+        return booking;
+    }
+
+        @Override
+        public void initialize (URL location, ResourceBundle resources){
+            addCardTextFieldsToArray();
+            addValidatorsToCardTextFields();
+            populateBasketListView();
+            setTotalText();
+            enablePaymentButtons();
+
+//        System.out.println(isValidMonth("12"));//true
+//        System.out.println(isValidMonth("13"));//false
+//        System.out.println(isValidMonth("1"));//false
+//        System.out.println(isValidMonth("fd"));//false
+//        System.out.println(isValidYear("19"));//true
+//        System.out.println(isValidYear("fd"));//false
+//        System.out.println(isValidYear("40"));//false 20 years upper limit
+//        System.out.println(isValidYear("39"));//true
+//        System.out.println(isValidYear("18"));//false
+//        System.out.println(isValidYear("39"));//true
+//        System.out.println(validateCreditCard("378282246310005"));//AMEX
+//        System.out.println(validateCreditCard("4111111111111111"));//VISA
+//        System.out.println(validateCreditCard("5555555555554444"));//MASTERCARD
+//        System.out.println(validateCreditCard("37828224631000"));//INVALID
+//        System.out.println(validateCreditCard("41111111111111111"));//INVALID
+//        System.out.println(isValidCVV("1234"));//true
+//        System.out.println(isValidCVV("123"));//true
+//        System.out.println(isValidCVV("12345"));//false
+//        System.out.println(isValidCVV("abc"));//false
+//        System.out.println(isValidCVV("abcd"));//false
+        }
+    }
 

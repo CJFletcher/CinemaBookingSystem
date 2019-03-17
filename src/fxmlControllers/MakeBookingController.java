@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static controller.HelperClass.getAllTicketsInBasket;
 import static fxmlControllers.SceneCreator.launchScene;
 
 
@@ -120,17 +121,6 @@ public class MakeBookingController implements Initializable {
             }
         }
         return seats;
-    }
-
-    private ArrayList<Ticket> getAllTicketsInBasket(){
-        ArrayList<Ticket> tickets = new ArrayList<>();
-        for (BuyableItem item : Main.getBasket().getItems()) {
-            if (item.getClass() == Ticket.class) {
-                Ticket ticketInBasket = (Ticket) item;
-                tickets.add(ticketInBasket);
-            }
-        }
-        return tickets;
     }
 
     private void addedToBasketPopup(){
