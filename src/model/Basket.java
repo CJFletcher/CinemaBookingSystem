@@ -2,6 +2,7 @@ package model;
 
 import model.BuyableItem;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Basket {
     private ArrayList<BuyableItem> items = new ArrayList<>();
@@ -22,7 +23,7 @@ public class Basket {
     }
 
     public void removeItem(BuyableItem item) {
-        this.items.remove(item);
+        items.removeIf(s -> s == item);
     }
 
     @Override

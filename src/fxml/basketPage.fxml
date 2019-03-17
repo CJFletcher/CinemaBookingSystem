@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXScrollPane?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.BasketPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.BasketPageController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="226.0" style="-fx-background-color: #7384da;">
          <effect>
@@ -22,9 +22,9 @@
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="226.0" style="-fx-background-color: #003079;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text fill="WHITE" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="225.99998474121094">
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="225.99998474121094">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
@@ -33,47 +33,22 @@
                <children>
                   <AnchorPane VBox.vgrow="NEVER">
                      <children>
-                        <ImageView fitHeight="128.0" fitWidth="226.0" pickOnBounds="true">
+                        <ImageView fitHeight="561.0" fitWidth="226.0" pickOnBounds="true">
                            <image>
                               <Image url="@../res/back.jpg" />
                            </image>
                            <viewport>
-                              <Rectangle2D height="1400.0" width="1080.0" />
+                              <Rectangle2D height="2250.0" width="1080.0" />
                            </viewport>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <JFXButton fx:id="manageBookingsButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#manageBookings" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Manage Bookings" textFill="WHITE">
+                  <JFXButton fx:id="viewAllSnacksButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openSnacksPage" prefHeight="71.5" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="View All Snacks" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="manageFilmsButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#manageFilms" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Manage Films" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="createNewBookingButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#createNewBooking" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Manage Snacks/Tickets" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="manageShowingsButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#manageShowings" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Manage Showings" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="createNewBookingButton1" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#createNewBooking" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Create New Booking" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="basketButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openBasket" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Basket" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="exitButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#exit" prefHeight="82.0" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="EXIT" textFill="WHITE">
+                  <JFXButton fx:id="homeButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openHomePage" prefHeight="71.5" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Home" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -82,49 +57,105 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="256.0" layoutY="14.0" prefHeight="561.0" prefWidth="1010.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="256.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <JFXScrollPane layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="1010.0">
+            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="540.0" prefHeight="65.0" prefWidth="540.0" style="-fx-background-color: #003079;">
                <children>
-                  <VBox fx:id="showingVBox" prefHeight="200.0" prefWidth="977.0" />
-               </children>
-            </JFXScrollPane>
-            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="722.0" prefHeight="65.0" prefWidth="1010.0" style="-fx-background-color: #003079;">
-               <children>
-                  <Text fill="WHITE" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Showings" textAlignment="CENTER" wrappingWidth="1010.0000041723251">
+                  <Text fill="WHITE" layoutX="27.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Basket" textAlignment="CENTER" wrappingWidth="486.00000417232513">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
+            <JFXListView fx:id="basketListView" layoutX="5.0" layoutY="73.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="485.0" prefWidth="520.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0" />
+            <JFXButton fx:id="removeSelectedItemButton" buttonType="RAISED" layoutX="75.0" layoutY="564.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#removeSelectedItemFromBasket" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Remove selected item" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="clearBasketButton" buttonType="RAISED" layoutX="299.0" layoutY="564.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#clearBasket" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Clear basket" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="70.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="256.0" layoutY="585.0" prefHeight="200.0" prefWidth="1010.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="256.0" layoutY="644.0" prefHeight="141.0" prefWidth="540.0" style="-fx-background-color: #FFFFFF;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="722.0" prefHeight="65.0" prefWidth="1010.0" style="-fx-background-color: #003079;">
+            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="540.0" prefHeight="65.0" prefWidth="540.0" style="-fx-background-color: #003079;">
                <children>
-                  <Text fill="WHITE" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Snacks" textAlignment="CENTER" wrappingWidth="1009.9999818205833">
+                  <Text fill="WHITE" layoutX="27.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Options" textAlignment="CENTER" wrappingWidth="486.00000417232513">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <HBox layoutY="65.0" prefHeight="134.0" prefWidth="1010.0">
+            <JFXButton fx:id="payWithCash" buttonType="RAISED" layoutX="91.0" layoutY="83.0" onAction="#payWithCash" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Pay with cash" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="95.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="payWithCardButton" buttonType="RAISED" layoutX="315.0" layoutY="83.0" onAction="#payWithCard" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Pay with card" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="95.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="812.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="263.0" prefWidth="454.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="454.0" prefHeight="65.0" prefWidth="454.0" style="-fx-background-color: #003079;">
                <children>
-                  <Pane fx:id="snackBoxLeft" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
-                  <Pane fx:id="snackBoxCenterLeft" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
-                  <Pane fx:id="SnackBoxCentreRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
-                  <Pane fx:id="SnackBoxRight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="252.0" />
+                  <Text fill="WHITE" layoutX="5.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Payment" textAlignment="CENTER" wrappingWidth="444.99998338520527">
+                     <font>
+                        <Font name="Arial" size="38.0" />
+                     </font>
+                  </Text>
                </children>
-            </HBox>
+            </AnchorPane>
+            <JFXListView fx:id="showingsListView1" layoutX="5.0" layoutY="73.0" prefHeight="225.0" prefWidth="445.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="73.0" />
+            <JFXButton fx:id="confirmCardDetailsButton" buttonType="RAISED" disable="true" layoutX="261.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#confirmCardDetails" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Confirm Card Details" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="cardNumber" disable="true" labelFloat="true" layoutX="14.0" layoutY="97.0" prefHeight="25.0" prefWidth="135.0" promptText="Card Number" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="85.0" />
+            <JFXTextField fx:id="cvc" disable="true" labelFloat="true" layoutX="15.0" layoutY="217.0" promptText="CVC" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" />
+            <JFXTextField fx:id="cardMonth" disable="true" labelFloat="true" layoutX="14.0" layoutY="149.0" prefHeight="25.0" prefWidth="50.0" promptText="MM" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" />
+            <JFXTextField fx:id="cardYear" disable="true" labelFloat="true" layoutX="100.0" layoutY="149.0" prefHeight="25.0" prefWidth="50.0" promptText="YY" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="100.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="812.0" layoutY="293.0" prefHeight="492.0" prefWidth="454.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <AnchorPane maxHeight="246.0" maxWidth="1010.0" minHeight="65.0" minWidth="454.0" prefHeight="65.0" prefWidth="454.0" style="-fx-background-color: #003079;">
+               <children>
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receipt" textAlignment="CENTER" wrappingWidth="453.9999869391322">
+                     <font>
+                        <Font name="Arial" size="38.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <JFXButton fx:id="printReceiptButton" buttonType="RAISED" disable="true" layoutX="307.0" layoutY="332.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#printReceipt" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Print Receipt" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXTextArea fx:id="receiptTextArea" layoutX="14.0" layoutY="76.0" prefHeight="249.0" prefWidth="432.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="75.0" />
          </children>
       </AnchorPane>
    </children>

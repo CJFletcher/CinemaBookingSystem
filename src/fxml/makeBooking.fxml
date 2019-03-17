@@ -23,9 +23,9 @@
             <children>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="226.0" style="-fx-background-color: #003079;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Text fill="WHITE" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="225.99998474121094">
+                        <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="225.99998474121094">
                             <font>
-                                <Font name="Arial" size="42.0" />
+                                <Font name="Arial" size="38.0" />
                             </font>
                         </Text>
                     </children>
@@ -70,14 +70,14 @@
             <children>
                 <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="488.0" prefHeight="65.0" prefWidth="488.0" style="-fx-background-color: #003079;">
                     <children>
-                        <Text fill="WHITE" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seats" textAlignment="CENTER" wrappingWidth="488.00000154972076">
+                        <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seats" textAlignment="CENTER" wrappingWidth="488.00000154972076">
                             <font>
-                                <Font name="Arial" size="42.0" />
+                                <Font name="Arial" size="38.0" />
                             </font>
                         </Text>
                     </children>
                 </AnchorPane>
-                <JFXListView fx:id="bookingsListView" layoutX="10.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="467.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="108.0" />
+                <JFXListView fx:id="bookingsListView" layoutX="10.0" layoutY="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="467.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="108.0" />
             <Polyline fill="#c6c6c6" layoutX="272.0" layoutY="118.0" points="186.0, -40.00001525878906, 151.0, -10.0, -211.0, -10.0, -244.0, -40.00001525878906" strokeType="INSIDE" />
             <Text layoutX="224.0" layoutY="98.0" opacity="0.67" strokeType="OUTSIDE" strokeWidth="0.0" text="Screen" wrappingWidth="39.99997767806053">
                <font>
@@ -94,41 +94,41 @@
             <children>
                 <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="488.0" prefHeight="65.0" prefWidth="488.0" style="-fx-background-color: #003079;">
                     <children>
-                        <Text fill="WHITE" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER" wrappingWidth="488.00000454485416">
+                        <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER" wrappingWidth="488.00000454485416">
                             <font>
-                                <Font name="Arial" size="42.0" />
+                                <Font name="Arial" size="38.0" />
                             </font>
                         </Text>
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutY="65.0" prefHeight="134.0" prefWidth="488.0">
                <children>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="404.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="404.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="15.0">
                      <image>
                         <Image url="@../res/seatGrey.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="404.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="404.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0">
                      <image>
                         <Image url="@../res/seatRed.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="179.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="179.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0">
                      <image>
                         <Image url="@../res/seatBlue.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="179.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="179.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="15.0">
                      <image>
                         <Image url="@../res/seatBlack.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard Seat" textAlignment="CENTER" wrappingWidth="146.00000454485416">
+                  <Text layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard Seat" textAlignment="CENTER" wrappingWidth="146.00000454485416" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Text>
-                  <Text layoutX="14.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIP Seat" textAlignment="CENTER" wrappingWidth="146.00000454485416">
+                  <Text layoutX="14.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIP Seat" textAlignment="CENTER" wrappingWidth="146.00000454485416" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -154,40 +154,40 @@
          <children>
             <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="488.0" prefHeight="65.0" prefWidth="505.0" style="-fx-background-color: #003079;">
                <children>
-                  <Text fill="WHITE" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Film/Showing Details" textAlignment="CENTER" wrappingWidth="505.00000193715096">
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Film/Showing Details" textAlignment="CENTER" wrappingWidth="505.00000193715096">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:">
+            <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title:" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Text>
-            <ImageView fx:id="posterImageView" fitHeight="286.0" fitWidth="200.0" layoutX="291.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
-            <Text layoutX="14.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Run Time:">
+            <ImageView fx:id="posterImageView" fitHeight="286.0" fitWidth="200.0" layoutX="291.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" />
+            <Text layoutX="14.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Run Time:" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="15.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plot:">
+            <Text layoutX="15.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plot:" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="14.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Prices">
+            <Text layoutX="14.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket Prices" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
             </Text>
-            <Text layoutX="16.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIP Ticket:          ">
+            <Text layoutX="16.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VIP Ticket:          " AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </Text>
-            <Text layoutX="16.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard Ticket: ">
+            <Text layoutX="16.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Standard Ticket: " AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
@@ -217,12 +217,12 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="15.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+            <Text layoutX="15.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
             </Text>
-            <Text layoutX="16.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:">
+            <Text layoutX="16.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -242,7 +242,7 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Text>
-            <ImageView fx:id="ratingImageView" fitHeight="46.0" fitWidth="46.0" layoutX="391.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ratingImageView" fitHeight="46.0" fitWidth="46.0" layoutX="445.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" />
             <JFXCheckBox fx:id="customerIDCheckBox" checkedColor="#4059a9" layoutX="290.0" layoutY="529.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#toggleAddToBasketButton" text="Checked Customer's ID" />
             <Text fx:id="ratingWarningText" layoutX="290.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As this showing is rated higher than PG please check the Customer's ID." textAlignment="JUSTIFY" wrappingWidth="193.99999419599771" />
             <Text fx:id="ratingWarningText1" layoutX="290.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If taking an order by phone call please notify the customer that their ID will be checked on arrival." textAlignment="JUSTIFY" wrappingWidth="193.99999419599771" />
@@ -256,16 +256,16 @@
          <children>
             <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="488.0" prefHeight="65.0" prefWidth="505.0" style="-fx-background-color: #003079;">
                <children>
-                  <Text fill="WHITE" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Selection" textAlignment="CENTER" wrappingWidth="505.00000193715096">
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Selection" textAlignment="CENTER" wrappingWidth="505.00000193715096">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
             <AnchorPane layoutY="65.0" prefHeight="134.0" prefWidth="505.0">
                <children>
-                  <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected seats:" wrappingWidth="146.00000454485416" AnchorPane.bottomAnchor="86.185546875" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="27.705078125">
+                  <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected seats:" wrappingWidth="146.00000454485416" AnchorPane.bottomAnchor="86.185546875" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="27.705078125">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -275,17 +275,17 @@
                         <Font size="16.0" />
                      </font>
                   </JFXButton>
-                  <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total price of Tickets: " wrappingWidth="187.00000454485416" AnchorPane.leftAnchor="14.0">
+                  <Text layoutX="14.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total price of Tickets: " wrappingWidth="187.00000454485416" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Text>
-                  <Text fx:id="totalTicketPriceText" layoutX="203.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00" wrappingWidth="132.9999998435378">
+                  <Text fx:id="totalTicketPriceText" layoutX="200.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00" wrappingWidth="132.9999998435378">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Text>
-                  <JFXListView fx:id="selectedSeatsListView" layoutX="140.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" orientation="HORIZONTAL" prefHeight="56.0" prefWidth="352.0" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
+                  <JFXListView fx:id="selectedSeatsListView" layoutX="140.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" orientation="HORIZONTAL" prefHeight="56.0" prefWidth="352.0" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </children>
