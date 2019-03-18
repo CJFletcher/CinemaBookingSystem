@@ -140,15 +140,15 @@
                </children>
             </AnchorPane>
             <JFXListView layoutX="5.0" layoutY="73.0" prefHeight="225.0" prefWidth="445.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="73.0" />
-            <JFXButton fx:id="confirmCardDetailsButton" buttonType="RAISED" disable="true" layoutX="261.0" layoutY="212.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#confirmCardDetails" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Confirm Card Details" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <JFXButton fx:id="confirmCardDetailsButton" buttonType="RAISED" disable="true" layoutX="250.0" layoutY="207.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onAction="#confirmCardDetails" prefHeight="37.0" prefWidth="179.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Confirm Card Details" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
             <JFXTextField fx:id="cardNumber" disable="true" labelFloat="true" layoutX="14.0" layoutY="97.0" prefHeight="25.0" prefWidth="200.0" promptText="Card Number" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="85.0" />
-            <JFXTextField fx:id="cvc" disable="true" labelFloat="true" layoutX="15.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" promptText="CVC" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" />
-            <JFXTextField fx:id="cardMonth" disable="true" labelFloat="true" layoutX="14.0" layoutY="149.0" prefHeight="25.0" prefWidth="94.0" promptText="MM" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="15.0" />
-            <JFXTextField fx:id="cardYear" disable="true" labelFloat="true" layoutX="121.0" layoutY="150.0" prefHeight="25.0" prefWidth="94.0" promptText="YY" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="121.0" />
+            <JFXTextField fx:id="cvc" disable="true" labelFloat="true" layoutX="15.0" layoutY="217.0" prefHeight="25.0" prefWidth="200.0" promptText="CVC" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="15.0" />
+            <JFXTextField fx:id="cardMonth" disable="true" labelFloat="true" layoutX="14.0" layoutY="149.0" prefHeight="25.0" prefWidth="94.0" promptText="MM" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="15.0" />
+            <JFXTextField fx:id="cardYear" disable="true" labelFloat="true" layoutX="121.0" layoutY="150.0" prefHeight="25.0" prefWidth="94.0" promptText="YY" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="121.0" />
             <JFXTextField fx:id="cardName" disable="true" labelFloat="true" layoutX="239.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" promptText="Name on Card" />
          </children>
       </AnchorPane>

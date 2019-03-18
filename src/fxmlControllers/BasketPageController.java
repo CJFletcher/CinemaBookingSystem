@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.*;
@@ -55,9 +54,6 @@ public class BasketPageController implements Initializable {
     private JFXButton payWithCardButton;
 
     @FXML
-    private JFXListView<?> showingsListView1;
-
-    @FXML
     private JFXButton confirmCardDetailsButton;
 
     @FXML
@@ -92,8 +88,8 @@ public class BasketPageController implements Initializable {
 
     @FXML
     void confirmCardDetails(ActionEvent event) {
-        for (TextField tf:cardTextFields) {
-            
+        if (validateBasicCardDetails()&&validateCardNumber()&&validateCardMonth()&&validateCardYear()&&validateCardCvc()){
+            createReceipt();
         }
     }
 
@@ -103,8 +99,8 @@ public class BasketPageController implements Initializable {
     }
 
     @FXML
-    void openSnacksPage(ActionEvent event) {
-
+    void openSnacksPage(ActionEvent event) throws IOException {
+        launchScene("../fxml/snacksPage");
     }
 
     @FXML
@@ -116,8 +112,7 @@ public class BasketPageController implements Initializable {
         cardNumber.requestFocus();
     }
 
-    @FXML
-    void payWithCash(ActionEvent event) {
+    void createReceipt(){
         Booking booking = createBooking();
         ArrayList <Ticket> tickets = booking.getTickets();
         ArrayList<Snack> snacks = getAllSnacksInBasket();
@@ -135,6 +130,11 @@ public class BasketPageController implements Initializable {
         }
         clearBasket();
         printReceiptButton.setDisable(false);
+    }
+
+    @FXML
+    void payWithCash(ActionEvent event) {
+        createReceipt();
     }
 
     @FXML
@@ -164,6 +164,16 @@ public class BasketPageController implements Initializable {
         else{
             noSelectionAlert();
         }
+    }
+
+
+    private void cardDetailsError(TextField tf, String contentTextOptional){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Card details incorrect");
+        alert.setHeaderText(tf.getPromptText()+" has invalid data");
+        if (contentTextOptional!=null){alert.setContentText(contentTextOptional);}
+        else {alert.setContentText("See on-screen prompts for help");}
+        alert.showAndWait();
     }
 
     private void noSelectionAlert(){
@@ -315,6 +325,50 @@ public class BasketPageController implements Initializable {
         booking.setSeatsAsBooked();
         Main.getBookings().addBooking(booking);
         return booking;
+    }
+
+
+    //validates each box for Int only & not empty
+    private boolean validateBasicCardDetails(){
+        for (JFXTextField tf:cardTextFields) {
+            if (!tf.validate()){
+                cardDetailsError(tf,null);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean validateCardNumber(){
+        if (!validateCreditCard(cardNumber.getText())){
+            cardDetailsError(cardNumber,"Card number is invalid");
+            return false;
+        }
+        else return true;
+    }
+
+    private boolean validateCardMonth(){
+        if (!isValidMonth(cardMonth.getText())){
+            cardDetailsError(cardMonth,"Card Month is invalid, must be 01-12.");
+            return false;
+        }
+        else return true;
+    }
+
+    private boolean validateCardYear(){
+        if (!isValidYear(cardYear.getText())){
+            cardDetailsError(cardYear,"Card Year is invalid, must be in format YY and in the next 20 years");
+            return false;
+        }
+        else return true;
+    }
+
+    private boolean validateCardCvc(){
+        if (!isValidCVC(cvc.getText())){
+            cardDetailsError(cardYear,"CVC is invalid, must be 3-4 digits long");
+            return false;
+        }
+        else return true;
     }
 
         @Override
