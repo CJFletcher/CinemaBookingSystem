@@ -1,15 +1,16 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.Year;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class Ticket extends BuyableItem implements ClassWithID, Serializable {
+public class Ticket extends BuyableItem implements Serializable {
     private Showing showing;
     private Seat seat;
 
-    static final AtomicLong NEXT_ID = new AtomicLong(1000);
-    final long id = NEXT_ID.getAndIncrement();
+    private String id = "TKT-" + LocalDate.now() +"-"+ UUID.randomUUID().toString().substring(0,13);
 
     public Ticket(Showing showing, Seat seat) {
         this.showing = showing;
@@ -53,10 +54,8 @@ public class Ticket extends BuyableItem implements ClassWithID, Serializable {
         }
     }
 
-    @Override
-    public long getId() {
-        int ret = (int) id;
-        return ret;
+    public String getId() {
+        return id;
     }
 
     @Override

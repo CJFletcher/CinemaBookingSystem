@@ -1,17 +1,17 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.UUID;
 
 
-public class Booking implements ClassWithID, Serializable {
+
+public class Booking implements Serializable {
 //    private Showing showing;
 //    private Theater theater;
     private ArrayList<Ticket> tickets = new ArrayList<>();
-
-    static final AtomicLong NEXT_ID = new AtomicLong(5000);
-    final long id = NEXT_ID.getAndIncrement();
+    private String id = "BKG-" +LocalDate.now() +"-"+ UUID.randomUUID().toString().substring(0,13);
 
     public Booking() {
     }
@@ -64,9 +64,8 @@ public class Booking implements ClassWithID, Serializable {
         }
     }
 
-    @Override
-    public long getId() {
-       return (int) id;
+    public String getId() {
+        return id;
     }
 
     @Override

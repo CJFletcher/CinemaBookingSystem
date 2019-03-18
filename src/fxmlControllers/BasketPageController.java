@@ -128,6 +128,7 @@ public class BasketPageController implements Initializable {
                 receiptTextArea.appendText(snack.toString() + "\n");
             }
         }
+        receiptTextArea.appendText("\nTotal: "+totalText.getText());
         clearBasket();
         printReceiptButton.setDisable(false);
     }

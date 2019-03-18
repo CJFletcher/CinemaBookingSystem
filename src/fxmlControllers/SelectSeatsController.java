@@ -26,7 +26,7 @@ import static controller.HelperClass.getAllTicketsInBasket;
 import static fxmlControllers.SceneCreator.launchScene;
 
 
-public class MakeBookingController implements Initializable {
+public class SelectSeatsController implements Initializable {
 
     private ArrayList<Seat> selectedSeats = new ArrayList<>();
 
@@ -258,23 +258,23 @@ public class MakeBookingController implements Initializable {
         }
     }
 
-    private void setRatingImageView(){
+    private void setRatingImageView(ImageView imageView){
         String rating = Main.getCurrentShowing().getFilm().getRated();
         if (rating.equals("G")){
             Image ratingImage = new Image("res/URating.png",46,46,true,true);
-            ratingImageView.setImage(ratingImage);
+            imageView.setImage(ratingImage);
         }
         if (rating.equals("PG")){
             Image ratingImage = new Image("res/pgRating.png",46,46,true,true);
-            ratingImageView.setImage(ratingImage);
+            imageView.setImage(ratingImage);
         }
         if (rating.equals("PG-13")){
             Image ratingImage = new Image("res/12ARating.png",46,46,true,true);
-            ratingImageView.setImage(ratingImage);
+            imageView.setImage(ratingImage);
         }
         if (rating.equals("R")){
             Image ratingImage = new Image("res/18Rating.png",46,46,true,true);
-            ratingImageView.setImage(ratingImage);
+            imageView.setImage(ratingImage);
         }
     }
 
@@ -317,7 +317,7 @@ public class MakeBookingController implements Initializable {
         updateTotalPrice();
         updateTicketList();
         showBasketButton();
-        setRatingImageView();
+        setRatingImageView(ratingImageView);
         hideCheckBoxAndText();
         toggleAddToBasketButton();
     }

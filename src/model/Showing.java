@@ -97,7 +97,6 @@ public class Showing implements Comparable<Showing>, Serializable{
         return availableSeats;
     }
 
-
     public void setFilm(Film film)
     {
         this.film = film;
@@ -165,12 +164,8 @@ public class Showing implements Comparable<Showing>, Serializable{
 
     @Override
     public String toString() {
-        return "Showing{" +
-                "film=" + film.getTitle() +
-                ", showingTimeDate=" + showingTimeDate +
-                ", theater=" + theater.getTheaterNumber() +
-                ", availableSeats=" + availableSeats +
-                '}';
+        return "Date: " + getShowingDateFormatted(false) + " | Time: " + getShowingTimeFormatted()
+                + " | Seats available: " + availableSeats + " | Film: " + film.getTitle();
     }
 }
 

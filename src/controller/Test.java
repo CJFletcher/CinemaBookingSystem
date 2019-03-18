@@ -212,7 +212,7 @@ public class Test {
 
 
 //      showings.printShowings();
-//      showings.sortShowings();
+//      showings.sortFilmsAlphabetically();
 //
 //      showings.printShowings();
 //      System.out.println(showings.getShowingByNumber(1));

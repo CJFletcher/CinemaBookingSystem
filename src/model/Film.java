@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 //SerializedName matches the Value from the Json response to the relevant attribute.
 //This is necessary due to the Json response Values being stored capitalised.
 
-public class Film implements Serializable {
+public class Film implements Serializable, Comparable<Film> {
     @SerializedName(value = "Title", alternate = "title")
     private String title;
     @SerializedName(value = "Year",alternate = "year")
@@ -279,6 +279,11 @@ public class Film implements Serializable {
                 ", production='" + production + '\'' +
                 ", website='" + website + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Film otherFilm) {
+        return (this.title.compareTo(otherFilm.getTitle()));
     }
 }
 

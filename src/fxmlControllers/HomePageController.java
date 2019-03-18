@@ -19,10 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import com.jfoenix.controls.JFXButton;
-import model.Basket;
-import model.Main;
-import model.Showing;
-import model.Snack;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -97,7 +94,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void createNewBooking(ActionEvent event) throws IOException{
-        launchScene("../fxml/makeBooking.fxml");
+        launchScene("../fxml/viewShowings.fxml");
     }
 
     @FXML
@@ -173,6 +170,8 @@ public class HomePageController implements Initializable {
                 GridPane gp = new GridPane();
                 gp.setPadding(new Insets (10,10,0,10));
                 bp.setCenter(gp);
+                gp.setPrefHeight(200);
+                gp.setMinHeight(200);
 
                 bp.setMaxSize(950, 200);
                 bp.setPrefSize(950, 200);
@@ -204,6 +203,8 @@ public class HomePageController implements Initializable {
                 gp.getChildren().get(0).maxWidth(300);
                 gp.setAlignment(Pos.CENTER_LEFT);
 
+                String ticketPrice = new Ticket(showing, new Seat()).getPriceFormatted();
+                String vipTicketPrice = new Ticket(showing,new VipSeat()).getPriceFormatted();
                 String filmPlot = showing.getFilm().getPlotShort();
                 Label filmPlotLabel = new Label(filmPlot+"\n\nRatings:\n"+showing.getFilm().getRatings());
                 filmPlotLabel.setFont(Font.font("Arial",14));
@@ -213,7 +214,7 @@ public class HomePageController implements Initializable {
                 filmPlotLabel.setMaxHeight(170);
                 gp.addColumn(1,filmPlotLabel);
 
-                Label seatsAvailable = new Label("Seats available: " + (showing.getAvailableSeats()));
+                Label seatsAvailable = new Label("Ticket Prices - STD: " +vipTicketPrice + " | VIP: " + ticketPrice+" | Seats available: "+ (showing.getAvailableSeats()));
                 seatsAvailable.setFont(Font.font("Arial",14));
                 bp.setBottom(seatsAvailable);
                 BorderPane.setAlignment(seatsAvailable, Pos.CENTER_RIGHT);
@@ -228,7 +229,7 @@ public class HomePageController implements Initializable {
                         Main.setCurrentShowing(showing);
                         Stage stage = (Stage) showingsListView.getScene().getWindow();
                         try {
-                            launchScene("../fxml/makeBooking.fxml");
+                            launchScene("../fxml/selectSeats.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

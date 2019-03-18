@@ -44,6 +44,10 @@ public class FilmController implements Serializable {
         }
     }
 
+    public void sortFilmsAlphabetically() {
+        Collections.sort(this.films);
+    }
+
     public ArrayList<Film> filterFilmsByTitle(String title) {
         ArrayList<Film> ret = new ArrayList<>();
         if (this.films.isEmpty()) {

@@ -44,7 +44,6 @@ public class LoginController implements Initializable {
     private boolean validateUser(){
         String username = usernameBox.getText();
         String password = passwordBox.getText();
-
         if (username.equals("Admin") && password.equals("Password")) {
             System.out.println("Login success");
             return true;

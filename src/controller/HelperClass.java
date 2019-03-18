@@ -1,12 +1,10 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.print.PageLayout;
 import javafx.print.PrinterJob;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import model.BuyableItem;
@@ -15,12 +13,9 @@ import model.Snack;
 import model.Ticket;
 import org.apache.commons.validator.routines.EmailValidator;
 
-import java.io.*;
 import java.lang.String;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 
 public class HelperClass {
 
@@ -115,21 +110,21 @@ public class HelperClass {
     }
 }
 
-//    public static void readObjectsFromFile(String filePath,Class className) throws IOException {
-//        FileOutputStream out = new FileOutputStream(filePath);
-//        ObjectOutputStream objout = new ObjectOutputStream(out);
-//        objout.writeObject(className);
-//        objout.flush();
-//    }
-//
-//    public static void saveObjectsToFile(String filePath, Class className) throws IOException {
-//        FileInputStream in = new FileInputStream("myFile");
-//        ObjectInputStream objin = new ObjectInputStream(in);
-//        className new = (className) objin.readObject();
-//    }
+/*    public static void readObjectsFromFile(String filePath,Class className) throws IOException {
+        FileOutputStream out = new FileOutputStream(filePath);
+        ObjectOutputStream objout = new ObjectOutputStream(out);
+        objout.writeObject(className);
+        objout.flush();
+    }
+
+    public static void saveObjectsToFile(String filePath, Class className) throws IOException {
+        FileInputStream in = new FileInputStream("myFile");
+        ObjectInputStream objin = new ObjectInputStream(in);
+        className new = (className) objin.readObject();
+    }
 
 
-    /*public static String[] stringToArray(String str){
+    public static String[] stringToArray(String str){
         String[] ary = str.split("\",\"");
         for (String str1 : ary){
             String[] keyValue = str1.split("\":\"");
