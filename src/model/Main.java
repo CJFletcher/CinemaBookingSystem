@@ -106,11 +106,6 @@ public class Main extends Application {
         refreshments.loadSnacks();
         users.loadUsers();
 
-        System.out.println(theaters);
-        System.out.println(films);
-        System.out.println(showings);
-        System.out.println(bookings);
-
         launch(args);
     }
 
