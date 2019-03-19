@@ -365,6 +365,7 @@ public class BasketPageController implements Initializable {
         }
         booking.setSeatsAsBooked();
         Main.getBookings().addBooking(booking);
+        saveStateOfBookingsAndShowings();
         return booking;
     }
 
@@ -409,6 +410,24 @@ public class BasketPageController implements Initializable {
             return false;
         }
         else return true;
+    }
+
+    private void saveStateOfBookingsAndShowings(){
+        try {
+            Main.getBookings().saveBookings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Main.getShowings().saveShowings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
