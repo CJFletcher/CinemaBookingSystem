@@ -25,6 +25,21 @@ public class BookingController implements Serializable {
         this.bookings.remove(booking);
     }
 
+    public ArrayList<Booking> getBookingsByID(String id){
+        ArrayList<Booking> ret = new ArrayList<>();
+        if (this.bookings.isEmpty()) {
+            System.out.println("There are no bookings in this list");
+            return null;
+        } else {
+            for (Booking b : bookings) {
+                if (b.getId().toLowerCase().contains(id.toLowerCase())) {
+                    ret.add(b);
+                }
+            }
+        }
+        return ret;
+    }
+
     public void saveBookings() throws IOException, ClassNotFoundException {
         FileOutputStream out = new FileOutputStream(DATAFILEPATH);
         ObjectOutputStream objout = new ObjectOutputStream(out);

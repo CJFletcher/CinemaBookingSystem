@@ -8,8 +8,6 @@ import java.util.UUID;
 
 
 public class Booking implements Serializable {
-//    private Showing showing;
-//    private Theater theater;
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private String id = "BKG-" +LocalDate.now() +"-"+ UUID.randomUUID().toString().substring(0,13);
 
@@ -17,8 +15,6 @@ public class Booking implements Serializable {
     }
 
     public Booking(ArrayList<Ticket> tickets) {
-//        this.showing = showing;
-//        this.theater = theater;
         this.tickets = tickets;
     }
 
@@ -26,30 +22,13 @@ public class Booking implements Serializable {
         tickets.add(ticket);
     }
 
-//    public Showing getShowing() {
-//        return showing;
-//    }
-//
-//    public Theater getTheater() {
-//        return theater;
-//    }
-
     public ArrayList<Ticket> getTickets() {
         return tickets;
     }
 
-//    public void setShowing(Showing showing) {
-//        this.showing = showing;
-//    }
-//
-//    public void setTheater(Theater theater) {
-//        this.theater = theater;
-//    }
-
     public void setTickets(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
     }
-
 
     public static void main(String[] args) {
         Booking test = new Booking();
@@ -64,15 +43,18 @@ public class Booking implements Serializable {
         }
     }
 
+    public void setSeatsAsUnBooked() {
+        for (Ticket ticket : tickets) {
+            ticket.getSeat().setBookingStatus(false);
+        }
+    }
+
     public String getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "tickets=" + tickets +
-                ", id=" + id +
-                '}';
+        return "Booking ID: " + id + " | Tickets: "+ tickets;
     }
 }

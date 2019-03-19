@@ -17,7 +17,7 @@ public class Showing implements Comparable<Showing>, Serializable{
     public Showing(Film film, LocalDateTime showingTimeDate,Theater theater) {
         this.film = film;
         this.showingTimeDate = showingTimeDate;
-        this.theater = theater;
+        this.theater = Theater.deepClone(theater);
         this.rows = loadRows();
         this.availableSeats = getAvailableSeats();
     }
@@ -85,7 +85,7 @@ public class Showing implements Comparable<Showing>, Serializable{
     public int getAvailableVipSeats()
     {
         int availableSeats=0;
-        for (Row row : this.theater.getRows())
+        for (Row row : this.getRows())
         {
             for (Seat seat : row.getSeats()){
                 if (!seat.getBookingStatus() && seat.getClass()==VipSeat.class)
@@ -142,6 +142,10 @@ public class Showing implements Comparable<Showing>, Serializable{
         return null;
     }
 
+    public Seat getSeat(String row, int number){
+        return getRowByCharacter(row).getSeatByNumber(number);
+    }
+
     @Override
     public int compareTo(Showing otherShowing) {
         LocalDateTime x = this.showingTimeDate;
@@ -165,7 +169,7 @@ public class Showing implements Comparable<Showing>, Serializable{
     @Override
     public String toString() {
         return "Date: " + getShowingDateFormatted(false) + " | Time: " + getShowingTimeFormatted()
-                + " | Seats available: " + availableSeats + " | Film: " + film.getTitle();
+                + " | Seats available: " + getAvailableSeats() + " | Film: " + film.getTitle();
     }
 }
 

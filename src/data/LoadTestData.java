@@ -3,10 +3,6 @@ package data;
 import controller.*;
 import model.*;
 
-
-import javax.sound.midi.Soundbank;
-
-import static controller.FilmController.newFilm;
 import static java.time.LocalDateTime.of;
 
 public class LoadTestData {
@@ -117,8 +113,6 @@ public class LoadTestData {
         theaters.addTheater(nine);
         theaters.addTheater(ten);
 //      System.out.println(theaters);
-
-
 
         Showing a = new Showing(films.getFilmById("tt0499549"),of(2019,3,30,13,0),one);
         Showing c = new Showing(films.getFilmById("tt1323594"),of(2019,3,30,15,30),two);
@@ -280,6 +274,8 @@ public class LoadTestData {
         for (Booking booking:bookings.getBookings()) {
             booking.setSeatsAsBooked();
         }
+        System.out.println(a);
+        System.out.println(ae);
 
         RefreshmentController snacks = new RefreshmentController();
 

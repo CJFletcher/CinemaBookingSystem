@@ -42,11 +42,11 @@ public class Row implements Serializable {
 
     public Seat getSeatByNumber(int seatNumber) throws NoSuchElementException {
         for (Seat seat:seats) {
-            if (seat.getSeatNumber()==seatNumber && seat.getBookingStatus().equals(false)){
+            if (seat.getSeatNumber()==seatNumber){
                 return seat;
             }
         }
-        throw new NoSuchElementException("Seat is either booked or does not exist");
+        throw new NoSuchElementException("Seat does not exist");
     }
 
     public ArrayList<Seat> getSeats()
