@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public abstract class SceneCreator {
 
-    public static void launchScene (String sceneName) throws IOException {
+    public static void openScene(String sceneName) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(sceneName));
         Main.setRoot(loader.load());

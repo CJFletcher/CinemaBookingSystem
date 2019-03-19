@@ -2,7 +2,6 @@ package model;
 
 import controller.*;
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,16 +12,14 @@ public class Main extends Application {
 
     private static Parent root;
     private static Stage primaryStage;
-    
+    private static UserController users;
     private static TheaterController theaters;
     private static FilmController films;
     private static ShowingController showings;
     private static BookingController bookings;
-    private static SnackController snacks;
+    private static RefreshmentController refreshments;
     private static User currentUser;
     private static Showing currentShowing;
-    private static Theater currentTheater;
-    private static Film currentFilm;
     private static Basket basket;
 
     public static Stage getStage() {
@@ -39,6 +36,14 @@ public class Main extends Application {
 
     public static Parent getRoot() {
         return root;
+    }
+
+    public static UserController getUsers() {
+        return users;
+    }
+
+    public static void setUsers(UserController users) {
+        Main.users = users;
     }
 
     public static TheaterController getTheaters() {
@@ -73,24 +78,8 @@ public class Main extends Application {
         Main.currentShowing = currentShowing;
     }
 
-    public static Theater getCurrentTheater() {
-        return currentTheater;
-    }
-
-    public static void setCurrentTheater(Theater currentTheater) {
-        Main.currentTheater = currentTheater;
-    }
-
-    public static SnackController getSnacks() {
-        return snacks;
-    }
-
-    public static Film getCurrentFilm() {
-        return currentFilm;
-    }
-
-    public static void setCurrentFilm(Film currentFilm) {
-        Main.currentFilm = currentFilm;
+    public static RefreshmentController getRefreshments() {
+        return refreshments;
     }
 
     public static Basket getBasket() {
@@ -102,25 +91,20 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        TheaterController t = new TheaterController();
-        FilmController f = new FilmController();
-        ShowingController s = new ShowingController();
-        BookingController b = new BookingController();
-        SnackController sn = new SnackController();
-        Basket bas = new Basket();
+        theaters = new TheaterController();
+        films = new FilmController();
+        showings = new ShowingController();
+        bookings = new BookingController();
+        refreshments = new RefreshmentController();
+        basket = new Basket();
+        users = new UserController();
 
-        t.loadTheaters();
-        f.loadFilms();
-        s.loadShowings();
-        b.loadBookings();
-        sn.loadSnacks();
-
-        theaters = t;
-        films = f;
-        showings = s;
-        bookings = b;
-        snacks = sn;
-        basket = bas;
+        theaters.loadTheaters();
+        films.loadFilms();
+        showings.loadShowings();
+        bookings.loadBookings();
+        refreshments.loadSnacks();
+        users.loadUsers();
 
         launch(args);
     }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class Ticket extends BuyableItem implements Serializable {
     private Showing showing;
@@ -60,7 +59,8 @@ public class Ticket extends BuyableItem implements Serializable {
 
     @Override
     public String toString() {
-        return showing.getFilm().getTitle() +": "+showing.getShowingDateFormatted(false) +" " +
-                showing.getShowingTimeFormatted()+ " - " + seat + " - " + getPriceFormatted();
+        return "Theater " + showing.getTheater().getTheaterNumber() + " | "+showing.getFilm().getTitle() +": "+
+                showing.getShowingDateFormatted(false) +" " +showing.getShowingTimeFormatted()+ " - "
+                + seat + " - " + getPriceFormatted();
     }
 }

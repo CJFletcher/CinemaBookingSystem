@@ -7,10 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import model.BuyableItem;
-import model.Main;
-import model.Snack;
-import model.Ticket;
+import model.*;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.lang.String;
@@ -79,12 +76,24 @@ public class HelperClass {
     public static ArrayList<Snack> getAllSnacksInBasket() {
         ArrayList<Snack> snacks = new ArrayList<>();
         for (BuyableItem item : Main.getBasket().getItems()) {
-            if (item.getClass() == Snack.class) {
+            if (item.getClass()== Snack.class) {
                 Snack snackInBasket = (Snack) item;
                 snacks.add(snackInBasket);
             }
         }
         return snacks;
+    }
+
+
+    public static ArrayList<Drink> getAllDrinksInBasket() {
+        ArrayList<Drink> drinks = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass()== Drink.class) {
+                Drink drinkInBasket = (Drink) item;
+                drinks.add(drinkInBasket);
+            }
+        }
+        return drinks;
     }
 
 

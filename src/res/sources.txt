@@ -1,0 +1,4 @@
+Rating Images are taken from relevant Wikipedia.
+Food images are taken from https://unsplash.com/search/photos/food
+Background image source unknown.
+Seat icon image taken from https://www.materialui.co/icon/event-seat and recoloured.

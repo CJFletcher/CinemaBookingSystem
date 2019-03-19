@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static fxmlControllers.SceneCreator.launchScene;
+import static fxmlControllers.SceneCreator.openScene;
 
 public class HomePageController implements Initializable {
 
@@ -57,8 +57,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void openMakeBookingPage() throws IOException {
-        launchScene("../fxml/makeBookings.fxml");
-
+        openScene("../fxml/makeBookings.fxml");
     }
 
     @FXML
@@ -70,46 +69,35 @@ public class HomePageController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            Main.setBasket(new Basket());
-            Main.setCurrentUser(null);
-            Main.setCurrentFilm(null);
-            Main.setCurrentShowing(null);
-            Main.setCurrentTheater(null);
-
-            Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
-            Stage primaryStage = (Stage) exitButton.getScene().getWindow();
-            primaryStage.setTitle("Cinema Booking System");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
+            openScene("../fxml/login.fxml");
         } else {
             // ... user chose CANCEL or closed the dialog
         }
-
     }
 
     @FXML
     void openAdminPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/adminPage.fxml");
+        openScene("../fxml/adminPage.fxml");
     }
 
     @FXML
     void createNewBooking(ActionEvent event) throws IOException{
-        launchScene("../fxml/viewShowings.fxml");
+        openScene("../fxml/viewShowings.fxml");
     }
 
     @FXML
     void openSnacksPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/snacksPage");
+        openScene("../fxml/snacksPage.fxml");
     }
 
     @FXML
     void manageBookings(ActionEvent event) throws IOException {
-        launchScene("../fxml/manageBookings.fxml");
+        openScene("../fxml/manageBookings.fxml");
     }
 
     @FXML
     void openBasket(ActionEvent event) throws IOException {
-        launchScene("../fxml/basketPage.fxml");
+        openScene("../fxml/basketPage.fxml");
     }
 
     public void start(Stage window) throws Exception {
@@ -119,8 +107,8 @@ public class HomePageController implements Initializable {
         window.show();
     }
 
-    private void populateSnackDetails(GridPane pane,Snack snack,int x,int y) {
-        Label label = new Label(snack.getName() + "\n" + snack.getDescription() + "\n" + snack.getPriceFormatted());
+    private void populateSnackDetails(GridPane pane, Refreshment refreshment, int x, int y) {
+        Label label = new Label(refreshment.getName() + "\n" + refreshment.getDescription() + "\n" + refreshment.getPriceFormatted());
         label.setFont(Font.font("Arial", 12));
         label.setWrapText(true);
         label.setMaxWidth(247);
@@ -136,11 +124,11 @@ public class HomePageController implements Initializable {
         addToBasketButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                            Main.getBasket().addItem(snack);
+                            Main.getBasket().addItem(refreshment);
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
                             alert.setTitle("Item added to basket!");
-                            alert.setHeaderText(snack.getName() + " successfully added to basket");
+                            alert.setHeaderText(refreshment.getName() + " successfully added to basket");
                             alert.setContentText(Main.getBasket().toString());
                             alert.showAndWait();
                             showBasketButton();
@@ -229,7 +217,7 @@ public class HomePageController implements Initializable {
                         Main.setCurrentShowing(showing);
                         Stage stage = (Stage) showingsListView.getScene().getWindow();
                         try {
-                            launchScene("../fxml/selectSeats.fxml");
+                            openScene("../fxml/selectSeats.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -246,18 +234,20 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(!Main.getCurrentUser().getUserType().equals("Admin")){
+            adminPageButton.setDisable(true);
+        }
         populateShowingListView();
         showBasketButton();
 
-        Snack popcorn = Main.getSnacks().getItemByName("Popcorn");
-        Snack softDrink = Main.getSnacks().getItemByName("Soft Drink");
-        Snack hotDog = Main.getSnacks().getItemByName("Hot dog");
-        Snack nachos = Main.getSnacks().getItemByName("Nachos");
+        Refreshment popcorn = Main.getRefreshments().getItemByName("Popcorn");
+        Refreshment softDrink = Main.getRefreshments().getItemByName("Soft Drink");
+        Refreshment hotDog = Main.getRefreshments().getItemByName("Hot dog");
+        Refreshment nachos = Main.getRefreshments().getItemByName("Nachos");
 
         populateSnackDetails(snackGridPane,popcorn,0,0);
         populateSnackDetails(snackGridPane,softDrink,0,1);
         populateSnackDetails(snackGridPane,hotDog,0,2);
         populateSnackDetails(snackGridPane,nachos,0, 3);
-
     }
 }

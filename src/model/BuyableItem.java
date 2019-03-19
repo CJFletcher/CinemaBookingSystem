@@ -25,4 +25,11 @@ public abstract class BuyableItem implements Serializable{
         DecimalFormat df = new DecimalFormat("####0.00");
         return "£" + df.format(getPrice());
     }
+
+    @Override
+    public String toString() {
+        return "BuyableItem{" +
+                "price=" + price +
+                '}';
+    }
 }

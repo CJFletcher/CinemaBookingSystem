@@ -1,17 +1,15 @@
-package controller;
+package data;
 
+import controller.*;
 import model.*;
 
 
-import java.awt.print.Book;
-import java.util.ArrayList;
-import java.util.List;
+import javax.sound.midi.Soundbank;
 
 import static controller.FilmController.newFilm;
-import static controller.TextFileScanner.*;
 import static java.time.LocalDateTime.of;
 
-public class Test {
+public class LoadTestData {
 
     public static void main(String[] args) throws Exception {
 
@@ -283,19 +281,20 @@ public class Test {
             booking.setSeatsAsBooked();
         }
 
-        SnackController snacks = new SnackController();
+        RefreshmentController snacks = new RefreshmentController();
 
-        String popcornText = "Our popcorn is freshly popped, always carefully selected and you can choose from a range of sweet, salted or mixed.";
-        String softDrinkText = "We are excited to offer a refreshing range of drinks including Pepsi MAX, Pepsi MAX Cherry, Pepsi, Diet Pepsi, 7up Free, Tango.";
-        Snack sa = new Snack(5.20,"Popcorn - Large",popcornText);
-        Snack sb = new Snack(4.50,"Popcorn - Medium",popcornText);
-        Snack sc = new Snack(3.50,"Popcorn - Small",popcornText);
-        Snack sd = new Snack(3.20,"Soft Drink - Large",softDrinkText);
-        Snack se = new Snack(2.80,"Soft Drink - Medium", softDrinkText);
-        Snack sf = new Snack(2.00,"Soft Drink - Large",softDrinkText);
-        Snack sg = new Snack(1.50,"Bottled Water","Cool, refreshing water.");
-        Snack sh = new Snack(2.00,"Hot Dog","Delicious sizzling hot dog, topped with ketchup & mustard.\n");
-        Snack si = new Snack(2.40,"Nachos","Nachos served with fiery jalapenos and your choice of dip: try them with salsa, warm cheese or sour cream.");
+        String popcornText = "Our popcorn is freshly popped, always carefully selected and you can choose from a range of sweet, salted or mixed";
+        String softDrinkText = "We are excited to offer a refreshing range of drinks including Pepsi MAX, Pepsi MAX Cherry, Pepsi, Diet Pepsi, 7up Free, Tango";
+        Snack sa = new Snack(5.20,"Popcorn - Large",popcornText, "res/popcorn.jpg");
+        Snack sb = new Snack(4.50,"Popcorn - Medium",popcornText, "res/popcorn.jpg");
+        Snack sc = new Snack(3.50,"Popcorn - Small",popcornText,"res/popcorn.jpg");
+        Drink sd = new Drink(3.20,"Soft Drink - Large",softDrinkText,"res/softdrinks.jpg");
+        Drink se = new Drink(2.80,"Soft Drink - Medium", softDrinkText,"res/softdrinks.jpg");
+        Drink sf = new Drink(2.00,"Soft Drink - Small",softDrinkText,"res/softdrinks.jpg");
+        Drink sg = new Drink(1.50,"Bottled Water","Cool, refreshing water","res/bottledwater.jpg");
+        Snack sh = new Snack(2.00,"Hot Dog","Delicious sizzling hot dog, topped with ketchup & mustard.\n","res/hotdog.jpg");
+        Snack si = new Snack(2.40,"Nachos","Nachos served with fiery jalapenos and your choice of dip: try them with salsa, warm cheese or sour cream","res/nachos.jpg");
+        Drink sj = new Drink(2.90,"Hot Chocolate","Silky smooth hot chocolate. Great for the chocolate lovers","res/hotchocolate.jpg");
 
         snacks.addSnack(sa);
         snacks.addSnack(sb);
@@ -306,13 +305,32 @@ public class Test {
         snacks.addSnack(sg);
         snacks.addSnack(sh);
         snacks.addSnack(si);
+        snacks.addSnack(sj);
 
 
+        UserController users = new UserController();
+        Admin admin = new Admin("Joseph","Fletcher","u1863522@unimail.hud.ac.uk","Joseph","Fletcher");
+        Admin admin2 = new Admin("Admin","Istrator","admin@istrator.co.uk","Admin","Admin");
+        Employee employee = new Employee("Employee","Number 1","employee1@gmail.com","Employee","Employee",1);
+        Employee employee2 = new Employee("Employee","Number 2","employee2@gmail.com","E","E",2);
+
+        users.addUser(admin);
+        users.addUser(admin2);
+        users.addUser(employee);
+        users.addUser(employee2);
+
+//        System.out.println(users.validateUser("Admin","Admin"));//TRUE
+//        System.out.println(users.validateUser("E","E"));//TRUE
+//        System.out.println(users.validateUser("Not","InArray"));//FALSE
+//        System.out.println(users.getUserByUsername("Admin"));//Return Admin object
+//        System.out.println(users.getUserByUsername("E"));//Return Employee Object
+//
 //        System.out.println(bookings);
         bookings.saveBookings();
         showings.saveShowings();
         theaters.saveTheaters();
         showings.saveShowings();
         snacks.saveSnacks();
+        users.saveUsers();
         }
     }

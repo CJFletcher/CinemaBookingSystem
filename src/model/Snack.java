@@ -1,33 +1,19 @@
 package model;
 
-public class Snack extends BuyableItem{
-    private String name;
-    private String description;
+public class Snack extends Refreshment {
 
     public Snack(double price, String name, String description) {
-        super(price);
-        this.name = name;
-        this.description = description;
+        super(price, name, description);
+        setRefreshmentType("Snack");
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Snack(double price, String name, String description, String imagePath) {
+        super(price, name, description, imagePath);
+        setRefreshmentType("Snack");
     }
 
     @Override
     public String toString() {
-        return name + ": " + super.getPriceFormatted();
+        return this.getName()+ ": " + super.getPriceFormatted();
     }
 }

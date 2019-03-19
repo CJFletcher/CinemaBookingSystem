@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static controller.HelperClass.getAllTicketsInBasket;
-import static fxmlControllers.SceneCreator.launchScene;
+import static fxmlControllers.SceneCreator.openScene;
 
 
 public class SelectSeatsController implements Initializable {
@@ -140,17 +140,17 @@ public class SelectSeatsController implements Initializable {
 
     @FXML
     void goToHomePage(ActionEvent event) throws IOException {
-        launchScene("../fxml/homePage.fxml");
+        openScene("../fxml/homePage.fxml");
     }
 
     @FXML
     void goToSnackPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/snacksPage.fxml");
+        openScene("../fxml/snacksPage.fxml");
     }
 
     @FXML
     void gotToBasketPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/basketPage.fxml");
+        openScene("../fxml/basketPage.fxml");
     }
 
     private void updateTicketList(){

@@ -3,6 +3,7 @@ package fxmlControllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import model.Basket;
 import model.Film;
 import model.Main;
 
@@ -41,36 +43,21 @@ public class LoginController implements Initializable {
         passwordBox.requestFocus();
     }
 
-    private boolean validateUser(){
-        String username = usernameBox.getText();
-        String password = passwordBox.getText();
-        if (username.equals("Admin") && password.equals("Password")) {
-            System.out.println("Login success");
-            return true;
-        }
-        if (username.equals("Admin")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setTitle("Login Error");
-            alert.setHeaderText("Can not perform login");
-            alert.setContentText("Password is incorrect");
-            alert.showAndWait();
-        }
-        if (!username.equals("Admin")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-
-            alert.setTitle("Login Error");
-            alert.setHeaderText("Can not perform login");
-            alert.setContentText("Username is incorrect");
-            alert.showAndWait();
-        }
-        return false;
-    }
-
     @FXML
     public void login(ActionEvent event) throws Exception {
-        if (validateUser()) {
-            SceneCreator.launchScene("../fxml/homePage.fxml");
+        UserController users = Main.getUsers();
+        String username = usernameBox.getText();
+        String password = passwordBox.getText();
+        if (users.validateUser(username,password)) {
+            Main.setCurrentUser(users.getUserByUsername(username));
+            SceneCreator.openScene("../fxml/homePage.fxml");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setHeaderText("Can not perform login");
+            alert.setContentText("Username or password is incorrect");
+            alert.showAndWait();
         }
     }
 
@@ -87,7 +74,9 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<Film> films = Main.getFilms().getFilms();
-
+        Main.setBasket(new Basket());
+        Main.setCurrentUser(null);
+        Main.setCurrentShowing(null);
         for (Film film : films) {
             String posterUrl = film.getPoster();
             Image poster = new Image(posterUrl,5000,5000,true,true);

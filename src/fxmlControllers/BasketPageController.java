@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import model.*;
@@ -18,11 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import static controller.HelperClass.*;
-import static fxmlControllers.SceneCreator.launchScene;
+import static fxmlControllers.SceneCreator.openScene;
 
 public class BasketPageController implements Initializable {
 
@@ -82,43 +84,56 @@ public class BasketPageController implements Initializable {
 
     @FXML
     void clearBasket() {
-        Main.getBasket().getItems().clear();
-        populateBasketListView();
+        if (!basket.getItems().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Clear basket");
+            alert.setHeaderText("This will clear ALL items in the basket");
+            alert.setContentText("Are you sure you want to do this?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Main.getBasket().getItems().clear();
+                populateBasketListView();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+            }
+        }
     }
 
     @FXML
     void confirmCardDetails(ActionEvent event) {
-        if (validateBasicCardDetails()&&validateCardNumber()&&validateCardMonth()&&validateCardYear()&&validateCardCvc()){
+        if (validateBasicCardDetails() && validateCardNumber() && validateCardMonth() && validateCardYear() && validateCardCvc()) {
             createReceipt();
         }
     }
 
     @FXML
     void openHomePage(ActionEvent event) throws IOException {
-        launchScene("../fxml/homePage.fxml");
+        receiptTextAreaNotEmptyAlert("../fxml/homePage.fxml");
     }
 
     @FXML
     void openSnacksPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/snacksPage");
+        receiptTextAreaNotEmptyAlert("../fxml/snacksPage.fxml");
     }
 
     @FXML
     void payWithCard(ActionEvent event) {
-        for (TextField tf:cardTextFields) {
+        for (TextField tf : cardTextFields) {
             tf.setDisable(false);
         }
         confirmCardDetailsButton.setDisable(false);
         cardNumber.requestFocus();
     }
 
-    void createReceipt(){
+    void createReceipt() {
         Booking booking = createBooking();
-        ArrayList <Ticket> tickets = booking.getTickets();
+        ArrayList<Ticket> tickets = booking.getTickets();
         ArrayList<Snack> snacks = getAllSnacksInBasket();
-        if (!tickets.isEmpty()){
-            receiptTextArea.appendText("Booking ID:" +booking.getId()+"\n");
-            for (Ticket ticket:tickets) {
+        ArrayList<Drink> drinks = getAllDrinksInBasket();
+        if (!tickets.isEmpty()) {
+            receiptTextArea.appendText("Booking ID:" + booking.getId() + "\n");
+            for (Ticket ticket : tickets) {
                 receiptTextArea.appendText(ticket.toString() + "\n");
             }
         }
@@ -128,8 +143,15 @@ public class BasketPageController implements Initializable {
                 receiptTextArea.appendText(snack.toString() + "\n");
             }
         }
-        receiptTextArea.appendText("\nTotal: "+totalText.getText());
-        clearBasket();
+        if (!drinks.isEmpty()) {
+            receiptTextArea.appendText("\nDrinks:\n");
+            for (Drink drink : drinks) {
+                receiptTextArea.appendText(drink.toString() + "\n");
+            }
+        }
+        receiptTextArea.appendText("\nTotal: " + totalText.getText());
+        Main.getBasket().getItems().clear();
+        populateBasketListView();
         printReceiptButton.setDisable(false);
     }
 
@@ -146,11 +168,10 @@ public class BasketPageController implements Initializable {
     @FXML
     void removeSelectedItemFromBasket(ActionEvent event) {
         BuyableItem selectedItem = basketListView.getSelectionModel().getSelectedItem();
-        if(selectedItem!=null) {
+        if (selectedItem != null) {
             basket.removeItem(selectedItem);
             updateListAndTotal();
-        }
-        else{
+        } else {
             noSelectionAlert();
         }
     }
@@ -158,31 +179,50 @@ public class BasketPageController implements Initializable {
     @FXML
     void removeSameItemFromBasket(ActionEvent event) {
         BuyableItem selectedItem = basketListView.getSelectionModel().getSelectedItem();
-        if(selectedItem!=null) {
+        if (selectedItem != null) {
             basket.removeAllIdenticalItems(selectedItem);
             updateListAndTotal();
-        }
-        else{
+        } else {
             noSelectionAlert();
         }
     }
 
-
-    private void cardDetailsError(TextField tf, String contentTextOptional){
+    private void cardDetailsError(TextField tf, String contentTextOptional) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Card details incorrect");
-        alert.setHeaderText(tf.getPromptText()+" has invalid data");
-        if (contentTextOptional!=null){alert.setContentText(contentTextOptional);}
-        else {alert.setContentText("See on-screen prompts for help");}
+        alert.setHeaderText(tf.getPromptText() + " has invalid data");
+        if (contentTextOptional != null) {
+            alert.setContentText(contentTextOptional);
+        } else {
+            alert.setContentText("See on-screen prompts for help");
+        }
         alert.showAndWait();
     }
 
-    private void noSelectionAlert(){
+    private void noSelectionAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No selection made");
         alert.setHeaderText("Can not remove item from basket");
         alert.setContentText("Please select an item to remove");
         alert.showAndWait();
+    }
+
+    private void receiptTextAreaNotEmptyAlert(String pageToOpen) throws IOException {
+        if(!receiptTextArea.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Items in receipt area");
+            alert.setHeaderText("Check if customer wants a receipt first");
+            alert.setContentText("Are you sure you want to change page?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                openScene(pageToOpen);
+            } else {
+                // ... user chose CANCEL or closed the dialog
+            }
+        }
+        else{
+            openScene(pageToOpen);}
     }
 
     private void populateBasketListView(){
@@ -193,7 +233,8 @@ public class BasketPageController implements Initializable {
                 basketListView.getItems().add(item);
             }
         } else{
-            basketListView.getItems().add(new Snack(0.00,"NO ITEMS IN BASKET",""));
+            basketListView.getItems().add(new Refreshment(0.00, "NO ITEMS IN BASKET", "") {
+            });
             setTotalText();
             basketListView.setDisable(true);
             disableCardPaymentDetails();
@@ -278,7 +319,6 @@ public class BasketPageController implements Initializable {
         return false;
     }
 
-
     private void addCardTextFieldsToArray(){
         cardTextFields.add(cardNumber);
         cardTextFields.add(cardMonth);
@@ -328,8 +368,7 @@ public class BasketPageController implements Initializable {
         return booking;
     }
 
-
-    //validates each box for Int only & not empty
+    //Validates each textfield for Int only & not empty
     private boolean validateBasicCardDetails(){
         for (JFXTextField tf:cardTextFields) {
             if (!tf.validate()){
@@ -372,13 +411,13 @@ public class BasketPageController implements Initializable {
         else return true;
     }
 
-        @Override
-        public void initialize (URL location, ResourceBundle resources){
-            addCardTextFieldsToArray();
-            addValidatorsToCardTextFields();
-            populateBasketListView();
-            setTotalText();
-            enablePaymentButtons();
+    @Override
+    public void initialize (URL location, ResourceBundle resources){
+        addCardTextFieldsToArray();
+        addValidatorsToCardTextFields();
+        populateBasketListView();
+        setTotalText();
+        enablePaymentButtons();
 
 //        System.out.println(isValidMonth("12"));//true
 //        System.out.println(isValidMonth("13"));//false
@@ -400,6 +439,5 @@ public class BasketPageController implements Initializable {
 //        System.out.println(isValidCVV("12345"));//false
 //        System.out.println(isValidCVV("abc"));//false
 //        System.out.println(isValidCVV("abcd"));//false
-        }
     }
-
+}

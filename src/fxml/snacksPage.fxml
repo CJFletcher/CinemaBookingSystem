@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #4059a9;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxmlControllers.SnacksPageController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="226.0" style="-fx-background-color: #7384da;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="226.0" style="-fx-background-color: #003079;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navigation" textAlignment="CENTER" wrappingWidth="225.99998474121094">
+                     <font>
+                        <Font name="Arial" size="38.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <VBox layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+               <children>
+                  <AnchorPane VBox.vgrow="NEVER">
+                     <children>
+                        <ImageView fitHeight="561.0" fitWidth="226.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../res/back.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="2250.0" width="1080.0" />
+                           </viewport>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <JFXButton fx:id="openBasketPageButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openBasketPage" prefHeight="71.5" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Basket" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="homeButton" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openHomePage" prefHeight="71.5" prefWidth="226.0" ripplerFill="#003079" style="-fx-background-color: #7384da;" text="Home" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="255.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="498.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <AnchorPane maxHeight="65.0" maxWidth="498.0" minHeight="65.0" minWidth="498.0" prefHeight="65.0" prefWidth="498.0" style="-fx-background-color: #003079;">
+               <children>
+                  <Text fill="WHITE" layoutX="7.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snacks" textAlignment="CENTER" wrappingWidth="486.00000417232513">
+                     <font>
+                        <Font name="Arial" size="38.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <JFXListView fx:id="snacksListView" layoutX="10.0" layoutY="71.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="689.0" prefWidth="495.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="71.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="768.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="498.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow blurType="GAUSSIAN" />
+         </effect>
+         <children>
+            <AnchorPane maxHeight="65.0" maxWidth="498.0" minHeight="65.0" minWidth="498.0" prefHeight="65.0" prefWidth="498.0" style="-fx-background-color: #003079;">
+               <children>
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drinks" textAlignment="CENTER" wrappingWidth="486.00000417232513">
+                     <font>
+                        <Font name="Arial" size="38.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <JFXListView fx:id="drinksListView" layoutX="10.0" layoutY="71.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="689.0" prefWidth="495.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="71.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

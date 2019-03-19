@@ -2,18 +2,13 @@ package model;
 
 public class Employee extends User{
     private int employeeNumber;
-    private String userName;
-    private String password;
+    private String userType;
 
-    public Employee(String firstName, String lastName, String emailAddress, int employeeNumber, String userName, String password) {
-        super(firstName, lastName, emailAddress);
+    public Employee(String firstName, String lastName, String emailAddress, String username, String password, int employeeNumber) {
+        super(firstName, lastName, emailAddress, username, password);
         this.employeeNumber = employeeNumber;
-        this.userName = userName;
-
-        this.password = password;
+        this.setUserType("Employee");
     }
-
-
 
     public int getEmployeeNumber() {
         return employeeNumber;
@@ -21,21 +16,5 @@ public class Employee extends User{
 
     public void setEmployeeNumber(int employeeNumber) {
         this.employeeNumber = employeeNumber;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

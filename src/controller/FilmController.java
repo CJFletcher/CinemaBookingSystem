@@ -115,12 +115,15 @@ public class FilmController implements Serializable {
     }
 
     public Film getFilmByTitle(String filmTitle){
-        for (Film film:this.films) {
-            if (film.getTitle().toLowerCase().contains(filmTitle.toLowerCase())) {
-                return film;
+        if (!films.isEmpty()) {
+            for (Film film : this.films) {
+                if (film.getTitle().toLowerCase().contains(filmTitle.toLowerCase())) {
+                    return film;
+                }
             }
+            throw new NoSuchElementException("Film not found");
         }
-        throw new NoSuchElementException("Film not found");
+        throw new NullPointerException("Films list is empty");
     }
 
     public Film getFilmById(String filmId){

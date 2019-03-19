@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static fxmlControllers.SceneCreator.launchScene;
+import static fxmlControllers.SceneCreator.openScene;
 
 public class ViewShowingsController implements Initializable{
 
@@ -121,24 +121,24 @@ public class ViewShowingsController implements Initializable{
     @FXML
     private void goToChooseSeatsScreen(ActionEvent event) throws IOException {
         if (Main.getCurrentShowing() != null){
-            launchScene("../fxml/selectSeats.fxml");
+            openScene("../fxml/selectSeats.fxml");
         }
         else {noSelectionAlert();}
     }
 
     @FXML
     private void goToHomePage(ActionEvent event) throws IOException {
-        launchScene("../fxml/homePage.fxml");
+        openScene("../fxml/homePage.fxml");
     }
 
     @FXML
     private void goToSnackPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/snacksPage.fxml");
+        openScene("../fxml/snacksPage.fxml");
     }
 
     @FXML
     private void gotToBasketPage(ActionEvent event) throws IOException {
-        launchScene("../fxml/basketPage.fxml");
+        openScene("../fxml/basketPage.fxml");
     }
 
 
