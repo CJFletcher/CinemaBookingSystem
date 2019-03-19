@@ -1,23 +1,37 @@
 package fxmlControllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import model.Booking;
-import model.Main;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ManageBookingsController implements Initializable {
+
+    @FXML
+    private TableView<Booking> table;
+
+    @FXML
+    private TableColumn<Booking, String> bookingIdColumn;
+
+    @FXML
+    private TableColumn<Booking, ArrayList<Ticket>> ticketColumn;
+
+    @FXML
+    private TableColumn<Booking, ArrayList<Refreshment>> refreshmentColumn;
+
+    @FXML
+    private TableColumn<Booking, String> priceColumn;
 
     @FXML
     private JFXButton homeButton;
@@ -32,10 +46,10 @@ public class ManageBookingsController implements Initializable {
     private JFXButton deleteButton;
 
     @FXML
-    private JFXListView<Booking> bookingListView;
+    private JFXTextField idTextField;
 
     @FXML
-    private JFXTextField idTextField;
+    private JFXTextField filmTextField;
 
     @FXML
     void openHomePage(ActionEvent event) throws IOException {
@@ -45,24 +59,26 @@ public class ManageBookingsController implements Initializable {
     @FXML
     void searchByID(ActionEvent event) {
         if (!idTextField.getText().isEmpty()) {
-            bookingListView.getItems().clear();
+            table.getItems().clear();
             for (Booking booking:Main.getBookings().getBookingsByID(idTextField.getText())) {
-                bookingListView.getItems().add(booking);
+                table.getItems().add(booking);
             }
         }
     }
 
     @FXML
     void searchByDate(ActionEvent event) {
-            bookingListView.getItems().clear();
+            table.getItems().clear();
         for (Booking booking:Main.getBookings().getBookingsByID(datePicker.getValue().toString())) {
-            bookingListView.getItems().add(booking);
+            table.getItems().add(booking);
         }
     }
 
+
+    //Had to implement it this way due to Serialisation creating separate copies of the Seat objects
     @FXML
     void deleteBooking(ActionEvent event) throws IOException, ClassNotFoundException {
-        Booking selectedBooking = bookingListView.getSelectionModel().getSelectedItem();
+        Booking selectedBooking = table.getSelectionModel().getSelectedItem();
         if (selectedBooking != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete booking");
@@ -72,23 +88,55 @@ public class ManageBookingsController implements Initializable {
             if (result.get() == ButtonType.OK) {
                 selectedBooking.setSeatsAsUnBooked();
                 Main.getBookings().removeBooking(selectedBooking);
-                populateListView();
+                for (Ticket ticket:selectedBooking.getTickets()) {
+                    for (Showing showing:Main.getShowings().getShowings()) {
+                        String row = ticket.getSeat().getRowLetter();
+                        int number = ticket.getSeat().getSeatNumber();
+                        showing.getSeat(row,number).setBookingStatus(false);
+                    }
+                }
+                populateTableView();
                 Main.getBookings().saveBookings();
                 Main.getShowings().saveShowings();
             }
         }
     }
 
-    private void populateListView() {
-        bookingListView.getItems().clear();
+    @FXML
+    private void populateTableView() {
+        table.getItems().clear();
         for (Booking booking : Main.getBookings().getBookings()) {
-            bookingListView.getItems().add(booking);
+            table.getItems().add(booking);
         }
     }
 
+    @FXML
+    private void searchByFilm(ActionEvent event) {
+        if (!filmTextField.getText().isEmpty()){
+            table.getItems().clear();
+            String selectedFilm=filmTextField.getText();
+            for (Booking booking : Main.getBookings().getBookings()) {
+                for (Ticket ticket: booking.getTickets()) {
+                    if(ticket.getShowing().getFilm().getTitle().toLowerCase().contains(selectedFilm.toLowerCase())){
+                        table.getItems().add(booking);
+                    }
+                }
+            }
+        }
+        else{
+            populateTableView();
+        }
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            populateListView();
+        ObservableList<Booking> bookingList = FXCollections.observableArrayList(Main.getBookings().getBookings());
+        table.setItems(bookingList);
+        bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ticketColumn.setCellValueFactory(new PropertyValueFactory<>("tickets"));
+        refreshmentColumn.setCellValueFactory(new PropertyValueFactory<>("refreshments"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         }
     }
 

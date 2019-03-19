@@ -62,41 +62,6 @@ public class HelperClass {
         return "£" + df.format(number);
     }
 
-    public static ArrayList<Ticket> getAllTicketsInBasket() {
-        ArrayList<Ticket> tickets = new ArrayList<>();
-        for (BuyableItem item : Main.getBasket().getItems()) {
-            if (item.getClass() == Ticket.class) {
-                Ticket ticketInBasket = (Ticket) item;
-                tickets.add(ticketInBasket);
-            }
-        }
-        return tickets;
-    }
-
-    public static ArrayList<Snack> getAllSnacksInBasket() {
-        ArrayList<Snack> snacks = new ArrayList<>();
-        for (BuyableItem item : Main.getBasket().getItems()) {
-            if (item.getClass()== Snack.class) {
-                Snack snackInBasket = (Snack) item;
-                snacks.add(snackInBasket);
-            }
-        }
-        return snacks;
-    }
-
-
-    public static ArrayList<Drink> getAllDrinksInBasket() {
-        ArrayList<Drink> drinks = new ArrayList<>();
-        for (BuyableItem item : Main.getBasket().getItems()) {
-            if (item.getClass()== Drink.class) {
-                Drink drinkInBasket = (Drink) item;
-                drinks.add(drinkInBasket);
-            }
-        }
-        return drinks;
-    }
-
-
     //https://stackoverflow.com/questions/36555291/how-do-i-print-only-text
     public static void print(TextArea textArea) {
         TextFlow printArea = new TextFlow(new Text(textArea.getText()));

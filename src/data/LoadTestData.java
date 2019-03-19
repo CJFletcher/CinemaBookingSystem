@@ -273,9 +273,10 @@ public class LoadTestData {
 
         for (Booking booking:bookings.getBookings()) {
             booking.setSeatsAsBooked();
+            booking.getTotalPrice();
         }
-        System.out.println(a);
-        System.out.println(ae);
+        //System.out.println(a); //Check seats are not linked to theatre and are linked to showing
+        //System.out.println(ae); //Expected seats available are 54 & 56
 
         RefreshmentController snacks = new RefreshmentController();
 

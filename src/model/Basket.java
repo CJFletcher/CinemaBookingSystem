@@ -46,6 +46,54 @@ public class Basket {
         return d;
     }
 
+
+    public static ArrayList<Ticket> getAllTicketsInBasket() {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass() == Ticket.class) {
+                Ticket ticketInBasket = (Ticket) item;
+                tickets.add(ticketInBasket);
+            }
+        }
+        return tickets;
+    }
+
+    public static ArrayList<Snack> getAllSnacksInBasket() {
+        ArrayList<Snack> snacks = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass()== Snack.class) {
+                Snack snackInBasket = (Snack) item;
+                snacks.add(snackInBasket);
+            }
+        }
+        return snacks;
+    }
+
+
+    public static ArrayList<Refreshment> getAllRefreshmentsInBasket() {
+        ArrayList<Refreshment> refreshments = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item instanceof Refreshment) {
+                Refreshment refreshmentInBasket = (Refreshment) item;
+                refreshments.add(refreshmentInBasket);
+            }
+        }
+        return refreshments;
+    }
+
+
+    public static ArrayList<Drink> getAllDrinksInBasket() {
+        ArrayList<Drink> drinks = new ArrayList<>();
+        for (BuyableItem item : Main.getBasket().getItems()) {
+            if (item.getClass()== Drink.class) {
+                Drink drinkInBasket = (Drink) item;
+                drinks.add(drinkInBasket);
+            }
+        }
+        return drinks;
+    }
+
+
     @Override
     public String toString() {
         String ret = "";

@@ -23,8 +23,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import static controller.HelperClass.*;
+import static controller.HelperClass.formatDoubleToGBPString;
+import static controller.HelperClass.print;
 import static fxmlControllers.SceneCreator.openScene;
+import static model.Basket.*;
 
 public class BasketPageController implements Initializable {
 
@@ -359,11 +361,16 @@ public class BasketPageController implements Initializable {
 
     private Booking createBooking(){
         Booking booking = new Booking();
+        ArrayList<Refreshment> refreshments = getAllRefreshmentsInBasket();
+        for (Refreshment refreshment:refreshments) {
+            booking.addRefreshment(refreshment);
+        }
         ArrayList<Ticket> tickets = getAllTicketsInBasket();
         for (Ticket ticket:tickets) {
             booking.addTicket(ticket);
         }
         booking.setSeatsAsBooked();
+        booking.calculateTotalPrice();
         Main.getBookings().addBooking(booking);
         saveStateOfBookingsAndShowings();
         return booking;

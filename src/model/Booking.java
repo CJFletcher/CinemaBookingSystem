@@ -9,7 +9,9 @@ import java.util.UUID;
 
 public class Booking implements Serializable {
     private ArrayList<Ticket> tickets = new ArrayList<>();
+    private ArrayList<Refreshment> refreshments = new ArrayList<>();
     private String id = "BKG-" +LocalDate.now() +"-"+ UUID.randomUUID().toString().substring(0,13);
+    private double totalPrice;
 
     public Booking() {
     }
@@ -51,6 +53,29 @@ public class Booking implements Serializable {
 
     public String getId() {
         return id;
+    }
+
+    public ArrayList<Refreshment> getRefreshments() {
+        return refreshments;
+    }
+
+    public void addRefreshment(Refreshment refreshment){
+        refreshments.add(refreshment);
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void calculateTotalPrice() {
+        double price = 0;
+        for (Refreshment refreshment:refreshments) {
+            price += refreshment.getPrice();
+        }
+        for (Ticket ticket:tickets) {
+            price += ticket.getPrice();
+        }
+        this.totalPrice=price;
     }
 
     @Override

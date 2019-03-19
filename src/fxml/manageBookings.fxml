@@ -2,14 +2,16 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -52,49 +54,70 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="255.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="787.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="255.0" layoutY="15.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="595.0" prefWidth="1010.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="15.0">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <AnchorPane maxHeight="65.0" maxWidth="787.0" minHeight="65.0" minWidth="498.0" prefHeight="65.0" prefWidth="787.0" style="-fx-background-color: #003079;">
+            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="1010.0" prefHeight="65.0" prefWidth="1010.0" style="-fx-background-color: #003079;">
                <children>
-                  <Text fill="WHITE" layoutX="8.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Details" textAlignment="CENTER" wrappingWidth="786.9999965429306">
+                  <Text fill="WHITE" layoutX="9.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Details" textAlignment="CENTER" wrappingWidth="991.9999927580357">
                      <font>
                         <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
+                  <JFXButton fx:id="resetView" buttonType="RAISED" layoutX="14.0" layoutY="14.0" onAction="#populateTableView" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="RESET VIEW" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
-            <JFXListView fx:id="bookingListView" layoutX="12.0" layoutY="81.0" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="675.0" prefWidth="763.0" showTooltip="true" stylesheets="@../res/styleSheet.css" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <TableView fx:id="table" layoutY="65.0" prefHeight="528.0" prefWidth="1010.0">
+              <columns>
+                <TableColumn fx:id="bookingIdColumn" text="Booking ID" />
+                  <TableColumn fx:id="priceColumn" maxWidth="100.0" minWidth="15.0" text="Total Price" />
+                <TableColumn fx:id="ticketColumn" prefWidth="500.0" text="Ticket Details" />
+                  <TableColumn fx:id="refreshmentColumn" prefWidth="400.0" text="Refreshment Details" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1058.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="208.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="255.0" layoutY="618.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="1010.0" style="-fx-background-color: #FFFFFF;">
          <effect>
             <DropShadow blurType="GAUSSIAN" />
          </effect>
          <children>
-            <AnchorPane maxHeight="65.0" maxWidth="498.0" minHeight="65.0" minWidth="208.0" prefHeight="65.0" prefWidth="208.0" style="-fx-background-color: #003079;">
+            <AnchorPane maxHeight="65.0" maxWidth="1010.0" minHeight="65.0" minWidth="208.0" prefHeight="65.0" prefWidth="1010.0" style="-fx-background-color: #003079;">
                <children>
-                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER" wrappingWidth="208.00002051144838">
+                  <Text fill="WHITE" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options" textAlignment="CENTER" wrappingWidth="1010.0000038743019">
                      <font>
                         <Font name="Arial" size="38.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <JFXTextField fx:id="idTextField" layoutX="37.0" layoutY="159.0" promptText="ID" />
-            <JFXButton fx:id="searchByID" buttonType="RAISED" layoutX="38.0" layoutY="203.0" onAction="#searchByID" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Search by ID" textFill="WHITE">
+            <JFXTextField fx:id="idTextField" layoutX="27.0" layoutY="104.0" promptText="ID" />
+            <JFXButton fx:id="searchByID" buttonType="RAISED" layoutX="172.0" layoutY="98.0" onAction="#searchByID" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Search by ID" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXDatePicker fx:id="datePicker" defaultColor="#4059a9" layoutX="38.0" layoutY="333.0" onAction="#searchByDate" prefHeight="28.0" prefWidth="157.0" promptText="Search by Date" />
-            <JFXButton fx:id="deleteButton" buttonType="RAISED" layoutX="38.0" layoutY="683.0" onAction="#deleteBooking" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Delete selected" textFill="WHITE">
+            <JFXButton fx:id="deleteButton" buttonType="RAISED" layoutX="843.0" layoutY="99.0" onAction="#deleteBooking" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Delete selected" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
+            <JFXDatePicker fx:id="datePicker" defaultColor="#4059a9" layoutX="326.0" layoutY="103.0" onAction="#searchByDate" prefHeight="28.0" prefWidth="157.0" promptText="Search by Date" />
+            <JFXTextField fx:id="filmTextField" layoutX="514.0" layoutY="105.0" prefHeight="25.0" prefWidth="135.0" promptText="Film Title" />
+            <JFXButton fx:id="searchByFilm" buttonType="RAISED" layoutX="663.0" layoutY="99.0" onAction="#searchByFilm" prefHeight="37.0" prefWidth="133.0" ripplerFill="#14c8ff" style="-fx-background-color: #4059a9;" text="Search by Film" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <Line endX="-1.0" endY="84.0" layoutX="317.0" layoutY="84.0" startX="-1.0" startY="-19.0" />
+            <Line endX="-1.0" endY="84.0" layoutX="496.0" layoutY="84.0" startX="-1.0" startY="-19.0" />
+            <Line endX="-1.0" endY="84.0" layoutX="818.0" layoutY="84.0" startX="-1.0" startY="-19.0" />
          </children>
       </AnchorPane>
    </children>

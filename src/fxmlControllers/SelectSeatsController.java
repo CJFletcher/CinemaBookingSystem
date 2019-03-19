@@ -22,8 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static controller.HelperClass.getAllTicketsInBasket;
 import static fxmlControllers.SceneCreator.openScene;
+import static model.Basket.getAllTicketsInBasket;
 
 
 public class SelectSeatsController implements Initializable {
