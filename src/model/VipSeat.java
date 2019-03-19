@@ -2,7 +2,6 @@ package model;
 
 public class VipSeat extends Seat{
 
-
     public static final double priceModifier = 1.25;
 
     public VipSeat() {

@@ -7,12 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import model.*;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.lang.String;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class HelperClass {
 

@@ -1,6 +1,7 @@
 package model;
 
 public class Employee extends User{
+
     private int employeeNumber;
     private String userType;
 

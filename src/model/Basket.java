@@ -1,6 +1,5 @@
 package model;
 
-import model.BuyableItem;
 import java.util.ArrayList;
 import java.util.Iterator;
 

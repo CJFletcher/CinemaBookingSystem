@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
-
-
 public class Booking implements Serializable {
     private ArrayList<Ticket> tickets = new ArrayList<>();
     private ArrayList<Refreshment> refreshments = new ArrayList<>();

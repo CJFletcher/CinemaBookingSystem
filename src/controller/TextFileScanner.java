@@ -3,11 +3,6 @@ package controller;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import static org.apache.commons.io.FileUtils.readLines;
-import static org.apache.commons.io.FileUtils.writeLines;
-
 
 public class TextFileScanner {
 

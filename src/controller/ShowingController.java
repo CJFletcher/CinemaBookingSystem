@@ -1,9 +1,6 @@
 package controller;
 
-import model.Row;
 import model.Showing;
-import model.Theater;
-
 
 import java.io.*;
 import java.time.LocalDate;
@@ -11,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
-import static org.apache.commons.io.FileUtils.writeLines;
 
 public class ShowingController implements Serializable {
 
