@@ -28,6 +28,7 @@ public class LoginController implements Initializable  {
 
     private int imageCount = 0;
     private ArrayList<Image> imageList = new ArrayList<>();
+    private ScheduledExecutorService executor = Executors.newScheduledThreadPool(0);
 
     @FXML
     private JFXTextField usernameBox;
@@ -53,6 +54,7 @@ public class LoginController implements Initializable  {
         String password = passwordBox.getText();
         if (users.validateUser(username,password)) {
             Main.setCurrentUser(users.getUserByUsername(username));
+            executor.shutdown();
             SceneCreator.openScene("../fxml/homePage.fxml");
         }
         else{
@@ -90,7 +92,6 @@ public class LoginController implements Initializable  {
         centerImage(posterImage);
 
         //https://stackoverflow.com/questions/12908412/print-hello-world-every-x-seconds
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(this::cycleImage, 0, 3, TimeUnit.SECONDS);
     }
 }
