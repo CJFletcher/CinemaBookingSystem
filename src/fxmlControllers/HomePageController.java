@@ -149,7 +149,6 @@ public class HomePageController implements Initializable {
 
     private void populateShowingListView(){
         Main.getShowings().sortShowings();
-        ShowingPageController showingPageController = new ShowingPageController();
         ArrayList<Showing> showings = Main.getShowings().getShowings();
         int i = 0;
         for (Showing showing:showings) {

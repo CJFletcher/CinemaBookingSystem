@@ -67,10 +67,6 @@ public class Theater implements Serializable {
 
     @Override
     public String toString() {
-        return "Theater{" +
-                "theaterNumber=" + theaterNumber +
-                ", numberOfRows=" + numberOfRows +
-                ", rows=" + rows +
-                '}';
+        return "Theater: " + theaterNumber;
     }
 }

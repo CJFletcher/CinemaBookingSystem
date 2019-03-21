@@ -85,7 +85,7 @@ public class BasketPageController implements Initializable {
     private JFXTextField cardName;
 
     @FXML
-    void clearBasket() {
+    private void clearBasket() {
         if (!basket.getItems().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Clear basket");
@@ -103,24 +103,24 @@ public class BasketPageController implements Initializable {
     }
 
     @FXML
-    void confirmCardDetails(ActionEvent event) {
+    private void confirmCardDetails(ActionEvent event) {
         if (validateBasicCardDetails() && validateCardNumber() && validateCardMonth() && validateCardYear() && validateCardCvc()) {
             createReceipt();
         }
     }
 
     @FXML
-    void openHomePage(ActionEvent event) throws IOException {
+    private void openHomePage(ActionEvent event) throws IOException {
         receiptTextAreaNotEmptyAlert("../fxml/homePage.fxml");
     }
 
     @FXML
-    void openSnacksPage(ActionEvent event) throws IOException {
+    private void openSnacksPage(ActionEvent event) throws IOException {
         receiptTextAreaNotEmptyAlert("../fxml/snacksPage.fxml");
     }
 
     @FXML
-    void payWithCard(ActionEvent event) {
+    private void payWithCard(ActionEvent event) {
         for (TextField tf : cardTextFields) {
             tf.setDisable(false);
         }
@@ -128,7 +128,7 @@ public class BasketPageController implements Initializable {
         cardNumber.requestFocus();
     }
 
-    void createReceipt() {
+    private void createReceipt() {
         Booking booking = createBooking();
         ArrayList<Ticket> tickets = booking.getTickets();
         ArrayList<Snack> snacks = getAllSnacksInBasket();

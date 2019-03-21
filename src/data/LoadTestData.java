@@ -3,6 +3,7 @@ package data;
 import controller.*;
 import model.*;
 
+import static controller.FilmController.newFilm;
 import static java.time.LocalDateTime.of;
 
 public class LoadTestData {
@@ -61,7 +62,6 @@ public class LoadTestData {
         Theater three = new Theater(3);
         three.createRows(6,5,false);
         three.createRows(6,2,true);
-
 
         Theater four = new Theater(4);
         four.createRows(6,4,false);
@@ -195,7 +195,6 @@ public class LoadTestData {
         showings.addShowing(ag);
         showings.addShowing(ah);
         showings.addShowing(ai);
-        showings.addShowing(ah);
         showings.addShowing(aj);
         showings.addShowing(ak);
         showings.addShowing(al);
@@ -273,7 +272,7 @@ public class LoadTestData {
 
         for (Booking booking:bookings.getBookings()) {
             booking.setSeatsAsBooked();
-            booking.getTotalPrice();
+            booking.calculateTotalPrice();
         }
         //System.out.println(a); //Check seats are not linked to theatre and are linked to showing
         //System.out.println(ae); //Expected seats available are 54 & 56

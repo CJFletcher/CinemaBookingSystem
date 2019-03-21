@@ -58,6 +58,7 @@ public class SnacksPageController implements Initializable {
         alert.setHeaderText(refreshment.getName() + " successfully added to basket");
         alert.setContentText(Main.getBasket().toString());
         alert.showAndWait();
+        showBasketButton();
     }
 
     private void addedMultipleToBasketAlert(Refreshment refreshment, String timesAdded){
@@ -67,6 +68,7 @@ public class SnacksPageController implements Initializable {
         alert.setHeaderText(refreshment.getName() + " successfully added to basket "+timesAdded+" times.");
         alert.setContentText(Main.getBasket().toString());
         alert.showAndWait();
+        showBasketButton();
     }
 
     private void populateListView(JFXListView listView, String refreshmentType){
@@ -126,10 +128,21 @@ public class SnacksPageController implements Initializable {
         }
     }
 
+    @FXML
+    private void showBasketButton(){
+        if (!Main.getBasket().getItems().isEmpty()){
+            openBasketPageButton.setDisable(false);
+        }
+        else {
+            openBasketPageButton.setDisable(true);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         populateListView(snacksListView,"Snack");
         populateListView(drinksListView,"Drink");
-        }
+        showBasketButton();
     }
+}
 

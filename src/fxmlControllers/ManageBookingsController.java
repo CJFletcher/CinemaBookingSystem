@@ -74,7 +74,6 @@ public class ManageBookingsController implements Initializable {
         }
     }
 
-
     //Had to implement it this way due to Serialisation creating separate copies of the Seat objects
     @FXML
     void deleteBooking(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -82,19 +81,20 @@ public class ManageBookingsController implements Initializable {
         if (selectedBooking != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Delete booking");
-            alert.setHeaderText("This delete the booking permanently");
+            alert.setHeaderText("This will delete the booking permanently");
             alert.setContentText("Are you sure you want to do this?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                selectedBooking.setSeatsAsUnBooked();
-                Main.getBookings().removeBooking(selectedBooking);
                 for (Ticket ticket:selectedBooking.getTickets()) {
                     for (Showing showing:Main.getShowings().getShowings()) {
-                        String row = ticket.getSeat().getRowLetter();
-                        int number = ticket.getSeat().getSeatNumber();
-                        showing.getSeat(row,number).setBookingStatus(false);
+                        if (showing.getFilm().getTitle().equals(ticket.getShowing().getFilm().getTitle())&&showing.getShowingTimeFormatted().equals(ticket.getShowing().getShowingTimeFormatted())&&showing.getShowingDateFormatted(false).equals(showing.getShowingDateFormatted(false))) {
+                            String row = ticket.getSeat().getRowLetter();
+                            int number = ticket.getSeat().getSeatNumber();
+                            showing.getSeat(row, number).setBookingStatus(false);
+                        }
                     }
                 }
+                Main.getBookings().removeBooking(selectedBooking);
                 populateTableView();
                 Main.getBookings().saveBookings();
                 Main.getShowings().saveShowings();
@@ -127,7 +127,6 @@ public class ManageBookingsController implements Initializable {
             populateTableView();
         }
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

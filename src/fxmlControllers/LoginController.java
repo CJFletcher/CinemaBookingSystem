@@ -18,10 +18,13 @@ import model.Main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static controller.HelperClass.centerImage;
 
-public class LoginController implements Initializable {
+public class LoginController implements Initializable  {
 
     private int imageCount = 0;
     private ArrayList<Image> imageList = new ArrayList<>();
@@ -85,6 +88,10 @@ public class LoginController implements Initializable {
 
         posterImage.setImage(imageList.get(imageCount));
         centerImage(posterImage);
+
+        //https://stackoverflow.com/questions/12908412/print-hello-world-every-x-seconds
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(this::cycleImage, 0, 3, TimeUnit.SECONDS);
     }
 }
 

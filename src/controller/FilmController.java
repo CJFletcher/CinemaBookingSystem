@@ -104,14 +104,19 @@ public class FilmController implements Serializable {
     }
 
     public static Film newFilm(String filmName, String filmYear) throws IOException{
-        return(jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear))));
+        if(jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear))).getTitle()==null){
+            throw new NullPointerException("No such film exists");
+        }
+        else{
+            return jsonToObject(parseURL(generateOmdbUrl(filmName,filmYear)));
+        }
     }
 
     public static Film newFilm(String imdbID) throws IOException{
         if (imdbID!=null){
             return jsonToObject(parseURL(generateOmdbUrl(imdbID)));
         }
-        return null;
+        throw new NullPointerException("No film with id exists");
     }
 
     public Film getFilmByTitle(String filmTitle){
